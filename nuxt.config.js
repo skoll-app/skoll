@@ -11,7 +11,15 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' }
+    ],
+    script: [
+      {
+        src: '/assets/js/bootstrap.bundle.min.js',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

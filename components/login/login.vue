@@ -54,6 +54,7 @@ import Vue from 'vue'
 import ArrowRight from '@/static/assets/icons/arrow-right.svg'
 
 export default Vue.extend({
+  name: 'Login',
   components: {
     ArrowRight,
   },

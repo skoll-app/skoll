@@ -1,13 +1,13 @@
 <template>
-  <login />
+  <Login />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import login from '~/components/login/login.vue'
+import Login from '~/components/login/login.vue'
 
 export default Vue.extend({
-  components: { login },
+  components: { Login },
   name: 'IndexPage',
 })
 </script>

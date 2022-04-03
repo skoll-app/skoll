@@ -30,6 +30,17 @@
                 <ArrowRight />
               </button>
             </div>
+
+            <p class="text-primary">
+              ¿Olvidaste tu contraseña?
+              <a
+                href="http://"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-warning"
+                >Recuperala aquí</a
+              >
+            </p>
           </div>
         </div>
       </div>

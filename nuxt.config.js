@@ -13,7 +13,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' }
+      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: '/assets/css/style.css' }
     ],
     script: [
       {

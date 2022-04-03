@@ -2,7 +2,7 @@
   <div class="login d-flex align-items-center">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 center-hv">
+        <div class="col-md-6 center-hv d-none d-md-flex">
           <img src="assets/img/dance.png" height="400" alt="dance" />
         </div>
         <div class="col-md-6 center-hv mt-n5">
@@ -23,11 +23,11 @@
             <div class="input-group mb-3">
               <input type="tel" class="form-control" placeholder="3161234567" />
               <button
-                class="btn btn-outline-secondary"
+                class="btn btn-outline-secondary btn-icon"
                 type="button"
                 id="button-addon2"
               >
-                ->
+                <ArrowRight />
               </button>
             </div>
           </div>
@@ -40,7 +40,13 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+import ArrowRight from '@/static/assets/icons/arrow-right.svg'
+
+export default Vue.extend({
+  components: {
+    ArrowRight,
+  },
+})
 </script>
 
 <style scoped>
@@ -49,19 +55,5 @@ export default Vue.extend({})
   height: 100vh;
   background: url('/assets/img/bg-login.png') no-repeat;
   background-size: cover;
-}
-
-.center-hv {
-  display: flex;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.divider::after,
-.divider::before {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #000;
 }
 </style>

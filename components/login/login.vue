@@ -2,72 +2,75 @@
   <div>
     <Languages />
     <div class="login d-flex align-items-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 center-hv d-none d-md-flex">
-          <img src="assets/img/dance.png" height="400" alt="dance" />
-        </div>
-        <div class="col-md-6 center-hv mt-n5">
-          <div class="d-flex flex-column">
-            <h2 class="mb-3 mx-4 text-center">Iniciar sesión</h2>
-            <div class="d-flex justify-content-center">
-              <button type="button" class="btn btn-facebook btn-icon mb-3">
-                <FacebookIcon />
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 center-hv d-none d-md-flex">
+            <img src="assets/img/dance.png" height="400" alt="dance" />
+          </div>
+          <div class="col-md-6 center-hv">
+            <div class="d-flex flex-column w-75 px-4">
+              <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
+              <div class="input-group mb-3">
+                <span class="input-group-text px-0">
+                  <UserIcon />
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  :placeholder="$t('loginview.user')"
+                  v-model="phone"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text px-0">
+                  <LockIcon />
+                </span>
+                <input
+                  type="password"
+                  class="form-control"
+                  :placeholder="$t('loginview.password')"
+                  v-model="password"
+                />
+              </div>
+              <p class="text-primary">
+                <small
+                  >{{ $t('loginview.forgot-password') }}
+                  <a
+                    href="http://"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-warning"
+                    >{{ $t('loginview.retrieve') }}</a
+                  ></small
+                >
+              </p>
+              <button type="button" class="btn btn-primary mb-2 text-warning">
+                {{ $t('loginview.enter') }}
               </button>
-              <button
-                type="button"
-                class="btn btn-info btn-icon mx-2 mb-3 text-white"
-              >
-                <GoogleIcon />
-              </button>
-              <button type="button" class="btn btn-primary btn-icon mb-2">
-                <AppleIcon />
-              </button>
+              <div class="divider d-flex align-items-center my-3">
+                <p class="text-center fw-bold mx-3 mb-0">
+                  {{ $t('loginview.or') }}
+                </p>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-facebook btn-icon">
+                  <FacebookIcon />
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-info btn-icon mx-2 text-white"
+                >
+                  <GoogleIcon />
+                </button>
+                <button type="button" class="btn btn-primary btn-icon">
+                  <AppleIcon />
+                </button>
+              </div>
             </div>
-            <div class="divider d-flex align-items-center my-2">
-              <p class="text-center fw-bold mx-3 mb-0">o</p>
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text px-0">
-                <UserIcon />
-              </span>
-              <input
-                type="tel"
-                class="form-control"
-                placeholder="3161234567"
-                v-model="phone"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text px-0">
-                <LockIcon />
-              </span>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Contraseña"
-                v-model="password"
-              />
-            </div>
-            <button type="button" class="btn btn-primary mb-2 text-warning">
-              ingresar
-            </button>
-
-            <p class="text-primary">
-              ¿Olvidaste tu contraseña?
-              <a
-                href="http://"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-warning"
-                >Recuperala aquí</a
-              >
-            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 

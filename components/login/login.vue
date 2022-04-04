@@ -7,29 +7,55 @@
         </div>
         <div class="col-md-6 center-hv mt-n5">
           <div class="d-flex flex-column">
-            <h1 class="mb-5 mx-4">Iniciar sesión</h1>
-            <button type="button" class="btn btn-facebook mb-3">
-              Continuar con Facebook
-            </button>
-            <button type="button" class="btn btn-info mb-3">
-              Continuar con Google
-            </button>
-            <button type="button" class="btn btn-primary mb-2">
-              Continuar con Apple
-            </button>
+            <h2 class="mb-3 mx-4 text-center">Iniciar sesión</h2>
+            <div class="d-flex justify-content-center">
+              <button
+                type="button"
+                class="btn btn-facebook btn-icon btn-rounded mb-3"
+              >
+                <FacebookIcon />
+              </button>
+              <button
+                type="button"
+                class="btn btn-info btn-icon btn-rounded mx-2 mb-3 text-white"
+              >
+                <GoogleIcon />
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary btn-icon btn-rounded mb-2"
+              >
+                <AppleIcon />
+              </button>
+            </div>
             <div class="divider d-flex align-items-center my-2">
               <p class="text-center fw-bold mx-3 mb-0">o</p>
             </div>
             <div class="input-group mb-3">
-              <input type="tel" class="form-control" placeholder="3161234567" />
-              <button
-                class="btn btn-outline-secondary btn-icon"
-                type="button"
-                id="button-addon2"
-              >
-                <ArrowRight />
-              </button>
+              <span class="input-group-text px-0">
+                <UserIcon />
+              </span>
+              <input
+                type="tel"
+                class="form-control"
+                placeholder="3161234567"
+                v-model="phone"
+              />
             </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text px-0">
+                <LockIcon />
+              </span>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                v-model="password"
+              />
+            </div>
+            <button type="button" class="btn btn-primary mb-2 text-warning">
+              ingresar
+            </button>
 
             <p class="text-primary">
               ¿Olvidaste tu contraseña?
@@ -51,12 +77,41 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import ArrowRight from '@/static/assets/icons/arrow-right.svg'
+import GoogleIcon from '@/static/assets/icons/google.svg'
+import AppleIcon from '@/static/assets/icons/apple.svg'
+import FacebookIcon from '@/static/assets/icons/facebook.svg'
+import UserIcon from '@/static/assets/icons/user.svg'
+import LockIcon from '@/static/assets/icons/lock.svg'
 
 export default Vue.extend({
   name: 'Login',
   components: {
-    ArrowRight,
+    GoogleIcon,
+    AppleIcon,
+    FacebookIcon,
+    UserIcon,
+    LockIcon,
+  },
+  data: () => ({
+    phone: '',
+    password: '',
+    loading: false,
+    userExists: false,
+  }),
+  methods: {
+    async verifyUser(): Promise<void> {
+      try {
+        this.userExists = false
+        this.loading = true
+        const res = await this.$axios.post('/security/exist/user', {
+          username: this.phone,
+        })
+        this.userExists = res.data.data.isExist
+        this.loading = false
+      } catch (error) {
+        console.error(error)
+      }
+    },
   },
 })
 </script>

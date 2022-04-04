@@ -5,7 +5,9 @@
       role="group"
       aria-label="Button group with nested dropdown"
     >
-      <button type="button" class="btn btn-secondary">{{ $t('language.spanish') }}</button>
+      <button type="button" class="btn btn-secondary">
+        {{ selectedLang }}
+      </button>
       <div class="btn-group" role="group">
         <button
           id="language-btn"
@@ -16,8 +18,12 @@
           aria-expanded="false"
         ></button>
         <div class="dropdown-menu" aria-labelledby="language-btn" style="">
-          <span class="dropdown-item" @click="changeLanguage('es')">{{ $t('language.spanish') }}</span>
-          <span class="dropdown-item" @click="changeLanguage('en')">{{ $t('language.english') }}</span>
+          <span class="dropdown-item" @click="changeLanguage('es')">{{
+            $t('language.spanish')
+          }}</span>
+          <span class="dropdown-item" @click="changeLanguage('en')">{{
+            $t('language.english')
+          }}</span>
         </div>
       </div>
     </div>
@@ -28,11 +34,18 @@
 import Vue from 'vue'
 
 export default Vue.extend({
+  computed: {
+    selectedLang(): string {
+      return this.$i18n.locale === 'es'
+        ? this.$i18n.t('language.spanish').toString()
+        : this.$i18n.t('language.english').toString()
+    },
+  },
   methods: {
     changeLanguage(lang: string) {
       this.$i18n.setLocale(lang)
-    }
-  }
+    },
+  },
 })
 </script>
 

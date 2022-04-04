@@ -1,0 +1,38 @@
+.btn-facebook {
+  color: #fff;
+  background-color: #4267B2;
+  border-color: #4267B2;
+}
+
+.btn-facebook:hover {
+  color: #fff;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+}
+
+.btn-rounded {
+  width: 2.8125rem;
+  height: 2.8125rem;
+  border-radius: 50%;
+}
+
+.center-hv {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.divider::after,
+.divider::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #000;
+}

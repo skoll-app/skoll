@@ -13,7 +13,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' }
+      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' },
+      { rel: 'stylesheet', href: '/assets/css/style.css' }
     ],
     script: [
       {
@@ -41,6 +42,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-svg-loader'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -1,3 +1,5 @@
+import i18n from './static/assets/i18n'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -14,7 +16,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: '/assets/css/style.css' }
+      { rel: 'stylesheet', href: '/assets/css/style.css' },
     ],
     script: [
       {
@@ -42,8 +44,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    'nuxt-svg-loader'
+    'nuxt-svg-loader',
+    '@nuxtjs/i18n',
   ],
+  i18n: i18n,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

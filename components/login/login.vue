@@ -1,5 +1,7 @@
 <template>
-  <div class="login d-flex align-items-center">
+  <div>
+    <Languages />
+    <div class="login d-flex align-items-center">
     <div class="container">
       <div class="row">
         <div class="col-md-6 center-hv d-none d-md-flex">
@@ -66,6 +68,7 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -76,6 +79,7 @@ import AppleIcon from '@/static/assets/icons/apple.svg'
 import FacebookIcon from '@/static/assets/icons/facebook.svg'
 import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
+import Languages from '@/components/ux/i18n/Languages.vue'
 
 export default Vue.extend({
   name: 'Login',
@@ -85,6 +89,7 @@ export default Vue.extend({
     FacebookIcon,
     UserIcon,
     LockIcon,
+    Languages,
   },
   data: () => ({
     phone: '',

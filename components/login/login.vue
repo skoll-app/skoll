@@ -9,22 +9,16 @@
           <div class="d-flex flex-column">
             <h2 class="mb-3 mx-4 text-center">Iniciar sesión</h2>
             <div class="d-flex justify-content-center">
-              <button
-                type="button"
-                class="btn btn-facebook btn-icon btn-rounded mb-3"
-              >
+              <button type="button" class="btn btn-facebook btn-icon mb-3">
                 <FacebookIcon />
               </button>
               <button
                 type="button"
-                class="btn btn-info btn-icon btn-rounded mx-2 mb-3 text-white"
+                class="btn btn-info btn-icon mx-2 mb-3 text-white"
               >
                 <GoogleIcon />
               </button>
-              <button
-                type="button"
-                class="btn btn-primary btn-icon btn-rounded mb-2"
-              >
+              <button type="button" class="btn btn-primary btn-icon mb-2">
                 <AppleIcon />
               </button>
             </div>

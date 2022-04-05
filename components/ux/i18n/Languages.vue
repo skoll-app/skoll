@@ -32,6 +32,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { localize } from 'vee-validate'
 
 export default Vue.extend({
   computed: {
@@ -44,6 +45,7 @@ export default Vue.extend({
   methods: {
     changeLanguage(lang: string) {
       this.$i18n.setLocale(lang)
+      localize(lang)
     },
   },
 })

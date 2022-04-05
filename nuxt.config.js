@@ -12,7 +12,7 @@ export default {
   head: {
     title: 'skoll',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'es',
     },
     meta: [
       { charset: 'utf-8' },

@@ -11,8 +11,9 @@
             <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
             <ValidationObserver>
               <form>
+                <!-- TODO: dynamic name instead white space -->
                 <ValidationProvider
-                  :name="$t('loginview.user')"
+                  name=" "
                   rules="required"
                   v-slot="{ errors, classes }"
                 >
@@ -27,12 +28,15 @@
                       :placeholder="$t('loginview.user')"
                       v-model="phone"
                     />
-                    <div class="invalid-feedback">{{ errors[0] }}</div>
+                    <div v-if="errors && errors[0]" class="invalid-feedback">
+                      {{ errors[0] }}
+                    </div>
                   </div>
                 </ValidationProvider>
 
+                <!-- TODO: dynamic name instead white space -->
                 <ValidationProvider
-                  :name="$t('loginview.password')"
+                  name=" "
                   rules="required"
                   v-slot="{ errors, classes }"
                 >
@@ -100,12 +104,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
+// Icons
 import GoogleIcon from '@/static/assets/icons/google.svg'
 import AppleIcon from '@/static/assets/icons/apple.svg'
 import FacebookIcon from '@/static/assets/icons/facebook.svg'
 import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
+// Components
 import Languages from '@/components/ux/i18n/Languages.vue'
 
 export default Vue.extend({

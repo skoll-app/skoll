@@ -13,11 +13,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: '/assets/css/bootstrap.min.css' },
-      { rel: 'stylesheet', href: '/assets/css/style.css' },
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
       {
         src: '/assets/js/bootstrap.bundle.min.js',
@@ -26,7 +22,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    { src: '/assets/css/bootstrap.min.css' },
+    { src: '/assets/css/style.css' },
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

@@ -1,5 +1,8 @@
 <template>
-  <Login />
+  <div>
+    <Login />
+    footer
+  </div>
 </template>
 
 <script lang="ts">

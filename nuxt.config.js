@@ -1,6 +1,10 @@
 import i18n from './static/assets/i18n'
 
 export default {
+  target: 'static',
+  router: {
+    base: process.env.NODE_ENV === 'development' ? '' : '/skoll/'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'skoll',
@@ -13,10 +17,10 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '~static/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
       {
-        src: '~static/assets/js/bootstrap.bundle.min.js',
+        src: '/assets/js/bootstrap.bundle.min.js',
         type: 'text/javascript',
       },
     ],

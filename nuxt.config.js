@@ -13,10 +13,10 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '~static/favicon.ico' }],
     script: [
       {
-        src: '/assets/js/bootstrap.bundle.min.js',
+        src: '~static/assets/js/bootstrap.bundle.min.js',
         type: 'text/javascript',
       },
     ],

@@ -20,7 +20,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     script: [
       {
-        src: '/assets/js/bootstrap.bundle.min.js',
+        src: '~/static/assets/js/bootstrap.bundle.min.js',
         type: 'text/javascript',
       },
     ],

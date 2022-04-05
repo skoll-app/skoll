@@ -1,4 +1,13 @@
+import i18n from './static/assets/i18n'
+
+const baseURL = '/skoll/'
+const isDevelop = process.env.NODE_ENV === 'development'
+
 export default {
+  target: 'static',
+  router: {
+    base: isDevelop ? '' : baseURL,
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'skoll',
@@ -11,11 +20,26 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: (isDevelop ? '/' : baseURL) + 'favicon.ico',
+      },
+    ],
+    script: [
+      {
+        src: (isDevelop ? '/' : baseURL) + 'assets/js/bootstrap.bundle.min.js',
+        type: 'text/javascript',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    { src: '~/static/assets/css/bootstrap.min.css' },
+    { src: '~/static/assets/css/style.css' },
+  ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -33,7 +57,10 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'nuxt-svg-loader',
+    '@nuxtjs/i18n',
   ],
+  i18n: i18n,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {

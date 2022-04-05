@@ -24,12 +24,12 @@ export default {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: isDevelop ? baseURL : '/' + 'favicon.ico',
+        href: (isDevelop ? '/' : baseURL) + 'favicon.ico',
       },
     ],
     script: [
       {
-        src: isDevelop ? baseURL : '/' + 'assets/js/bootstrap.bundle.min.js',
+        src: (isDevelop ? '/' : baseURL) + 'assets/js/bootstrap.bundle.min.js',
         type: 'text/javascript',
       },
     ],

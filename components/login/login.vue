@@ -122,7 +122,7 @@ export default Vue.extend({
 .login {
   width: 100%;
   height: 100vh;
-  background: url('/assets/img/bg-login.png') no-repeat;
+  background: url('~static/assets/img/bg-login.png') no-repeat;
   background-size: cover;
 }
 </style>

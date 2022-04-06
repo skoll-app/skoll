@@ -9,43 +9,73 @@
         <div class="col-md-6 center-hv">
           <div class="d-flex flex-column w-75 px-4">
             <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
-            <div class="input-group mb-3">
-              <span class="input-group-text px-0">
-                <UserIcon />
-              </span>
-              <input
-                type="text"
-                class="form-control"
-                :placeholder="$t('loginview.user')"
-                v-model="phone"
-              />
-            </div>
-            <div class="input-group mb-3">
-              <span class="input-group-text px-0">
-                <LockIcon />
-              </span>
-              <input
-                type="password"
-                class="form-control"
-                :placeholder="$t('loginview.password')"
-                v-model="password"
-              />
-            </div>
-            <p class="text-primary">
-              <small
-                >{{ $t('loginview.forgot-password') }}
-                <a
-                  href="http://"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-warning"
-                  >{{ $t('loginview.retrieve') }}</a
-                ></small
-              >
-            </p>
-            <button type="button" class="btn btn-primary mb-2 text-warning">
-              {{ $t('loginview.enter') }}
-            </button>
+            <ValidationObserver>
+              <form>
+                <!-- TODO: dynamic name instead white space -->
+                <ValidationProvider
+                  name=" "
+                  rules="required"
+                  v-slot="{ errors, classes }"
+                >
+                  <div class="input-group has-validation mb-3">
+                    <span class="input-group-text px-0">
+                      <UserIcon />
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      :class="classes"
+                      :placeholder="$t('loginview.user')"
+                      v-model="phone"
+                    />
+                    <div v-if="errors && errors[0]" class="invalid-feedback">
+                      {{ errors[0] }}
+                    </div>
+                  </div>
+                </ValidationProvider>
+
+                <!-- TODO: dynamic name instead white space -->
+                <ValidationProvider
+                  name=" "
+                  rules="required"
+                  v-slot="{ errors, classes }"
+                >
+                  <div class="input-group has-validation mb-3">
+                    <span class="input-group-text px-0">
+                      <LockIcon />
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control"
+                      :class="classes"
+                      :placeholder="$t('loginview.password')"
+                      v-model="password"
+                    />
+                    <div class="invalid-feedback">{{ errors[0] }}</div>
+                  </div>
+                </ValidationProvider>
+                <p class="text-primary">
+                  <small
+                    >{{ $t('loginview.forgot-password') }}
+                    <a
+                      href="http://"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-warning"
+                      >{{ $t('loginview.retrieve') }}</a
+                    ></small
+                  >
+                </p>
+                <div class="d-grid gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-primary mb-2 text-warning"
+                  >
+                    {{ $t('loginview.enter') }}
+                  </button>
+                </div>
+              </form>
+            </ValidationObserver>
             <div class="divider d-flex align-items-center my-3">
               <p class="text-center fw-bold mx-3 mb-0">
                 {{ $t('loginview.or') }}
@@ -74,12 +104,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
+// Icons
 import GoogleIcon from '@/static/assets/icons/google.svg'
 import AppleIcon from '@/static/assets/icons/apple.svg'
 import FacebookIcon from '@/static/assets/icons/facebook.svg'
 import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
+// Components
 import Languages from '@/components/ux/i18n/Languages.vue'
 
 export default Vue.extend({

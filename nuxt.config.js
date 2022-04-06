@@ -12,7 +12,7 @@ export default {
   head: {
     title: 'skoll',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'es',
     },
     meta: [
       { charset: 'utf-8' },
@@ -42,7 +42,7 @@ export default {
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ['~/plugins/vee-validate.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -59,6 +59,7 @@ export default {
     '@nuxtjs/axios',
     'nuxt-svg-loader',
     '@nuxtjs/i18n',
+    'cookie-universal-nuxt',
   ],
   i18n: i18n,
 
@@ -69,5 +70,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vee-validate'],
+  },
 }

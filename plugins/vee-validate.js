@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 import {
   ValidationProvider,
   ValidationObserver,
@@ -27,4 +28,6 @@ localize({
   es,
 })
 
-// localize('es')
+export default ({ app }) => {
+  localize(app.$cookies.get('i18n_redirected'))
+}

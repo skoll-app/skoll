@@ -11,5 +11,11 @@ const i18n = {
     fallbackLocale: 'es',
     messages: messages,
   },
+  detectBrowserLanguage: {
+    useCookie: true,
+    cookieKey: 'i18n_redirected',
+    redirectOn: 'root',  // recommended
+    detectBrowserLanguage: false
+  }
 }
 export default i18n

@@ -59,6 +59,7 @@ export default {
     '@nuxtjs/axios',
     'nuxt-svg-loader',
     '@nuxtjs/i18n',
+    'cookie-universal-nuxt',
   ],
   i18n: i18n,
 

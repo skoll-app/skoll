@@ -1,6 +1,7 @@
 <template>
   <div class="login-layout d-flex align-items-center justify-content-center">
     <Loading v-if="show" />
+    <Toast />
     <div class="w-100">
       <Nuxt />
     </div>
@@ -9,10 +10,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import Loading from '~/components/ux/loading/Loading.vue'
+import Toast from '@/components/ux/toast/Toast.vue'
 
 export default Vue.extend({
   components: {
     Loading,
+    Toast,
   },
   computed: {
     show(): boolean {

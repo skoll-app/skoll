@@ -9,7 +9,7 @@
         <div class="col-md-6 center-hv">
           <div class="d-flex flex-column w-75 px-4">
             <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
-            <ValidationObserver>
+            <ValidationObserver v-slot="{ invalid }">
               <form>
                 <!-- TODO: dynamic name instead white space -->
                 <ValidationProvider
@@ -71,6 +71,7 @@
                     type="button"
                     class="btn btn-primary mb-2 text-warning"
                     @click="verifyUser"
+                    :disabled="invalid"
                   >
                     {{ $t('loginview.enter') }}
                   </button>
@@ -115,6 +116,7 @@ import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
 // Components
 import Languages from '@/components/ux/i18n/Languages.vue'
+import Toast from '~/interfaces/toast'
 
 export default Vue.extend({
   name: 'Login',
@@ -129,24 +131,49 @@ export default Vue.extend({
   data: () => ({
     phone: '',
     password: '',
-    userExists: false,
   }),
   methods: {
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        this.userExists = false
         const res = await this.$axios.post('/security/exist/user', {
           username: this.phone,
         })
-        this.userExists = res.data.data.isExist
+        const userExists = res.data.data.info.exists
+        if (!userExists) {
+          const toast: Toast = {
+            title: 'Error',
+            message: 'loginview.userNotExist',
+            type: 'danger',
+            closable: true,
+          }
+          this.showToastWithProps(toast)
+        } else {
+          await this.$axios.post('/oauth/login', {
+            username: this.phone,
+            password: this.password,
+          })
+          this.showToastWithProps({
+            title: 'Exito',
+            message: 'Serás redirigido al home',
+            type: 'success',
+          })
+        }
         this.hideLoading()
-      } catch (error) {
-        console.error(error)
+      } catch (error: any) {
         this.hideLoading()
+        if (error.response.status === 401) {
+          this.showToastWithProps({
+            title: 'Error',
+            message: 'loginview.wrongPassword',
+            type: 'danger',
+            closable: true,
+          })
+        }
       }
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToast', 'hideToast', 'showToastWithProps']),
   },
 })
 </script>

@@ -10,7 +10,9 @@ const en = {
     enter: 'Log in',
     'forgot-password': 'Forgot your password?',
     retrieve: 'Recover it here',
-    or: 'or'
+    or: 'or',
+    userNotExist: 'The user does not exist, please register.',
+    wrongPassword: 'Wrong password',
   },
 }
 

@@ -9,7 +9,7 @@
         <div class="col-md-6 center-hv">
           <div class="d-flex flex-column w-75 px-4">
             <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
-            <ValidationObserver>
+            <ValidationObserver v-slot="{ invalid }">
               <form>
                 <!-- TODO: dynamic name instead white space -->
                 <ValidationProvider
@@ -71,6 +71,7 @@
                     type="button"
                     class="btn btn-primary mb-2 text-warning"
                     @click="verifyUser"
+                    :disabled="invalid"
                   >
                     {{ $t('loginview.enter') }}
                   </button>

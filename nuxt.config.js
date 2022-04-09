@@ -1,12 +1,12 @@
 import i18n from './static/assets/i18n'
 
-const baseURL = '/skoll/'
+const baseHref = '/skoll/'
 const isDevelop = process.env.NODE_ENV === 'development'
 
 export default {
   target: 'static',
   router: {
-    base: isDevelop ? '' : baseURL,
+    base: isDevelop ? '' : baseHref,
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -24,12 +24,12 @@ export default {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: (isDevelop ? '/' : baseURL) + 'favicon.ico',
+        href: (isDevelop ? '/' : baseHref) + 'favicon.ico',
       },
     ],
     script: [
       {
-        src: (isDevelop ? '/' : baseURL) + 'assets/js/bootstrap.bundle.min.js',
+        src: (isDevelop ? '/' : baseHref) + 'assets/js/bootstrap.bundle.min.js',
         type: 'text/javascript',
       },
     ],
@@ -60,13 +60,14 @@ export default {
     'nuxt-svg-loader',
     '@nuxtjs/i18n',
     'cookie-universal-nuxt',
+    '@nuxtjs/dotenv',
   ],
   i18n: i18n,
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseUrl: process.env.BASE_URL,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

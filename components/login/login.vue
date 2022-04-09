@@ -70,6 +70,7 @@
                   <button
                     type="button"
                     class="btn btn-primary mb-2 text-warning"
+                    @click="verifyUser"
                   >
                     {{ $t('loginview.enter') }}
                   </button>
@@ -104,6 +105,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// Vuex
+import { mapActions } from 'vuex'
 // Icons
 import GoogleIcon from '@/static/assets/icons/google.svg'
 import AppleIcon from '@/static/assets/icons/apple.svg'
@@ -126,23 +129,24 @@ export default Vue.extend({
   data: () => ({
     phone: '',
     password: '',
-    loading: false,
     userExists: false,
   }),
   methods: {
     async verifyUser(): Promise<void> {
       try {
+        this.showLoading()
         this.userExists = false
-        this.loading = true
         const res = await this.$axios.post('/security/exist/user', {
           username: this.phone,
         })
         this.userExists = res.data.data.isExist
-        this.loading = false
+        this.hideLoading()
       } catch (error) {
         console.error(error)
+        this.hideLoading()
       }
     },
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
   },
 })
 </script>

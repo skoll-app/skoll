@@ -51,9 +51,9 @@ jobs:
         run: yarn
 
       - name: Generate
+        run: yarn generate
         env:
           NUXT_ENV_BASE_URL: ${{ secrets.BASE_URL }}
-        run: yarn generate
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

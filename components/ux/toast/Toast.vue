@@ -8,8 +8,8 @@
       aria-atomic="true"
     >
       <div v-if="toast.title" class="toast-header" :class="toastType">
-        <strong v-if="toast.title" class="me-auto">{{ toast.title }}</strong>
-        <small v-if="toast.helpTitle">{{ toast.helpTitle }}</small>
+        <strong v-if="toast.title" class="me-auto">{{ $t(toast.title) }}</strong>
+        <small v-if="toast.helpTitle">{{ $t(toast.helpTitle) }}</small>
         <button
           v-if="toast.closable"
           type="button"
@@ -21,7 +21,7 @@
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <div class="toast-body">{{ toast.message }}</div>
+      <div class="toast-body">{{ $t(toast.message) }}</div>
     </div>
   </div>
 </template>

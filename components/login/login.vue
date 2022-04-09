@@ -142,16 +142,34 @@ export default Vue.extend({
         const userExists = res.data.data.info.exists
         if (!userExists) {
           const toast: Toast = {
-            title: 'error',
-            message: 'Ha ocurrido un error',
+            title: 'Error',
+            message: 'loginview.userNotExist',
             type: 'danger',
+            closable: true,
           }
           this.showToastWithProps(toast)
+        } else {
+          await this.$axios.post('/oauth/login', {
+            username: this.phone,
+            password: this.password,
+          })
+          this.showToastWithProps({
+            title: 'Exito',
+            message: 'Serás redirigido al home',
+            type: 'success',
+          })
         }
         this.hideLoading()
-      } catch (error) {
-        console.error(error)
+      } catch (error: any) {
         this.hideLoading()
+        if (error.response.status === 401) {
+          this.showToastWithProps({
+            title: 'Error',
+            message: 'loginview.wrongPassword',
+            type: 'danger',
+            closable: true,
+          })
+        }
       }
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),

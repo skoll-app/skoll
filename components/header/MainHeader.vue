@@ -44,7 +44,6 @@
           </li>
           <li class="nav-item me-0">
             <NuxtLink class="nav-link" to="/auth">Ingresar</NuxtLink>
-            <!-- <a class="nav-link" href="#">Ingresar</a> -->
           </li>
         </ul>
       </div>

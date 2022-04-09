@@ -8,11 +8,13 @@ const es = {
     user: 'Teléfono / Correo',
     password: 'Contraseña',
     enter: 'ingresar',
-    'forgot-password': '¿Olvidaste tu contraseña?',
+    forgotPassword: '¿Olvidaste tu contraseña?',
     retrieve: 'Recuperala aquí',
     or: 'o',
     userNotExist: 'El usuario no existe, por favor registrate',
-    wrongPassword: 'Contraseña errónea'
+    wrongPassword: 'Contraseña errónea',
+    noAccount: '¿Aún no tienes una cuenta?',
+    register: 'Regístrate',
   },
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Languages />
+    <!-- <Languages /> -->
     <div class="container">
       <div class="row">
         <div class="col-md-6 center-hv d-none d-md-flex">
@@ -54,9 +54,9 @@
                     <div class="invalid-feedback">{{ errors[0] }}</div>
                   </div>
                 </ValidationProvider>
-                <p class="text-primary">
+                <p class="text-primary text-center">
                   <small
-                    >{{ $t('loginview.forgot-password') }}
+                    >{{ $t('loginview.forgotPassword') }}
                     <a
                       href="http://"
                       target="_blank"
@@ -76,9 +76,21 @@
                     {{ $t('loginview.enter') }}
                   </button>
                 </div>
+                <p class="text-primary text-center my-2">
+                  <small
+                    >{{ $t('loginview.noAccount') }}
+                    <a
+                      href="http://"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-warning"
+                      >{{ $t('loginview.register') }}</a
+                    ></small
+                  >
+                </p>
               </form>
             </ValidationObserver>
-            <div class="divider d-flex align-items-center my-3">
+            <div class="divider d-flex align-items-center my-2">
               <p class="text-center fw-bold mx-3 mb-0">
                 {{ $t('loginview.or') }}
               </p>
@@ -115,7 +127,7 @@ import FacebookIcon from '@/static/assets/icons/facebook.svg'
 import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
 // Components
-import Languages from '@/components/ux/i18n/Languages.vue'
+// import Languages from '@/components/ux/i18n/Languages.vue'
 import Toast from '~/interfaces/toast'
 
 export default Vue.extend({
@@ -126,7 +138,7 @@ export default Vue.extend({
     FacebookIcon,
     UserIcon,
     LockIcon,
-    Languages,
+    // Languages,
   },
   data: () => ({
     phone: '',

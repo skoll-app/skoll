@@ -44,8 +44,12 @@ export default Vue.extend({
         return 'bg-danger text-white'
       } else if (this.toast.type === 'primary') {
         return 'bg-primary text-white'
+      } else if (this.toast.type === 'success') {
+        return 'bg-success text-white'
+      } else if (this.toast.type === 'info') {
+        return 'bg-info text-white'
       }
-      return ''
+      return 'bg-primary'
     },
   },
   methods: {

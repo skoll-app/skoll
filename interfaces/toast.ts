@@ -3,7 +3,7 @@ export default interface Toast {
   title?: string
   titleHelp?: string
   message: string
-  type?: 'danger' | 'info' | 'warning' | 'primary'
+  type?: 'danger' | 'info' | 'warning' | 'primary' | 'success'
   closable?: boolean
   timer?: number
 }

@@ -1,7 +1,9 @@
 export default interface Toast {
-  show: boolean
-  title: string
-  titleHelp: string
+  show?: boolean
+  title?: string
+  titleHelp?: string
   message: string
-  type: 'danger' | 'info' | 'warning' | 'primary'
+  type?: 'danger' | 'info' | 'warning' | 'primary'
+  closable?: boolean
+  timer?: number
 }

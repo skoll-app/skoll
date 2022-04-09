@@ -7,31 +7,52 @@
       aria-live="assertive"
       aria-atomic="true"
     >
-      <div class="toast-header bg-danger text-white">
-        <strong class="me-auto">Bootstrap</strong>
-        <small>11 mins ago</small>
+      <div v-if="toast.title" class="toast-header" :class="toastType">
+        <strong v-if="toast.title" class="me-auto">{{ toast.title }}</strong>
+        <small v-if="toast.helpTitle">{{ toast.helpTitle }}</small>
         <button
+          v-if="toast.closable"
           type="button"
           class="btn-close ms-2 mb-1"
           data-bs-dismiss="toast"
           aria-label="Close"
+          @click="close"
         >
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <div class="toast-body">Hello, world! This is a toast message.</div>
+      <div class="toast-body">{{ toast.message }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
+import Toast from '@/interfaces/toast'
 
 export default Vue.extend({
   computed: {
-    showOrHide(): string {
-      return this.$store.state.toast.show ? 'show' : 'hide'
+    toast(): Toast {
+      return this.$store.state.toast
     },
+    showOrHide(): string {
+      return this.toast.show ? 'show' : 'hide'
+    },
+    toastType(): string {
+      if (this.toast.type === 'danger') {
+        return 'bg-danger text-white'
+      } else if (this.toast.type === 'primary') {
+        return 'bg-primary text-white'
+      }
+      return ''
+    },
+  },
+  methods: {
+    close() {
+      this.hideToast()
+    },
+    ...mapActions('toast', ['hideToast']),
   },
 })
 </script>

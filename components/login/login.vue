@@ -116,6 +116,7 @@ import UserIcon from '@/static/assets/icons/user.svg'
 import LockIcon from '@/static/assets/icons/lock.svg'
 // Components
 import Languages from '@/components/ux/i18n/Languages.vue'
+import Toast from '~/interfaces/toast'
 
 export default Vue.extend({
   name: 'Login',
@@ -130,17 +131,23 @@ export default Vue.extend({
   data: () => ({
     phone: '',
     password: '',
-    userExists: false,
   }),
   methods: {
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        this.userExists = false
         const res = await this.$axios.post('/security/exist/user', {
           username: this.phone,
         })
-        this.userExists = res.data.data.isExist
+        const userExists = res.data.data.info.exists
+        if (!userExists) {
+          const toast: Toast = {
+            title: 'error',
+            message: 'Ha ocurrido un error',
+            type: 'danger',
+          }
+          this.showToastWithProps(toast)
+        }
         this.hideLoading()
       } catch (error) {
         console.error(error)
@@ -148,6 +155,7 @@ export default Vue.extend({
       }
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToast', 'hideToast', 'showToastWithProps']),
   },
 })
 </script>

@@ -13,6 +13,7 @@ on:
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
+    environment: github-pages
 
     strategy:
       matrix:
@@ -37,20 +38,19 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # - name: Install dependencies 👨🏻‍💻
-      #   run: npm ci --prefer-offline --no-audit
+      - name: Install dependencies 👨🏻‍💻
+        run: npm ci --prefer-offline --no-audit
 
       # - name: Run linter 👀
       #   run: npm run lint
-
-      # - name: Run tests 🧪
-      #   run: npm run test
 
       - name: Install dependencies
         run: yarn
 
       - name: Generate
         run: yarn generate
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

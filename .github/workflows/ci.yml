@@ -49,10 +49,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn
-        env:
-          NUXT_ENV_BASE_URL: ${{ secrets.BASE_URL }}
 
       - name: Generate
+        env:
+          NUXT_ENV_BASE_URL: ${{ secrets.BASE_URL }}
         run: yarn generate
 
       - name: Deploy

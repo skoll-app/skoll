@@ -30,6 +30,8 @@ jobs:
           node-version: ${{ matrix.node }}
           check-latest: true
 
+      - run: echo ${{ secrets.BASE_URL }}
+
       - name: Cache node_modules 📦
         uses: actions/cache@v2.1.4
         with:

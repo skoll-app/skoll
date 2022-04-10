@@ -13,8 +13,11 @@ const en = {
     or: 'or',
     userNotExist: 'The user does not exist, please register.',
     wrongPassword: 'Wrong password',
-    noAccount: 'Don\'t have an account?',
+    noAccount: "Don't have an account?",
     register: 'Register',
+  },
+  registerview: {
+    share: 'Share with your <br /> loved ones',
   },
 }
 

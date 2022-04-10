@@ -16,6 +16,9 @@ const es = {
     noAccount: '¿Aún no tienes una cuenta?',
     register: 'Regístrate',
   },
+  registerview: {
+    share: '¡Comparte con quienes <br /> mas quieres!'
+  }
 }
 
 export default es

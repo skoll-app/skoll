@@ -39,10 +39,12 @@ export default {
   css: [
     { src: '~/static/assets/css/bootstrap.min.css' },
     { src: '~/static/assets/css/style.css' },
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/vee-validate.js'],
+  plugins: ['~/plugins/vee-validate.js', '~/plugins/vue-slick-carousel.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

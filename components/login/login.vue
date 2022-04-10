@@ -79,13 +79,9 @@
                 <p class="text-primary text-center my-2">
                   <small
                     >{{ $t('loginview.noAccount') }}
-                    <a
-                      href="http://"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-warning"
-                      >{{ $t('loginview.register') }}</a
-                    ></small
+                    <NuxtLink class="text-warning" to="/auth/register">{{
+                      $t('loginview.register')
+                    }}</NuxtLink></small
                   >
                 </p>
               </form>

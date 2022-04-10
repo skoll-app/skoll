@@ -37,8 +37,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    { src: '~/static/assets/css/bootstrap.min.css' },
-    { src: '~/static/assets/css/style.css' },
+    '~/static/assets/css/styles.scss',
     'vue-slick-carousel/dist/vue-slick-carousel.css',
     'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
   ],

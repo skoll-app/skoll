@@ -1,3 +1,7 @@
+@import './variables';
+@import "~bootstrap/scss/bootstrap";
+@import './bootswatch';
+
 .btn-facebook {
   color: #fff;
   background-color: #4267B2;
@@ -32,3 +36,4 @@
   height: 1px;
   background: #000;
 }
+

@@ -17,8 +17,24 @@ const es = {
     register: 'Regístrate',
   },
   registerview: {
-    share: '¡Comparte con quienes <br /> mas quieres!'
-  }
+    confirmData: 'Confirma tus datos antes <br />de continuar',
+    share: '¡Comparte con quienes <br /> mas quieres!',
+    form: {
+      name: 'Nombres',
+      lastname: 'Apellidos',
+      email: 'Correo',
+      phone: 'Teléfono',
+      password: 'Contraseña',
+      country: 'País',
+      city: 'Ciudad',
+      continue: 'Continuar',
+      back: 'Volver',
+    },
+    hasAccount: '¿Tienes una cuenta?',
+    loginHere: 'Ingresa aquí',
+    newClient: 'Hemos dectectado un <br />nuevo cliente',
+    enterCode: 'Ingresa el codigo que hemos enviado a tu correo'
+  },
 }
 
 export default es

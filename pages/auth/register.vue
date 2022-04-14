@@ -1,11 +1,23 @@
 <template>
   <div class="row g-0 vh-100">
-    <div class="col-md-6">
-      <VueSlickCarousel v-bind="slickOptions">
-        <div v-for="i in 5" :key="i">
-          {{ i }}
+    <div
+      class="position-relative col-md-6 pt-4 h-100 d-flex flex-column justify-content-center"
+    >
+      <VueSlickCarousel ref="carousel" class="slider" v-bind="slickOptions">
+        <div class="container">
+          <div class="row">
+            <div class="col-9 mx-auto">
+              <Form :step="1" @next="showNext" />
+            </div>
+          </div>
         </div>
       </VueSlickCarousel>
+      <div class="position-absolute bottom-0 w-100 text-center mb-4">
+        {{ $t('registerview.hasAccount') }}
+        <NuxtLink class="text-warning" to="/auth">
+          {{ $t('registerview.loginHere') }}</NuxtLink
+        >
+      </div>
     </div>
     <div class="col-md-6 bg-image">
       <div class="d-flex flex-column justify-content-center h-100">
@@ -20,21 +32,35 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Form from '~/components/register/Form.vue'
 
 export default Vue.extend({
+  components: { Form },
   data() {
     return {
+      name: '',
       slickOptions: {
         arrows: false,
-        dots: true,
-        dotsClass: 'slick-dots custom-dot-class',
+        // dots: true,
+        // dotsClass: 'slick-dots custom-dot-class',
         edgeFriction: 0.35,
         infinite: false,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        draggable: false,
       },
     }
+  },
+  methods: {
+    showNext() {
+      // @ts-ignore
+      this.$refs.carousel?.next()
+    },
+    showPrev() {
+      // @ts-ignore
+      this.$refs.carousel?.prev()
+    },
   },
 })
 </script>

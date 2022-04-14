@@ -17,7 +17,23 @@ const en = {
     register: 'Register',
   },
   registerview: {
+    confirmData: 'Confirm your information before <br />to continue',
     share: 'Share with your <br /> loved ones',
+    form: {
+      name: 'Name',
+      lastname: 'Last name',
+      email: 'Email',
+      phone: 'Phone number',
+      password: 'Password',
+      country: 'País',
+      city: 'City',
+      continue: 'Next',
+      back: 'Back',
+    },
+    hasAccount: 'Do you have an account?',
+    loginHere: 'Login here',
+    newClient: 'We have detected a <br />new customer',
+    enterCode: 'Enter the code that we have sent to your email address',
   },
 }
 

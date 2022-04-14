@@ -5,9 +5,9 @@ import {
   ValidationObserver,
   extend,
   configure,
-  localize
+  localize,
 } from 'vee-validate'
-import { required } from 'vee-validate/dist/rules'
+import { required, email } from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
 import es from 'vee-validate/dist/locale/es.json'
 
@@ -15,6 +15,7 @@ Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('ValidationObserver', ValidationObserver)
 
 extend('required', required)
+extend('email', email)
 
 configure({
   classes: {

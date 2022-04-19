@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h2 class="mb-4" v-html="$t(stepTitle)"></h2>
+    <h2 class="mb-3" v-html="$t(stepTitle)"></h2>
     <template v-if="step === 1">
-      <ValidationObserver v-slot="{}">
+      <ValidationObserver v-slot="{ invalid }">
         <form>
           <TextInput
             class="mb-3"
@@ -50,6 +50,7 @@
             class="mb-3"
             :name="$t('registerview.form.password')"
             :placeholder="$t('registerview.form.password')"
+            type="password"
             rules="required"
             size="sm"
             addVeeClasses
@@ -65,59 +66,25 @@
             v-model="register.country"
             disabled
           />
-          <ValidationProvider
-            rules="required"
+          <Select
             :name="$t('registerview.form.city')"
-            v-slot="{ classes, errors }"
-            class="input-group has-validation mb-3"
-            tag="div"
-          >
-            <select class="form-select form-select-sm" :class="classes">
-              <option value="">{{ $t('registerview.form.city') }}</option>
-              <option value="Arauca">Arauca</option>
-              <option value="Armenia">Armenia</option>
-              <option value="Barranquilla">Barranquilla</option>
-              <option value="Bogotá">Bogotá</option>
-              <option value="Bucaramanga">Bucaramanga</option>
-              <option value="Cali">Cali</option>
-              <option value="Cartagena">Cartagena</option>
-              <option value="Cúcuta">Cúcuta</option>
-              <option value="Florencia">Florencia</option>
-              <option value="Ibagué">Ibagué</option>
-              <option value="Leticia">Leticia</option>
-              <option value="Manizales">Manizales</option>
-              <option value="Medellín">Medellín</option>
-              <option value="Mitú">Mitú</option>
-              <option value="Mocoa">Mocoa</option>
-              <option value="Montería">Montería</option>
-              <option value="Neiva">Neiva</option>
-              <option value="Pasto">Pasto</option>
-              <option value="Pereira">Pereira</option>
-              <option value="Popayán">Popayán</option>
-              <option value="Puerto Carreño">Puerto Carreño</option>
-              <option value="Puerto Inírida">Puerto Inírida</option>
-              <option value="Quibdó">Quibdó</option>
-              <option value="Riohacha">Riohacha</option>
-              <option value="San Andrés">San Andrés</option>
-              <option value="San José del Guaviare">
-                San José del Guaviare
-              </option>
-              <option value="Santa Marta">Santa Marta</option>
-              <option value="Sincelejo">Sincelejo</option>
-              <option value="Tunja">Tunja</option>
-              <option value="Valledupar">Valledupar</option>
-              <option value="Villavicencio">Villavicencio</option>
-              <option value="Yopal">Yopal</option>
-            </select>
-            <div v-if="errors && errors[0]" class="invalid-feedback">
-              {{ errors[0] }}
-            </div>
-          </ValidationProvider>
+            :options="selectOptions"
+            rules="required"
+            class="mb-3"
+            size="sm"
+            v-model="register.city"
+            addVeeClasses
+          />
           <div class="d-flex justify-content-between">
             <NuxtLink to="/auth" class="btn btn-primary">
               {{ $t('registerview.form.back') }}
             </NuxtLink>
-            <button type="button" class="btn btn-primary" @click="next">
+            <button
+              type="button"
+              class="btn btn-primary"
+              :disabled="invalid"
+              @click="next"
+            >
               {{ $t('registerview.form.continue') }}
             </button>
           </div>
@@ -167,10 +134,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import SelectOption from '~/interfaces/select-option'
 import TextInput from '../ux/input/TextInput.vue'
+import Select from '../ux/select/Select.vue'
 
 export default Vue.extend({
-  components: { TextInput },
+  components: { TextInput, Select },
   props: {
     step: {
       type: Number,
@@ -185,8 +154,43 @@ export default Vue.extend({
       phone: '',
       password: '',
       country: 'Colombia',
-      confirmEmail: ''
+      confirmEmail: '',
+      city: '',
     },
+    selectOptions: [
+      { label: 'Arauca', value: 'Arauca' },
+      { label: 'Armenia', value: 'Armenia' },
+      { label: 'Barranquilla', value: 'Barranquilla' },
+      { label: 'Bogotá', value: 'Bogotá' },
+      { label: 'Bucaramanga', value: 'Bucaramanga' },
+      { label: 'Cali', value: 'Cali' },
+      { label: 'Cartagena', value: 'Cartagena' },
+      { label: 'Cúcuta', value: 'Cúcuta' },
+      { label: 'Florencia', value: 'Florencia' },
+      { label: 'Ibagué', value: 'Ibagué' },
+      { label: 'Leticia', value: 'Leticia' },
+      { label: 'Manizales', value: 'Manizales' },
+      { label: 'Medellín', value: 'Medellín' },
+      { label: 'Mitú', value: 'Mitú' },
+      { label: 'Mocoa', value: 'Mocoa' },
+      { label: 'Montería', value: 'Montería' },
+      { label: 'Neiva', value: 'Neiva' },
+      { label: 'Pasto', value: 'Pasto' },
+      { label: 'Pereira', value: 'Pereira' },
+      { label: 'Popayán', value: 'Popayán' },
+      { label: 'Puerto Carreño', value: 'Puerto Carreño' },
+      { label: 'Puerto Inírida', value: 'Puerto Inírida' },
+      { label: 'Quibdó', value: 'Quibdó' },
+      { label: 'Riohacha', value: 'Riohacha' },
+      { label: 'San Andrés', value: 'San Andrés' },
+      { label: 'San José del Guaviare', value: 'San José del Guaviare' },
+      { label: 'Santa Marta', value: 'Santa Marta' },
+      { label: 'Sincelejo', value: 'Sincelejo' },
+      { label: 'Tunja', value: 'Tunja' },
+      { label: 'Valledupar', value: 'Valledupar' },
+      { label: 'Villavicencio', value: 'Villavicencio' },
+      { label: 'Yopal', value: 'Yopal' },
+    ] as SelectOption[],
   }),
   computed: {
     stepTitle(): string {
@@ -201,8 +205,7 @@ export default Vue.extend({
   },
   methods: {
     next() {
-      console.log(this.register)
-      // this.$emit('next')
+      this.$emit('next')
     },
     prev() {
       this.$emit('prev')

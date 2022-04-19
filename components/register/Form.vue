@@ -86,7 +86,7 @@
               type="button"
               class="btn btn-primary"
               :disabled="invalid"
-              @click="next"
+              @click="preRegister"
             >
               {{ $t('registerview.form.continue') }}
             </button>
@@ -137,7 +137,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
+// Interfaces
 import SelectOption from '~/interfaces/select-option'
+import Toast from '~/interfaces/toast'
+// Components
 import TextInput from '../ux/input/TextInput.vue'
 import Select from '../ux/select/Select.vue'
 
@@ -158,7 +162,7 @@ export default Vue.extend({
       password: '',
       country: 'Colombia',
       confirmEmail: '',
-      city: '',
+      city: {} as SelectOption,
     },
     selectOptions: [
       { label: 'Arauca', value: 'Arauca' },
@@ -225,6 +229,32 @@ export default Vue.extend({
     btnAction() {
       this.showPassword = !this.showPassword
     },
+    async preRegister() {
+      try {
+        this.showLoading()
+        await this.$axios.post('/client/hello', {
+          cellPhone: this.register.phone,
+          cellPhonePrefix: '57',
+          city: this.register.city.value,
+          email: this.register.email,
+          firstname: this.register.lastname,
+          lastName: this.register.lastname,
+        })
+        this.hideLoading()
+        this.next()
+      } catch (error) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: 'Agregar mensaje de error',
+          type: 'danger',
+          timer: 5000
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToastWithProps']),
   },
 })
 </script>

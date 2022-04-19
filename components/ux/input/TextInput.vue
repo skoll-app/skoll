@@ -91,3 +91,8 @@ export default Vue.extend({
   },
 })
 </script>
+<style lang="scss" scoped>
+.invalid-feedback {
+  font-size: 12px;
+}
+</style>

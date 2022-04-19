@@ -34,6 +34,8 @@ const en = {
     loginHere: 'Login here',
     newClient: 'We have detected a <br />new customer',
     enterCode: 'Enter the code that we have sent to your email address',
+    showPassword: 'Show',
+    hidePassword: 'Hide',
   },
 }
 

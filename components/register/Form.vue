@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="mb-3" v-html="$t(stepTitle)"></h2>
+    <h4 class="mb-3" v-html="$t(stepTitle)"></h4>
     <template v-if="step === 1">
       <ValidationObserver v-slot="{ invalid }">
         <form>
@@ -50,11 +50,14 @@
             class="mb-3"
             :name="$t('registerview.form.password')"
             :placeholder="$t('registerview.form.password')"
-            type="password"
+            :type="passwordInputType"
             rules="required"
             size="sm"
             addVeeClasses
             v-model="register.password"
+            inputGroup
+            @btnClick="btnAction"
+            :btnText="$t(showPasswordText)"
           />
           <TextInput
             class="mb-3"
@@ -191,6 +194,7 @@ export default Vue.extend({
       { label: 'Villavicencio', value: 'Villavicencio' },
       { label: 'Yopal', value: 'Yopal' },
     ] as SelectOption[],
+    showPassword: false,
   }),
   computed: {
     stepTitle(): string {
@@ -202,6 +206,14 @@ export default Vue.extend({
       }
       return 'registerview.confirmData'
     },
+    passwordInputType(): string {
+      return this.showPassword ? 'text' : 'password'
+    },
+    showPasswordText(): string {
+      return this.showPassword
+        ? 'registerview.hidePassword'
+        : 'registerview.showPassword'
+    },
   },
   methods: {
     next() {
@@ -209,6 +221,9 @@ export default Vue.extend({
     },
     prev() {
       this.$emit('prev')
+    },
+    btnAction() {
+      this.showPassword = !this.showPassword
     },
   },
 })

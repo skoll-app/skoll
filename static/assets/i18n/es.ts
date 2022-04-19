@@ -33,7 +33,9 @@ const es = {
     hasAccount: '¿Tienes una cuenta?',
     loginHere: 'Ingresa aquí',
     newClient: 'Hemos dectectado un <br />nuevo cliente',
-    enterCode: 'Ingresa el codigo que hemos enviado a tu correo'
+    enterCode: 'Ingresa el codigo que hemos enviado a tu correo',
+    showPassword: 'Mostrar',
+    hidePassword: 'Ocultar',
   },
 }
 

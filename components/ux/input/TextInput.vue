@@ -5,6 +5,7 @@
     :name="name"
     :vid="vid"
     v-slot="{ classes, errors }"
+    :class="{ 'input-group': inputGroup, [inputGroupSize]: true }"
   >
     <input
       :type="type"
@@ -15,6 +16,14 @@
       :value="value"
       @input="onInput"
     />
+    <button
+      v-if="inputGroup"
+      class="btn btn-primary"
+      type="button"
+      @click="$emit('btnClick')"
+    >
+      {{ btnText }}
+    </button>
     <div v-if="errors && errors[0]" class="invalid-feedback">
       {{ errors[0] }}
     </div>
@@ -65,6 +74,14 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    inputGroup: {
+      type: Boolean,
+      default: false,
+    },
+    btnText: {
+      type: String,
+      default: '',
+    },
   },
   data: () => ({
     currentValue: '',
@@ -79,10 +96,19 @@ export default Vue.extend({
       }
       return sizeClass
     },
+    inputGroupSize(): string {
+      let sizeClass = ''
+      if (this.size === Size.SMALL) {
+        sizeClass = 'input-group-sm'
+      } else if (this.size === Size.LARGE) {
+        sizeClass = 'input-group-lg'
+      }
+      return sizeClass
+    },
   },
   methods: {
     onInput(event: any) {
-      this.$emit('input', event.target?.value);
+      this.$emit('input', event.target?.value)
     },
     inputClasses(veeClasses: Object): string | Object {
       if (this.addVeeClasses) return { ...veeClasses, [this.sizeClass]: true }

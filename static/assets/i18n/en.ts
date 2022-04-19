@@ -29,6 +29,7 @@ const eng = {
       password: 'Password',
       country: 'País',
       city: 'City',
+      otpCode: 'Code',
       continue: 'Next',
       back: 'Back',
     },

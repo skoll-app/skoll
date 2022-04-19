@@ -104,24 +104,15 @@
       <p>{{ $t('registerview.enterCode') }}</p>
       <ValidationObserver tag="form" v-slot="{ invalid }">
         <form>
-          <ValidationProvider
-            rules="required|email"
-            :name="$t('registerview.form.email')"
-            v-slot="{ classes, errors }"
-            tag="div"
-            class="input-group has-validation mb-3"
-          >
-            <input
-              type="email"
-              class="form-control form-control-sm"
-              :class="classes"
-              :placeholder="$t('registerview.form.email')"
-              v-model="register.confirmEmail"
-            />
-            <div v-if="errors && errors[0]" class="invalid-feedback">
-              {{ errors[0] }}
-            </div>
-          </ValidationProvider>
+          <TextInput
+            class="mb-3"
+            :name="$t('registerview.form.otpCode')"
+            :placeholder="$t('registerview.form.otpCode')"
+            rules="required|digits:5"
+            size="sm"
+            addVeeClasses
+            v-model="register.otp"
+          />
           <div class="d-flex justify-content-between">
             <button type="button" class="btn btn-primary" @click="prev">
               {{ $t('registerview.form.back') }}
@@ -129,7 +120,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              @click="next"
+              @click="validateOtp"
               :disabled="invalid"
             >
               {{ $t('registerview.form.continue') }}
@@ -167,7 +158,7 @@ export default Vue.extend({
       phone: '',
       password: '',
       country: 'Colombia',
-      confirmEmail: '',
+      otp: null,
       city: {} as SelectOption,
     },
     selectOptions: [
@@ -238,7 +229,7 @@ export default Vue.extend({
     async preRegister() {
       try {
         this.showLoading()
-        await this.$axios.post('/client/hello', {
+        const res = await this.$axios.post('/client/hello', {
           cellPhone: this.register.phone,
           cellPhonePrefix: '57',
           city: this.register.city.value,
@@ -246,13 +237,35 @@ export default Vue.extend({
           firstname: this.register.lastname,
           lastName: this.register.lastname,
         })
+        localStorage.setItem('sessionId', res.data.data.sessionId)
         this.hideLoading()
         this.next()
-      } catch (error) {
+      } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
           title: 'Error',
-          message: 'Agregar mensaje de error',
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    async validateOtp() {
+      try {
+        console.log('ddd', localStorage.getItem('sessionId'))
+        this.showLoading()
+        await this.$axios.post('/security/validate/otp', {
+          sessionId: localStorage.getItem('sessionId'),
+          otp: this.register.otp,
+        })
+        this.hideLoading()
+        this.next()
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response.data.message,
           type: 'danger',
           timer: 5000,
         }

@@ -29,6 +29,7 @@ const esp = {
       password: 'Contraseña',
       country: 'País',
       city: 'Ciudad',
+      otpCode: 'Código',
       continue: 'Continuar',
       back: 'Volver',
     },

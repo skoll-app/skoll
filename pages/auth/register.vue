@@ -1,15 +1,14 @@
 <template>
   <div class="row g-0 vh-100">
     <div
-      class="position-relative col-md-6 pt-4 h-100 d-flex flex-column justify-content-center"
+      class="position-relative col-12 col-lg-6 h-100 d-flex flex-column justify-content-center"
     >
       <VueSlickCarousel ref="carousel" class="slider" v-bind="slickOptions">
-        <div class="container">
-          <div class="row">
-            <div class="col-9 mx-auto">
-              <Form :step="1" @next="showNext" />
-            </div>
-          </div>
+        <div class="px-5">
+          <Form :step="1" @next="showNext" />
+        </div>
+        <div class="px-5">
+          <Form :step="2" @next="showNext" @prev="showPrev" />
         </div>
       </VueSlickCarousel>
       <div class="position-absolute bottom-0 w-100 text-center mb-4">
@@ -19,7 +18,7 @@
         >
       </div>
     </div>
-    <div class="col-md-6 bg-image">
+    <div class="col-lg-6 bg-image d-none d-lg-block">
       <div class="d-flex flex-column justify-content-center h-100">
         <div class="mx-auto">
           <h4 class="text-end pb-4" v-html="$t('registerview.share')"></h4>

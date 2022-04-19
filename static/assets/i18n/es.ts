@@ -1,4 +1,6 @@
-const es = {
+import es from 'vee-validate/dist/locale/es.json'
+
+const esp = {
   language: {
     spanish: 'Español',
     english: 'Inglés',
@@ -37,6 +39,9 @@ const es = {
     showPassword: 'Mostrar',
     hidePassword: 'Ocultar',
   },
+  validation: es.messages,
+  passwordValidation:
+    'Debe ser mínimo 8 caracteres, contener una mayúscula, una minúscula, un número y un caractér especial',
 }
 
-export default es
+export default esp

@@ -8,7 +8,7 @@
             class="mb-3"
             :name="$t('registerview.form.name')"
             :placeholder="$t('registerview.form.name')"
-            rules="required"
+            rules="required|alpha_spaces"
             size="sm"
             addVeeClasses
             v-model="register.name"
@@ -17,7 +17,7 @@
             class="mb-3"
             :name="$t('registerview.form.lastname')"
             :placeholder="$t('registerview.form.lastname')"
-            rules="required"
+            rules="required|alpha_spaces"
             size="sm"
             addVeeClasses
             v-model="register.lastname"
@@ -39,7 +39,7 @@
                 class="mb-3"
                 :name="$t('registerview.form.phone')"
                 :placeholder="$t('registerview.form.phone')"
-                rules="required"
+                rules="required|digits:10"
                 size="sm"
                 addVeeClasses
                 v-model="register.phone"
@@ -51,7 +51,7 @@
             :name="$t('registerview.form.password')"
             :placeholder="$t('registerview.form.password')"
             :type="passwordInputType"
-            rules="required"
+            rules="required|password"
             size="sm"
             addVeeClasses
             v-model="register.password"
@@ -59,25 +59,31 @@
             @btnClick="btnAction"
             :btnText="$t(showPasswordText)"
           />
-          <TextInput
-            class="mb-3"
-            :name="$t('registerview.form.country')"
-            :placeholder="$t('registerview.form.country')"
-            rules="required"
-            size="sm"
-            addVeeClasses
-            v-model="register.country"
-            disabled
-          />
-          <Select
-            :name="$t('registerview.form.city')"
-            :options="selectOptions"
-            rules="required"
-            class="mb-3"
-            size="sm"
-            v-model="register.city"
-            addVeeClasses
-          />
+          <div class="row mb-3">
+            <div class="col-lg-6">
+              <TextInput
+                class="mb-3"
+                :name="$t('registerview.form.country')"
+                :placeholder="$t('registerview.form.country')"
+                rules="required"
+                size="sm"
+                addVeeClasses
+                v-model="register.country"
+                disabled
+              />
+            </div>
+            <div class="col-lg-6">
+              <Select
+                :name="$t('registerview.form.city')"
+                :options="selectOptions"
+                rules="required"
+                class="mb-3"
+                size="sm"
+                v-model="register.city"
+                addVeeClasses
+              />
+            </div>
+          </div>
           <div class="d-flex justify-content-between">
             <NuxtLink to="/auth" class="btn btn-primary">
               {{ $t('registerview.form.back') }}
@@ -248,7 +254,7 @@ export default Vue.extend({
           title: 'Error',
           message: 'Agregar mensaje de error',
           type: 'danger',
-          timer: 5000
+          timer: 5000,
         }
         this.showToastWithProps(toast)
       }

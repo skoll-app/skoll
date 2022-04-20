@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div v-if="show" class="loading">
     <div class="d-flex h-100 justify-content-center align-items-center">
       <div class="lds-default">
         <div></div>
@@ -24,6 +24,11 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'Loading',
+  computed: {
+    show(): boolean {
+      return this.$store.state.loading.showing
+    },
+  },
 })
 </script>
 

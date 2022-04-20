@@ -1,6 +1,6 @@
 <template>
   <div class="login-layout d-flex align-items-center justify-content-center">
-    <Loading v-if="show" />
+    <Loading />
     <Toast />
     <div class="w-100">
       <Nuxt />
@@ -16,11 +16,6 @@ export default Vue.extend({
   components: {
     Loading,
     Toast,
-  },
-  computed: {
-    show(): boolean {
-      return this.$store.state.loading.showing
-    },
   },
 })
 </script>

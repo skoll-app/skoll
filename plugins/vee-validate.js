@@ -7,7 +7,14 @@ import {
   configure,
   localize,
 } from 'vee-validate'
-import { required, email, digits, alpha_spaces } from 'vee-validate/dist/rules'
+import {
+  required,
+  email,
+  digits,
+  alpha_spaces,
+  max,
+  numeric
+} from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
 import es from 'vee-validate/dist/locale/es.json'
 
@@ -18,6 +25,8 @@ extend('required', required)
 extend('email', email)
 extend('digits', digits)
 extend('alpha_spaces', alpha_spaces)
+extend('max', max)
+extend('numeric', numeric)
 
 configure({
   classes: {

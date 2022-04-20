@@ -32,6 +32,19 @@ const eng = {
       otpCode: 'Code',
       continue: 'Next',
       back: 'Back',
+      age: 'Age',
+      gender: 'Gender',
+      genderOptions: {
+        male: 'Male',
+        female: 'Female',
+        other: 'Other',
+      },
+      interest: 'I am interested in knowing',
+      interestOptions: {
+        men: 'Men',
+        women: 'Women',
+        both: 'Both',
+      },
     },
     hasAccount: 'Do you have an account?',
     loginHere: 'Login here',
@@ -39,6 +52,7 @@ const eng = {
     enterCode: 'Enter the code that we have sent to your email address',
     showPassword: 'Show',
     hidePassword: 'Hide',
+    letUsKnowYou: 'Let us get to know you better',
   },
   validation: en.messages,
   passwordValidation:

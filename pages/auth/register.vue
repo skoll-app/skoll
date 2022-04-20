@@ -3,14 +3,9 @@
     <div
       class="position-relative col-12 col-lg-6 h-100 d-flex flex-column justify-content-center"
     >
-      <VueSlickCarousel ref="carousel" class="slider" v-bind="slickOptions">
-        <div class="px-5">
-          <Form :step="1" @next="showNext" />
-        </div>
-        <div class="px-5">
-          <Form :step="2" @next="showNext" @prev="showPrev" />
-        </div>
-      </VueSlickCarousel>
+      <div class="px-5">
+        <Form />
+      </div>
       <div class="position-absolute bottom-0 w-100 text-center mb-4">
         {{ $t('registerview.hasAccount') }}
         <NuxtLink class="text-warning" to="/auth">
@@ -35,32 +30,6 @@ import Form from '~/components/register/Form.vue'
 
 export default Vue.extend({
   components: { Form },
-  data() {
-    return {
-      name: '',
-      slickOptions: {
-        arrows: false,
-        // dots: true,
-        // dotsClass: 'slick-dots custom-dot-class',
-        edgeFriction: 0.35,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        draggable: false,
-      },
-    }
-  },
-  methods: {
-    showNext() {
-      // @ts-ignore
-      this.$refs.carousel?.next()
-    },
-    showPrev() {
-      // @ts-ignore
-      this.$refs.carousel?.prev()
-    },
-  },
 })
 </script>
 

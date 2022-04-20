@@ -32,6 +32,19 @@ const esp = {
       otpCode: 'Código',
       continue: 'Continuar',
       back: 'Volver',
+      age: 'Edad',
+      gender: 'Género',
+      genderOptions: {
+        male: 'Másculino',
+        female: 'Fémenino',
+        other: 'Otro',
+      },
+      interest: 'Me interesa conocer',
+      interestOptions: {
+        men: 'Hombres',
+        women: 'Mujeres',
+        both: 'Ambos',
+      },
     },
     hasAccount: '¿Tienes una cuenta?',
     loginHere: 'Ingresa aquí',
@@ -39,6 +52,7 @@ const esp = {
     enterCode: 'Ingresa el codigo que hemos enviado a tu correo',
     showPassword: 'Mostrar',
     hidePassword: 'Ocultar',
+    letUsKnowYou: 'Permitenos conocerte mejor',
   },
   validation: es.messages,
   passwordValidation:

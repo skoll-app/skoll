@@ -1,6 +1,7 @@
 <template>
   <ValidationProvider
     tag="div"
+    class="p-1"
     :rules="rules"
     :name="name"
     :vid="vid"

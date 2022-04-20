@@ -4,6 +4,7 @@
     :name="name"
     v-slot="{ classes, errors }"
     tag="div"
+    class="p-1"
   >
     <select
       class="form-select"
@@ -21,7 +22,7 @@
         :value="option.value"
         :selected="option.selected"
       >
-        {{ option.label }}
+        {{ $t(option.label) }}
       </option>
     </select>
     <div v-if="errors && errors[0]" class="invalid-feedback">

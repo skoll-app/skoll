@@ -82,7 +82,9 @@ export default Vue.extend({
     prev() {
       this.$emit('prev')
     },
-    registerUser() {},
+    registerUser() {
+      this.$emit('setUser', this.register)
+    },
   },
 })
 </script>

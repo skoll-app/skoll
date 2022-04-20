@@ -53,6 +53,7 @@ const esp = {
     showPassword: 'Mostrar',
     hidePassword: 'Ocultar',
     letUsKnowYou: 'Permitenos conocerte mejor',
+    almostFinish: 'Pronto terminaremos, <br /> Bienvenido a Skoll'
   },
   validation: es.messages,
   passwordValidation:

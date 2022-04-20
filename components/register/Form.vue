@@ -1,15 +1,23 @@
 <template>
   <div>
     <VueSlickCarousel ref="carousel" class="slider" v-bind="slickOptions">
-      <Confirm @next="next" />
-      <Otp @next="next" @prev="prev" />
-      <KnowBetter @next="next" @prev="prev" />
+      <Confirm @next="next" @setUser="setUser" />
+      <Otp title="registerview.newClient" @prev="prev" @setOtp="validateOtp" />
+      <KnowBetter @prev="prev" @setUser="setUserAndGenerateOtp" />
+      <Otp
+        title="registerview.almostFinish"
+        @prev="prev"
+        @setOtp="validateAndRegister"
+      />
     </VueSlickCarousel>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
+// Interfaces
+import Toast from '~/interfaces/toast'
 // Components
 import Confirm from './Confirm.vue'
 import KnowBetter from './KnowBetter.vue'
@@ -27,6 +35,7 @@ export default Vue.extend({
       slidesToScroll: 1,
       draggable: false,
     },
+    user: {} as any,
   }),
 
   methods: {
@@ -38,6 +47,90 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.carousel?.prev()
     },
+    setUser(event: any) {
+      this.user = { ...this.user, ...event }
+    },
+    async validateOtp(otp: string) {
+      try {
+        this.showLoading()
+        await this.$axios.post('/security/validate/otp', {
+          sessionId: this.user.sessionId,
+          otp,
+        })
+        this.hideLoading()
+        this.next()
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response?.data?.message || 'Error en el registro',
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    async generateOTP() {
+      try {
+        this.showLoading()
+        await this.$axios.post('/security/generate/otp', {
+          sessionId: this.user.sessionId,
+          check: 'verifyUser',
+        })
+        this.hideLoading()
+        this.next()
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response?.data?.message || 'Error en el registro',
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    async registerUser() {
+      try {
+        this.showLoading()
+        await this.$axios.post('/client/register', {
+          age: this.user.age,
+          gender: this.user.gender.value,
+          interestGender: this.user.interest.value,
+          lat: 0,
+          log: 0,
+          password: this.user.password,
+          sessionId: this.user.sessionId,
+        })
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Exito',
+          message: 'Registrado',
+          type: 'success',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response?.data?.message || 'Error en el registro',
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    validateAndRegister(event: any) {
+      this.validateOtp(event)
+      this.registerUser()
+    },
+    setUserAndGenerateOtp(event: any) {
+      this.setUser(event)
+      this.generateOTP()
+    },
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToastWithProps']),
   },
 })
 </script>

@@ -53,6 +53,7 @@ const eng = {
     showPassword: 'Show',
     hidePassword: 'Hide',
     letUsKnowYou: 'Let us get to know you better',
+    almostFinish:'We\'ll be done soon, <br /> Welcome to Skoll'
   },
   validation: en.messages,
   passwordValidation:

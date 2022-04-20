@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="mb-2" v-html="$t('registerview.newClient')"></h4>
+    <h4 class="mb-2" v-html="$t(title)"></h4>
     <p>{{ $t('registerview.enterCode') }}</p>
     <ValidationObserver tag="form" v-slot="{ invalid }">
       <TextInput
@@ -19,7 +19,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          @click="validateOtp"
+          @click="next"
           :disabled="invalid"
         >
           {{ $t('registerview.form.continue') }}
@@ -31,57 +31,32 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { mapActions } from 'vuex'
-// Interfaces
-import Toast from '~/interfaces/toast'
 // Components
 import TextInput from '../ux/input/TextInput.vue'
 import Select from '../ux/select/Select.vue'
 
 export default Vue.extend({
   props: {
-    sessionId: {
+    title: {
       type: String,
-      default: '',
-    },
-    otp: {
-      type: String,
-      default: '',
+      default: ''
     },
   },
   components: {
     TextInput,
     Select,
   },
+  data: () => ({
+    otp: '',
+  }),
   methods: {
     next() {
       this.$emit('next')
+      this.$emit('setOtp', this.otp)
     },
     prev() {
       this.$emit('prev')
     },
-    async validateOtp() {
-      try {
-        this.showLoading()
-        await this.$axios.post('/security/validate/otp', {
-          sessionId: this.sessionId,
-          otp: this.otp,
-        })
-        this.hideLoading()
-        this.next()
-      } catch (error: any) {
-        this.hideLoading()
-        const toast: Toast = {
-          title: 'Error',
-          message: error.response?.data?.message || 'Error en el registro',
-          type: 'danger',
-          timer: 5000,
-        }
-        this.showToastWithProps(toast)
-      }
-    },
-    ...mapActions('loading', ['showLoading', 'hideLoading']),
-    ...mapActions('toast', ['showToastWithProps']),
   },
 })
 </script>

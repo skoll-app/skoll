@@ -90,7 +90,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            @click="next"
+            @click="preRegister"
             :disabled="invalid"
           >
             {{ $t('registerview.form.continue') }}
@@ -178,6 +178,9 @@ export default Vue.extend({
     btnAction() {
       this.showPassword = !this.showPassword
     },
+    emitUserData() {
+      this.$emit('setUser', { ...this.register, sessionId: this.sessionId })
+    },
     async preRegister() {
       try {
         this.showLoading()
@@ -191,6 +194,7 @@ export default Vue.extend({
         })
         this.sessionId = res.data.data.sessionId
         this.hideLoading()
+        this.emitUserData()
         this.next()
       } catch (error: any) {
         this.hideLoading()

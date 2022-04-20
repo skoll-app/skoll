@@ -34,6 +34,7 @@ export default Vue.extend({
       slidesToShow: 1,
       slidesToScroll: 1,
       draggable: false,
+      swipe: false,
     },
     user: {} as any,
   }),

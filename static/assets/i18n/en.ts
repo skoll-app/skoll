@@ -53,11 +53,27 @@ const eng = {
     showPassword: 'Show',
     hidePassword: 'Hide',
     letUsKnowYou: 'Let us get to know you better',
-    almostFinish:'We\'ll be done soon, <br /> Welcome to Skoll'
+    almostFinish: "We'll be done soon, <br /> Welcome to Skoll",
   },
   validation: en.messages,
   passwordValidation:
     'Debe contener al menos una mayuscula, una minúscula, un número y un caractér especial',
+  recoverview: {
+    recoverpassword: 'Password <br /> recovery',
+    enterPhoneNumber: 'Enter your cell phone number',
+    form: {
+      phoneNumber: 'Cell phone number',
+      email: 'Email',
+      enterEmail: 'Enter your email address',
+      enterPassword: 'Please enter a new password',
+      password: 'New password',
+      continue: 'Continue',
+      back: 'Back',
+    },
+    validateEmail: 'Validate your email address',
+    lastStep: 'We are one step away <br /> from finishing!',
+    changePassword: 'Change your password'
+  },
 }
 
 export default eng

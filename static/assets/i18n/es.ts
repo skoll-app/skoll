@@ -53,11 +53,27 @@ const esp = {
     showPassword: 'Mostrar',
     hidePassword: 'Ocultar',
     letUsKnowYou: 'Permitenos conocerte mejor',
-    almostFinish: 'Pronto terminaremos, <br /> Bienvenido a Skoll'
+    almostFinish: 'Pronto terminaremos, <br /> Bienvenido a Skoll',
   },
   validation: es.messages,
   passwordValidation:
     'Debe ser mínimo 8 caracteres, contener una mayúscula, una minúscula, un número y un caractér especial',
+  recoverview: {
+    recoverpassword: 'Recuperación de <br /> contraseña',
+    enterPhoneNumber: 'Ingresa tu número de celular',
+    form: {
+      phoneNumber: 'Número celular',
+      email: 'Correo',
+      enterEmail: 'Ingresa tu correo electrónico',
+      enterPassword: 'Por favor ingresa una nueva contraseña',
+      password: 'Nueva contraseña',
+      continue: 'Continuar',
+      back: 'Volver',
+    },
+    validateEmail: 'Valida tu correo electrónico',
+    lastStep: '¡Estamos a un paso de <br /> terminar! ',
+    changePassword: 'Cambia tu contraseña'
+  },
 }
 
 export default esp

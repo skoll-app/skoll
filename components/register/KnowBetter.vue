@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="mb-2" v-html="$t('registerview.letUsKnowYou')"></h4>
+    <h4 class="mb-5" v-html="$t('registerview.letUsKnowYou')"></h4>
     <ValidationObserver tag="form" v-slot="{ invalid }">
       <TextInput
         class="mb-2"

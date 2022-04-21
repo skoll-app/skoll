@@ -14,7 +14,7 @@
       />
       <div class="d-flex justify-content-between p-1">
         <button type="button" class="btn btn-primary" @click="prev">
-          {{ $t('registerview.form.back') }}
+          {{ $t('recoverview.form.back') }}
         </button>
         <button
           type="button"
@@ -22,7 +22,7 @@
           @click="next"
           :disabled="invalid"
         >
-          {{ $t('registerview.form.continue') }}
+          {{ $t('recoverview.form.continue') }}
         </button>
       </div>
     </ValidationObserver>
@@ -39,7 +39,7 @@ export default Vue.extend({
   props: {
     title: {
       type: String,
-      default: ''
+      default: '',
     },
   },
   components: {

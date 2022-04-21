@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="mb-2" v-html="$t(title)"></h4>
+    <h4 class="mb-5" v-html="$t(title)"></h4>
     <p>{{ $t('registerview.enterCode') }}</p>
     <ValidationObserver tag="form" v-slot="{ invalid }">
       <TextInput

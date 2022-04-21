@@ -7,84 +7,78 @@
           <img src="assets/img/dance.png" height="400" alt="dance" />
         </div>
         <div class="col-md-6 center-hv">
-          <div class="d-flex flex-column w-75 px-4">
+          <div class="d-flex flex-column w-75 px-0 px-md-2">
             <h2 class="mb-3 mx-4 text-center">{{ $t('loginview.title') }}</h2>
-            <ValidationObserver v-slot="{ invalid }">
-              <form>
-                <!-- TODO: dynamic name instead white space -->
-                <ValidationProvider
-                  name=" "
-                  rules="required"
-                  v-slot="{ errors, classes }"
-                >
-                  <div class="input-group has-validation mb-3">
-                    <span class="input-group-text px-0">
-                      <UserIcon />
-                    </span>
-                    <input
-                      type="text"
-                      class="form-control"
-                      :class="classes"
-                      :placeholder="$t('loginview.user')"
-                      v-model="phone"
-                    />
-                    <div v-if="errors && errors[0]" class="invalid-feedback">
-                      {{ errors[0] }}
-                    </div>
+            <ValidationObserver tag="form" v-slot="{ invalid }">
+              <!-- TODO: dynamic name instead white space -->
+              <ValidationProvider
+                name=" "
+                rules="required"
+                v-slot="{ errors, classes }"
+              >
+                <div class="input-group has-validation mb-3">
+                  <span class="input-group-text px-0">
+                    <UserIcon />
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    :class="classes"
+                    :placeholder="$t('loginview.user')"
+                    v-model="phone"
+                  />
+                  <div v-if="errors && errors[0]" class="invalid-feedback">
+                    {{ errors[0] }}
                   </div>
-                </ValidationProvider>
-
-                <!-- TODO: dynamic name instead white space -->
-                <ValidationProvider
-                  name=" "
-                  rules="required"
-                  v-slot="{ errors, classes }"
-                >
-                  <div class="input-group has-validation mb-3">
-                    <span class="input-group-text px-0">
-                      <LockIcon />
-                    </span>
-                    <input
-                      type="password"
-                      class="form-control"
-                      :class="classes"
-                      :placeholder="$t('loginview.password')"
-                      v-model="password"
-                    />
-                    <div class="invalid-feedback">{{ errors[0] }}</div>
-                  </div>
-                </ValidationProvider>
-                <p class="text-primary text-center">
-                  <small
-                    >{{ $t('loginview.forgotPassword') }}
-                    <a
-                      href="http://"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-warning"
-                      >{{ $t('loginview.retrieve') }}</a
-                    ></small
-                  >
-                </p>
-                <div class="d-grid gap-2">
-                  <button
-                    type="button"
-                    class="btn btn-primary mb-2 text-warning"
-                    @click="verifyUser"
-                    :disabled="invalid"
-                  >
-                    {{ $t('loginview.enter') }}
-                  </button>
                 </div>
-                <p class="text-primary text-center my-2">
-                  <small
-                    >{{ $t('loginview.noAccount') }}
-                    <NuxtLink class="text-warning" to="/auth/register">{{
-                      $t('loginview.register')
-                    }}</NuxtLink></small
-                  >
-                </p>
-              </form>
+              </ValidationProvider>
+
+              <!-- TODO: dynamic name instead white space -->
+              <ValidationProvider
+                name=" "
+                rules="required"
+                v-slot="{ errors, classes }"
+              >
+                <div class="input-group has-validation mb-3">
+                  <span class="input-group-text px-0">
+                    <LockIcon />
+                  </span>
+                  <input
+                    type="password"
+                    class="form-control"
+                    :class="classes"
+                    :placeholder="$t('loginview.password')"
+                    v-model="password"
+                  />
+                  <div class="invalid-feedback">{{ errors[0] }}</div>
+                </div>
+              </ValidationProvider>
+              <p class="text-primary text-center">
+                <small
+                  >{{ $t('loginview.forgotPassword') }}
+                  <NuxtLink to="/auth/recover" class="text-warning">{{
+                    $t('loginview.retrieve')
+                  }}</NuxtLink></small
+                >
+              </p>
+              <div class="d-grid gap-2">
+                <button
+                  type="button"
+                  class="btn btn-primary mb-2 text-warning"
+                  @click="verifyUser"
+                  :disabled="invalid"
+                >
+                  {{ $t('loginview.enter') }}
+                </button>
+              </div>
+              <p class="text-primary text-center my-2">
+                <small
+                  >{{ $t('loginview.noAccount') }}
+                  <NuxtLink class="text-warning" to="/auth/register">{{
+                    $t('loginview.register')
+                  }}</NuxtLink></small
+                >
+              </p>
             </ValidationObserver>
             <div class="divider d-flex align-items-center my-2">
               <p class="text-center fw-bold mx-3 mb-0">

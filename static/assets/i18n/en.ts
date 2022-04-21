@@ -63,7 +63,11 @@ const eng = {
     enterPhoneNumber: 'Enter your cell phone number',
     form: {
       phoneNumber: 'Cell phone number',
+      email: 'Email',
+      enterEmail: 'Enter your email address',
     },
+    validateEmail: 'Validate your email address',
+    lastStep: 'We are one step away <br /> from finishing!',
   },
 }
 

@@ -1,26 +1,26 @@
 <template>
   <div>
-    <h4 class="mb-5" v-html="$t('recoverview.recoverpassword')"></h4>
-    <p v-html="$t('recoverview.enterPhoneNumber')"></p>
+    <h4 class="mb-5" v-html="$t(title)"></h4>
+    <p>{{ $t('registerview.enterCode') }}</p>
     <ValidationObserver tag="form" v-slot="{ invalid }">
       <TextInput
-        class="mb-4"
-        :name="$t('recoverview.form.phoneNumber')"
-        :placeholder="$t('recoverview.form.phoneNumber')"
-        rules="required|digits:10"
+        class="mb-2"
+        :name="$t('registerview.form.otpCode')"
+        :placeholder="$t('registerview.form.otpCode')"
+        rules="required|digits:5"
         size="sm"
         addVeeClasses
-        v-model="phone"
+        v-model="otp"
       />
       <div class="d-flex justify-content-between p-1">
-        <NuxtLink to="/auth" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" @click="prev">
           {{ $t('registerview.form.back') }}
-        </NuxtLink>
+        </button>
         <button
           type="button"
           class="btn btn-primary"
-          :disabled="invalid"
           @click="next"
+          :disabled="invalid"
         >
           {{ $t('registerview.form.continue') }}
         </button>
@@ -31,16 +31,31 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// Components
 import TextInput from '../ux/input/TextInput.vue'
+import Select from '../ux/select/Select.vue'
 
 export default Vue.extend({
-  components: { TextInput },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+  components: {
+    TextInput,
+    Select,
+  },
   data: () => ({
-    phone: '',
+    otp: '',
   }),
   methods: {
     next() {
-      this.$emit('next', this.phone)
+      this.$emit('next')
+      this.$emit('setOtp', this.otp)
+    },
+    prev() {
+      this.$emit('prev')
     },
   },
 })

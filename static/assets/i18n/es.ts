@@ -63,7 +63,11 @@ const esp = {
     enterPhoneNumber: 'Ingresa tu número de celular',
     form: {
       phoneNumber: 'Número celular',
+      email: 'Correo',
+      enterEmail: 'Ingresa tu correo electrónico',
     },
+    validateEmail: 'Valida tu correo electrónico',
+    lastStep: '¡Estamos a un paso de <br /> terminar! ',
   },
 }
 

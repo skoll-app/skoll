@@ -6,7 +6,8 @@
       @prev="prev"
       @setOtp="validateOTPAndUser"
     />
-    <Email :encodedEmail="encodedEmail" @setEmail="setEmail" />
+    <Email :encodedEmail="encodedEmail" @prev="prev" @setEmail="setEmail" />
+    <Password @setPassword="setPassword" @prev="prev" />
   </VueSlickCarousel>
 </template>
 
@@ -16,11 +17,12 @@ import { mapActions } from 'vuex'
 import Toast from '~/interfaces/toast'
 import Email from './Email.vue'
 import Otp from './Otp.vue'
+import Password from './Password.vue'
 // Components
 import Phone from './Phone.vue'
 
 export default Vue.extend({
-  components: { Phone, Otp, Email },
+  components: { Phone, Otp, Email, Password },
   data: () => ({
     slickOptions: {
       arrows: false,
@@ -35,6 +37,8 @@ export default Vue.extend({
     phone: '',
     encodedEmail: '',
     email: '',
+    password: '',
+    error: false,
   }),
   methods: {
     next() {
@@ -74,8 +78,9 @@ export default Vue.extend({
           otp,
         })
         this.hideLoading()
-        this.next()
+        this.userExist()
       } catch (error: any) {
+        this.error = true
         this.hideLoading()
         const toast: Toast = {
           title: 'Error',
@@ -108,7 +113,6 @@ export default Vue.extend({
     },
     validateOTPAndUser(otp: string) {
       this.validateOTP(otp)
-      this.userExist()
     },
     setEmail(email: string) {
       this.email = email
@@ -116,7 +120,8 @@ export default Vue.extend({
     },
     async validateEmail() {
       try {
-        const res = await this.$axios.post('/security/validate/email', {
+        this.showLoading()
+        await this.$axios.post('/security/validate/email', {
           email: this.email,
           sessionId: this.sessionId,
         })
@@ -126,7 +131,39 @@ export default Vue.extend({
         this.hideLoading()
         const toast: Toast = {
           title: 'Error',
-          message: error.response.message,
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    setPassword(pwd: string) {
+      this.password = pwd
+      this.recoverPassword()
+    },
+    async recoverPassword() {
+      try {
+        this.showLoading()
+        await this.$axios.put('/security/recovery/password', {
+          password: this.password,
+          sessionId: this.sessionId,
+        })
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Exito',
+          message: 'Contraseña cambiada, por favor inicia sesión',
+          type: 'success',
+          timer: 10000,
+        }
+        this.showToastWithProps(toast)
+        this.$router.push('/auth')
+      } catch (error: any) {
+        console.log(error.response)
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response.data.message,
           type: 'danger',
           timer: 5000,
         }

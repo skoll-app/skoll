@@ -17,7 +17,7 @@
       />
       <div class="d-flex justify-content-between p-1">
         <button type="button" class="btn btn-primary" @click="prev">
-          {{ $t('registerview.form.back') }}
+          {{ $t('recoverview.form.back') }}
         </button>
         <button
           type="button"
@@ -25,7 +25,7 @@
           :disabled="invalid"
           @click="next"
         >
-          {{ $t('registerview.form.continue') }}
+          {{ $t('recoverview.form.continue') }}
         </button>
       </div>
     </ValidationObserver>

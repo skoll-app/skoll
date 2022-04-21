@@ -14,7 +14,7 @@
       />
       <div class="d-flex justify-content-between p-1">
         <NuxtLink to="/auth" class="btn btn-primary">
-          {{ $t('registerview.form.back') }}
+          {{ $t('recoverview.form.back') }}
         </NuxtLink>
         <button
           type="button"
@@ -22,7 +22,7 @@
           :disabled="invalid"
           @click="next"
         >
-          {{ $t('registerview.form.continue') }}
+          {{ $t('recoverview.form.continue') }}
         </button>
       </div>
     </ValidationObserver>

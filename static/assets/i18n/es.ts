@@ -65,9 +65,14 @@ const esp = {
       phoneNumber: 'Número celular',
       email: 'Correo',
       enterEmail: 'Ingresa tu correo electrónico',
+      enterPassword: 'Por favor ingresa una nueva contraseña',
+      password: 'Nueva contraseña',
+      continue: 'Continuar',
+      back: 'Volver',
     },
     validateEmail: 'Valida tu correo electrónico',
     lastStep: '¡Estamos a un paso de <br /> terminar! ',
+    changePassword: 'Cambia tu contraseña'
   },
 }
 

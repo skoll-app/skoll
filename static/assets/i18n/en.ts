@@ -65,9 +65,14 @@ const eng = {
       phoneNumber: 'Cell phone number',
       email: 'Email',
       enterEmail: 'Enter your email address',
+      enterPassword: 'Please enter a new password',
+      password: 'New password',
+      continue: 'Continue',
+      back: 'Back',
     },
     validateEmail: 'Validate your email address',
     lastStep: 'We are one step away <br /> from finishing!',
+    changePassword: 'Change your password'
   },
 }
 

@@ -1,20 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid px-4">
-      <a class="navbar-brand">Skoll</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarColor01"
-        aria-controls="navbarColor01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div>
+        <MenuIcon class="me-2" role="button" />
+      </div>
 
-      <div class="collapse navbar-collapse" id="navbarColor01">
+      <div class="collapse navbar-collapse">
+        <NuxtLink to="/" class="navbar-brand me-0">Skoll</NuxtLink>
+
         <form class="d-flex mx-auto">
           <div class="form-group search">
             <div class="input-group input-group-sm">
@@ -30,21 +23,19 @@
                 type="button"
                 id="button-addon2"
               >
-                B
+                <SearchIcon />
               </button>
             </div>
           </div>
         </form>
         <ul class="navbar-nav">
           <li class="nav-item d-flex">
-            <div class="align-self-center" role="button">
-              <CartIcon />
-            </div>
+            <CartIcon role="button" class="align-self-center" />
           </li>
           <li class="nav-item me-0">
             <NuxtLink
               type="button"
-              class="btn btn-outline-warning"
+              class="btn btn-outline-warning btn-sm"
               to="/auth"
               >Ingresar</NuxtLink
             >
@@ -57,16 +48,27 @@
 
 <script lang="ts">
 import Vue from 'vue'
+// Icons
 import CartIcon from '~/static/assets/icons/cart.svg'
+import MenuIcon from '~/static/assets/icons/menu.svg'
+import SearchIcon from '~/static/assets/icons/search.svg'
+// Components
+import Sidebar from '../ux/sidebar/Sidebar.vue'
 
 export default Vue.extend({
   components: {
     CartIcon,
+    MenuIcon,
+    SearchIcon,
+    Sidebar,
   },
 })
 </script>
 
 <style scoped>
+nav {
+  min-height: 76px;
+}
 @media (min-width: 768px) {
   .search {
     min-width: 500px;

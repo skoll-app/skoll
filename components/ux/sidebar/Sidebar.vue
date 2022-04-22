@@ -9,7 +9,7 @@
           @click="openDropdown"
         >
           {{ item.label }}
-          <ArrowRightIcon />
+          <ArrowRightIcon class="arrow" />
         </a>
         <div class="dropdown-container d-none">
           <a
@@ -178,10 +178,19 @@ export default Vue.extend({
     }
   }
 
+  .arrow {
+    transition: 0.3s;
+  }
+
   .active {
     border-radius: 4px;
     background-color: var(--bs-warning);
     color: var(--bs-white);
+
+    .arrow {
+      transform: rotate(90deg);
+      color:  var(--bs-white);
+    }
   }
 
   .closebtn {

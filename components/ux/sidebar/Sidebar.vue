@@ -1,34 +1,36 @@
 <template>
   <div id="mySidenav" class="sidenav" :style="sidebarStyle">
     <template v-for="(item, i) in options">
-      <template v-if="item.options && item.options.length">
+      <div :key="i + '-anchor'" v-if="item.options && item.options.length">
         <a
           :id="'anchor-' + i"
           ref="fields"
-          :key="i + '-anchor'"
           class="dropdown-btn d-flex align-items-center justify-content-between item p-2 mx-3"
           @click="openDropdown"
         >
           {{ item.label }}
           <ArrowRightIcon />
         </a>
-        <div :key="i + '-dropdown-btn-div'" class="dropdown-container d-none">
-          <NuxtLink
+        <div class="dropdown-container d-none">
+          <a
             class="d-flex align-items-center justify-content-between item p-2 mx-3"
             v-for="(subitem, j) in item.options"
             :key="j"
-            :to="subitem.to"
-            >{{ subitem.label }}</NuxtLink
+            @click="goTo(subitem.to)"
+            >{{ subitem.label }}</a
           >
         </div>
-      </template>
-      <NuxtLink
-        v-else
-        :key="i"
-        class="d-flex align-items-center justify-content-between item p-2 mx-3"
-        :to="item.to"
-        >{{ item.label }}</NuxtLink
-      >
+      </div>
+      <div v-else :key="i + '-anchor'">
+        <a
+          :id="'anchor-' + i"
+          ref="fields"
+          :key="i + '-anchor'"
+          class="d-flex align-items-center justify-content-between item p-2 mx-3"
+          @click="openDropdown"
+          >{{ item.label }}</a
+        >
+      </div>
     </template>
   </div>
 </template>
@@ -85,6 +87,10 @@ export default Vue.extend({
           },
         ],
       },
+      {
+        label: 'Hospitales',
+        to: '/',
+      },
     ],
     pos: 0,
   }),
@@ -114,15 +120,26 @@ export default Vue.extend({
       anchors.map((el) => {
         let dropdownContent = el.nextElementSibling
         if (el.id === element.target.id) {
-          el.classList.toggle('active')
-          dropdownContent!.classList.toggle('d-block')
-          dropdownContent!.classList.toggle('d-none')
+          if (!dropdownContent) {
+            el.classList.add('active')
+          } else {
+            el.classList.toggle('active')
+            dropdownContent!.classList.toggle('d-block')
+            dropdownContent!.classList.toggle('d-none')
+          }
         } else {
-          el.classList.remove('active')
-          dropdownContent!.classList.remove('d-block')
-          dropdownContent!.classList.add('d-none')
+          if (!dropdownContent) {
+            el.classList.remove('active')
+          } else {
+            el.classList.remove('active')
+            dropdownContent.classList.remove('d-block')
+            dropdownContent.classList.add('d-none')
+          }
         }
       })
+    },
+    goTo(to: string) {
+      this.$router.push(to)
     },
   },
   mounted() {

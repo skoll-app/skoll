@@ -1,23 +1,16 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand">Skoll</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarColor01"
-        aria-controls="navbarColor01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <div class="container-fluid px-4">
+      <div>
+        <MenuIcon @click="toggleSidebar" class="me-2" role="button" />
+      </div>
 
-      <div class="collapse navbar-collapse" id="navbarColor01">
+      <div class="collapse navbar-collapse">
+        <NuxtLink to="/" class="navbar-brand">Skoll</NuxtLink>
+
         <form class="d-flex mx-auto">
           <div class="form-group search">
-            <div class="input-group">
+            <div class="input-group input-group-sm">
               <input
                 type="text"
                 class="form-control"
@@ -30,20 +23,22 @@
                 type="button"
                 id="button-addon2"
               >
-                B
+                <SearchIcon />
               </button>
             </div>
           </div>
         </form>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="#"
-              >C
-              <span class="visually-hidden">(current)</span>
-            </a>
+          <li class="nav-item d-flex">
+            <CartIcon role="button" class="align-self-center" />
           </li>
           <li class="nav-item me-0">
-            <NuxtLink class="nav-link" to="/auth">Ingresar</NuxtLink>
+            <NuxtLink
+              type="button"
+              class="btn btn-outline-warning btn-sm"
+              to="/auth"
+              >Ingresar</NuxtLink
+            >
           </li>
         </ul>
       </div>
@@ -53,11 +48,39 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
+// Icons
+import CartIcon from '~/static/assets/icons/cart.svg'
+import MenuIcon from '~/static/assets/icons/menu.svg'
+import SearchIcon from '~/static/assets/icons/search.svg'
+// Components
+import Sidebar from '../ux/sidebar/Sidebar.vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  components: {
+    CartIcon,
+    MenuIcon,
+    SearchIcon,
+    Sidebar,
+  },
+  methods: {
+    toggleSidebar() {
+      this.open ? this.closeSidebar() : this.openSidebar()
+    },
+    ...mapActions('sidebar', ['openSidebar', 'closeSidebar']),
+  },
+  computed: {
+    open(): boolean {
+      return this.$store.state.sidebar.open
+    },
+  },
+})
 </script>
 
 <style scoped>
+nav {
+  min-height: 76px;
+}
 @media (min-width: 768px) {
   .search {
     min-width: 500px;

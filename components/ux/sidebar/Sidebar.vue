@@ -1,30 +1,34 @@
 <template>
   <div id="mySidenav" class="sidenav" :style="sidebarStyle">
     <template v-for="(item, i) in options">
-      <div v-if="item.options && item.options.length" :key="i" class="">
+      <template v-if="item.options && item.options.length">
         <a
+          :id="'anchor-' + i"
+          ref="fields"
+          :key="i + '-anchor'"
           class="dropdown-btn d-flex align-items-center justify-content-between item p-2 mx-3"
+          @click="openDropdown"
         >
           {{ item.label }}
           <ArrowRightIcon />
         </a>
-        <div class="dropdown-container">
+        <div :key="i + '-dropdown-btn-div'" class="dropdown-container d-none">
           <NuxtLink
-            class="dropdown-btn d-flex align-items-center justify-content-between item p-2 mx-3"
+            class="d-flex align-items-center justify-content-between item p-2 mx-3"
             v-for="(subitem, j) in item.options"
             :key="j"
             :to="subitem.to"
             >{{ subitem.label }}</NuxtLink
           >
         </div>
-      </div>
-      <div v-else :key="i">
-        <NuxtLink
-          class="dropdown-btn d-flex align-items-center justify-content-between item p-2 mx-3"
-          :to="item.to"
-          >{{ item.label }}</NuxtLink
-        >
-      </div>
+      </template>
+      <NuxtLink
+        v-else
+        :key="i"
+        class="d-flex align-items-center justify-content-between item p-2 mx-3"
+        :to="item.to"
+        >{{ item.label }}</NuxtLink
+      >
     </template>
   </div>
 </template>
@@ -59,7 +63,7 @@ export default Vue.extend({
       },
       {
         label: 'Restaurantes',
-        to: '/auth',
+        to: '/',
       },
       {
         label: 'Bares',
@@ -71,7 +75,18 @@ export default Vue.extend({
           },
         ],
       },
+      {
+        label: 'Super mercados',
+        to: '',
+        options: [
+          {
+            label: 'Inicio',
+            to: '/auth/register',
+          },
+        ],
+      },
     ],
+    pos: 0,
   }),
   computed: {
     sidebarStyle() {
@@ -82,6 +97,9 @@ export default Vue.extend({
       return { left: left, right: right }
     },
   },
+  destroyed() {
+    document.body.style.backgroundColor = 'white'
+  },
   methods: {
     openNav() {
       document.getElementById('mySidenav')!.style.width = '250px'
@@ -91,43 +109,39 @@ export default Vue.extend({
       document.getElementById('mySidenav')!.style.width = '0'
       document.body.style.backgroundColor = 'white'
     },
-    initSidebar() {
-      var dropdown = document.getElementsByClassName('dropdown-btn')
-      var i
-
-      for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener('click', function () {
-          // @ts-ignore
-          this.classList.toggle('active')
-          // @ts-ignore
-          var dropdownContent = this.nextElementSibling
-          if (dropdownContent.style.display === 'block') {
-            dropdownContent.style.display = 'none'
-          } else {
-            dropdownContent.style.display = 'block'
-          }
-        })
-      }
+    openDropdown(element: any) {
+      const anchors = this.$refs['fields'] as HTMLAnchorElement[]
+      anchors.map((el) => {
+        let dropdownContent = el.nextElementSibling
+        if (el.id === element.target.id) {
+          el.classList.toggle('active')
+          dropdownContent!.classList.toggle('d-block')
+          dropdownContent!.classList.toggle('d-none')
+        } else {
+          el.classList.remove('active')
+          dropdownContent!.classList.remove('d-block')
+          dropdownContent!.classList.add('d-none')
+        }
+      })
     },
   },
   mounted() {
     this.openNav()
-    this.initSidebar()
   },
 })
 </script>
 
 <style scoped lang="scss">
 .sidenav {
-  height: 100%;
   width: 0;
   position: fixed;
   z-index: 1;
   top: 76px;
   background-color: #fff;
-  overflow-x: hidden;
   transition: 0.5s;
   padding-top: 40px;
+  bottom: 0;
+  overflow-y: auto;
 
   a {
     text-decoration: none;
@@ -137,18 +151,20 @@ export default Vue.extend({
     transition: 0.3s;
   }
 
-  .item {
+  .item:not(.active) {
     transition: 0.3s;
-
     cursor: pointer;
+
     &:hover {
-      border-radius: 4px;
-      color: var(--bs-white);
-      background-color: var(--bs-warning);
-      a {
-        color: rgb(88, 88, 88);
-      }
+      color: var(--bs-warning);
+      padding-left: 12px !important;
     }
+  }
+
+  .active {
+    border-radius: 4px;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
   }
 
   .closebtn {
@@ -182,8 +198,29 @@ export default Vue.extend({
 }
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-  display: none;
   padding-left: 8px;
   transition: 0.5s;
+}
+
+/* width */
+::-webkit-scrollbar {
+  scrollbar-width: 5px;
+  width: 5px;
+  border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 </style>

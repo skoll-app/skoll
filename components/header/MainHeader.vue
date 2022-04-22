@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid px-4">
-      <div>
-        <MenuIcon @click="toggleSidebar" class="me-2" role="button" />
+      <div :class="{ 'rotate-left': open, 'rotate-right': !open }">
+        <MenuIcon @click="toggleSidebar" class="m-0" role="button" />
       </div>
 
       <div class="collapse navbar-collapse">
@@ -70,16 +70,25 @@ export default Vue.extend({
     ...mapActions('sidebar', ['openSidebar', 'closeSidebar']),
   },
   computed: {
-    open(): boolean {
+    open(): Boolean {
       return this.$store.state.sidebar.open
     },
   },
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 nav {
   min-height: 76px;
+
+  .rotate-left {
+    transition: 0.3s;
+    transform: rotate(-180deg);
+  }
+  .rotate-right {
+    transition: 0.3s;
+    transform: rotate(180deg);
+  }
 }
 @media (min-width: 768px) {
   .search {

@@ -1,5 +1,19 @@
 <template>
   <div id="mySidenav" class="sidenav" :style="sidebarStyle">
+    <hr />
+    <div class="d-flex justify-content-between align-items-center p-4 py-3">
+      <LogoIcon />
+      <IOIcon role="button" @click="closeNav" />
+    </div>
+    <hr />
+    <div class="d-flex justify-content-between align-items-center p-4 py-3">
+      <NuxtLink to="/auth" class="btn btn-warning text-white">Ingreso</NuxtLink
+      ><NuxtLink to="/auth/register" class="btn btn-warning text-white"
+        >Registro</NuxtLink
+      >
+    </div>
+    <hr />
+    <h5 class="p-3 pb-2">Categorias</h5>
     <template v-for="(item, i) in options">
       <div :key="i + '-anchor'" v-if="item.options && item.options.length">
         <a
@@ -44,11 +58,15 @@ import Vue from 'vue'
 // Icons
 import ArrowRightIcon from '~/static/assets/icons/arrow-right-short.svg'
 import DotIcon from '~/static/assets/icons/dot.svg'
+import IOIcon from '~/static/assets/icons/io.svg'
+import LogoIcon from '~/static/assets/icons/logo.svg'
 
 export default Vue.extend({
   components: {
     ArrowRightIcon,
     DotIcon,
+    IOIcon,
+    LogoIcon,
   },
   props: {
     right: {
@@ -113,7 +131,7 @@ export default Vue.extend({
   },
   methods: {
     openNav() {
-      document.getElementById('mySidenav')!.style.width = '250px'
+      document.getElementById('mySidenav')!.style.width = '300px'
       document.body.style.backgroundColor = 'rgba(196,196,196,0.5)'
     },
     closeNav() {
@@ -161,13 +179,13 @@ export default Vue.extend({
   top: 76px;
   background-color: #fff;
   transition: 0.5s;
-  padding-top: 40px;
+  // padding-top: 50px;
   bottom: 0;
   overflow-y: auto;
 
   a {
     text-decoration: none;
-    font-size: 15px;
+    // font-size: 15px;
     color: #000;
     display: block;
     transition: 0.3s;

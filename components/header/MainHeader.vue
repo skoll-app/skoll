@@ -6,7 +6,7 @@
       </div>
 
       <div class="collapse navbar-collapse">
-        <NuxtLink to="/" class="navbar-brand me-0">Skoll</NuxtLink>
+        <NuxtLink to="/" class="navbar-brand">Skoll</NuxtLink>
 
         <form class="d-flex mx-auto">
           <div class="form-group search">

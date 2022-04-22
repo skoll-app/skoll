@@ -5,20 +5,23 @@
         <a
           :id="'anchor-' + i"
           ref="fields"
-          class="dropdown-btn d-flex align-items-center justify-content-between item p-2 mx-3"
+          class="dropdown-btn d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
           @click="openDropdown"
         >
           {{ item.label }}
           <ArrowRightIcon class="arrow" />
         </a>
         <div class="dropdown-container d-none">
-          <a
-            class="d-flex align-items-center justify-content-between item p-2 mx-3"
-            v-for="(subitem, j) in item.options"
-            :key="j"
-            @click="goTo(subitem.to)"
-            >{{ subitem.label }}</a
-          >
+          <div class="d-flex align-items-center item p-2 mx-3">
+            <DotIcon class="me-2" />
+            <a
+              class="w-100"
+              v-for="(subitem, j) in item.options"
+              :key="j + '-subitem'"
+              @click="goTo(subitem.to)"
+              >{{ subitem.label }}</a
+            >
+          </div>
         </div>
       </div>
       <div v-else :key="i + '-anchor'">
@@ -26,7 +29,7 @@
           :id="'anchor-' + i"
           ref="fields"
           :key="i + '-anchor'"
-          class="d-flex align-items-center justify-content-between item p-2 mx-3"
+          class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
           @click="openDropdown"
           >{{ item.label }}</a
         >
@@ -40,10 +43,12 @@ import Vue from 'vue'
 
 // Icons
 import ArrowRightIcon from '~/static/assets/icons/arrow-right-short.svg'
+import DotIcon from '~/static/assets/icons/dot.svg'
 
 export default Vue.extend({
   components: {
     ArrowRightIcon,
+    DotIcon,
   },
   props: {
     right: {
@@ -189,7 +194,7 @@ export default Vue.extend({
 
     .arrow {
       transform: rotate(90deg);
-      color:  var(--bs-white);
+      color: var(--bs-white);
     }
   }
 

@@ -1,7 +1,7 @@
 <template>
   <div id="mySidenav" class="sidenav" :style="sidebarStyle">
     <hr />
-    <div class="d-flex justify-content-between align-items-center p-4 py-3">
+    <div class="d-flex justify-content-between align-items-center p-4 py-2">
       <LogoIcon />
       <IOIcon role="button" @click="closeNav" />
     </div>
@@ -13,40 +13,50 @@
       >
     </div>
     <hr />
-    <h5 class="p-3 pb-2">Categorias</h5>
-    <template v-for="(item, i) in options">
-      <div :key="i + '-anchor'" v-if="item.options && item.options.length">
-        <a
-          :id="'anchor-' + i"
-          ref="fields"
-          class="dropdown-btn d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
-          @click="openDropdown"
-        >
-          {{ item.label }}
-          <ArrowRightIcon class="arrow" />
-        </a>
-        <div class="dropdown-container d-none">
-          <div class="d-flex align-items-center item p-2 mx-3">
-            <DotIcon class="me-2" />
-            <a
-              class="w-100"
-              v-for="(subitem, j) in item.options"
-              :key="j + '-subitem'"
-              @click="goTo(subitem.to)"
-              >{{ subitem.label }}</a
+    <template v-for="(menu, k) in menuOptions">
+      <div :key="k + '-menu'">
+        <div class="py-3">
+          <h5 class="px-3 pb-2">{{ menu.title }}</h5>
+          <template v-for="(item, i) in menu.options">
+            <div
+              :key="k + i + '-anchor'"
+              v-if="item.options && item.options.length"
             >
-          </div>
+              <a
+                :id="'anchor-' + k + i"
+                ref="fields"
+                class="dropdown-btn d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
+                @click="openDropdown"
+              >
+                {{ item.label }}
+                <ArrowRightIcon class="arrow" />
+              </a>
+              <div class="dropdown-container d-none">
+                <div class="d-flex align-items-center item p-2 mx-3">
+                  <DotIcon class="me-2" />
+                  <a
+                    class="w-100"
+                    v-for="(subitem, j) in item.options"
+                    :key="j + '-subitem'"
+                    @click="goTo(subitem.to)"
+                    >{{ subitem.label }}</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-else :key="i + '-anchor'">
+              <a
+                :id="'anchor-' + i"
+                ref="fields"
+                :key="i + '-anchor'"
+                class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
+                @click="openDropdown"
+                >{{ item.label }}</a
+              >
+            </div>
+          </template>
         </div>
-      </div>
-      <div v-else :key="i + '-anchor'">
-        <a
-          :id="'anchor-' + i"
-          ref="fields"
-          :key="i + '-anchor'"
-          class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
-          @click="openDropdown"
-          >{{ item.label }}</a
-        >
+        <hr />
       </div>
     </template>
   </div>
@@ -75,46 +85,71 @@ export default Vue.extend({
     },
   },
   data: () => ({
-    options: [
+    menuOptions: [
       {
-        label: 'Discotecas',
-        to: '',
+        title: 'Categorias',
         options: [
           {
-            label: 'Inicio',
-            to: '/auth/register',
+            label: 'Discotecas',
+            to: '',
+            options: [
+              {
+                label: 'Inicio',
+                to: '/',
+              },
+            ],
+          },
+          {
+            label: 'Bares',
+            to: '',
+            options: [
+              {
+                label: 'Inicio',
+                to: '/',
+              },
+            ],
+          },
+          {
+            label: 'Restaurantes',
+            to: '',
+            options: [
+              {
+                label: 'Inicio',
+                to: '/auth/register',
+              },
+            ],
+          },
+          {
+            label: 'Tiendas',
+            to: '/',
+            options: [
+              {
+                label: 'Inicio',
+                to: '/auth/register',
+              },
+            ],
           },
         ],
       },
       {
-        label: 'Restaurantes',
-        to: '/',
-      },
-      {
-        label: 'Bares',
-        to: '',
+        title: 'Otros',
         options: [
           {
-            label: 'Presea',
+            label: 'Registrar comercio',
+            to: '/',
+          },
+          {
+            label: 'Preguntas frecuentes',
+            to: '/',
+          },
+          {
+            label: 'Planes',
             to: '/',
           },
         ],
       },
-      {
-        label: 'Super mercados',
-        to: '',
-        options: [
-          {
-            label: 'Inicio',
-            to: '/auth/register',
-          },
-        ],
-      },
-      {
-        label: 'Hospitales',
-        to: '/',
-      },
     ],
+
     pos: 0,
   }),
   computed: {

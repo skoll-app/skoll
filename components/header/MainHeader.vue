@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container-fluid px-4">
       <div>
-        <MenuIcon class="me-2" role="button" />
+        <MenuIcon @click="toggleSidebar" class="me-2" role="button" />
       </div>
 
       <div class="collapse navbar-collapse">
@@ -48,6 +48,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 // Icons
 import CartIcon from '~/static/assets/icons/cart.svg'
 import MenuIcon from '~/static/assets/icons/menu.svg'
@@ -61,6 +62,17 @@ export default Vue.extend({
     MenuIcon,
     SearchIcon,
     Sidebar,
+  },
+  methods: {
+    toggleSidebar() {
+      this.open ? this.closeSidebar() : this.openSidebar()
+    },
+    ...mapActions('sidebar', ['openSidebar', 'closeSidebar']),
+  },
+  computed: {
+    open(): boolean {
+      return this.$store.state.sidebar.open
+    },
   },
 })
 </script>

@@ -3,7 +3,7 @@
     <hr />
     <div class="d-flex justify-content-between align-items-center p-4 py-2">
       <LogoIcon />
-      <IOIcon role="button" @click="closeNav" />
+      <IOIcon role="button" @click="closeSidebar" />
     </div>
     <hr />
     <div class="d-flex justify-content-between align-items-center p-4 py-3">
@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
+import { mapActions } from 'vuex'
 // Icons
 import ArrowRightIcon from '~/static/assets/icons/arrow-right-short.svg'
 import DotIcon from '~/static/assets/icons/dot.svg'
@@ -165,14 +165,6 @@ export default Vue.extend({
     document.body.style.backgroundColor = 'white'
   },
   methods: {
-    openNav() {
-      document.getElementById('mySidenav')!.style.width = '300px'
-      document.body.style.backgroundColor = 'rgba(196,196,196,0.5)'
-    },
-    closeNav() {
-      document.getElementById('mySidenav')!.style.width = '0'
-      document.body.style.backgroundColor = 'white'
-    },
     openDropdown(element: any) {
       const anchors = this.$refs['fields'] as HTMLAnchorElement[]
       anchors.map((el) => {
@@ -199,9 +191,7 @@ export default Vue.extend({
     goTo(to: string) {
       this.$router.push(to)
     },
-  },
-  mounted() {
-    this.openNav()
+    ...mapActions('sidebar', ['closeSidebar']),
   },
 })
 </script>
@@ -217,6 +207,8 @@ export default Vue.extend({
   // padding-top: 50px;
   bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  white-space: nowrap;
 
   a {
     text-decoration: none;

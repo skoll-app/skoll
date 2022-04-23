@@ -7,7 +7,7 @@ export default {
   target: 'static',
   router: {
     base: isDevelop ? '' : baseHref,
-    middleware: [ 'stats' ]
+    middleware: ['stats'],
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -28,23 +28,21 @@ export default {
         href: (isDevelop ? '/' : baseHref) + 'favicon.ico',
       },
     ],
-    script: [
-      {
-        src: (isDevelop ? '/' : baseHref) + 'assets/js/bootstrap.bundle.min.js',
-        type: 'text/javascript',
-      },
-    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/static/assets/css/styles.scss',
     'vue-slick-carousel/dist/vue-slick-carousel.css',
-    'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    'vue-slick-carousel/dist/vue-slick-carousel-theme.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/vee-validate.js', '~/plugins/vue-slick-carousel.js'],
+  plugins: [
+    '~/plugins/vee-validate.js',
+    '~/plugins/vue-slick-carousel.js',
+    { src: '~/plugins/bootstrap.bundle.min', mode: 'client' },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

@@ -7,6 +7,7 @@ export default {
   target: 'static',
   router: {
     base: isDevelop ? '' : baseHref,
+    middleware: [ 'stats' ]
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <main-header />
-    <div class="login-layout d-flex align-items-center justify-content-center">
+    <MainHeader />
+    <div
+      class="login-layout d-flex align-items-center justify-content-center pages-content"
+    >
       <Loading />
       <Toast />
       <div class="w-100">

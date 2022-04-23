@@ -1,9 +1,11 @@
 <template>
   <div>
     <MainHeader />
-    <Loading />
-    <Toast />
-    <Nuxt />
+    <div class="pages-content">
+      <Loading />
+      <Toast />
+      <Nuxt />
+    </div>
   </div>
 </template>
 

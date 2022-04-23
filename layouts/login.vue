@@ -1,9 +1,14 @@
 <template>
-  <div class="login-layout d-flex align-items-center justify-content-center">
-    <Loading />
-    <Toast />
-    <div class="w-100">
-      <Nuxt />
+  <div>
+    <Header />
+    <div
+      class="login-layout d-flex align-items-center justify-content-center pages-content"
+    >
+      <Loading />
+      <Toast />
+      <div class="w-100">
+        <Nuxt />
+      </div>
     </div>
   </div>
 </template>
@@ -11,11 +16,13 @@
 import Vue from 'vue'
 import Loading from '~/components/ux/loading/Loading.vue'
 import Toast from '@/components/ux/toast/Toast.vue'
+import Header from '~/components/header/Header.vue'
 
 export default Vue.extend({
   components: {
     Loading,
     Toast,
+    Header,
   },
 })
 </script>

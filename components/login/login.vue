@@ -17,7 +17,7 @@
                 v-slot="{ errors, classes }"
               >
                 <div class="input-group has-validation mb-3">
-                  <span class="input-group-text px-0">
+                  <span class="input-group-text">
                     <UserIcon />
                   </span>
                   <input
@@ -40,7 +40,7 @@
                 v-slot="{ errors, classes }"
               >
                 <div class="input-group has-validation mb-3">
-                  <span class="input-group-text px-0">
+                  <span class="input-group-text">
                     <LockIcon />
                   </span>
                   <input

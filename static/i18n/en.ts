@@ -72,7 +72,26 @@ const eng = {
     },
     validateEmail: 'Validate your email address',
     lastStep: 'We are one step away <br /> from finishing!',
-    changePassword: 'Change your password'
+    changePassword: 'Change your password',
+  },
+  sidebar: {
+    main: {
+      login: 'login',
+      register: 'register',
+      categories: {
+        title: 'categories',
+        nightclubs: 'night clubs',
+        bars: 'bars',
+        restaurants: 'restaurants',
+        stores: 'stores',
+      },
+      others: {
+        title: 'others',
+        registerTrade: 'register trade',
+        faqs: 'faq',
+        plans: 'plans',
+      },
+    },
   },
 }
 

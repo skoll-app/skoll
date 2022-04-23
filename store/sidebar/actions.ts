@@ -6,13 +6,20 @@ import types from './types'
 const actions: ActionTree<SidebarState, RootState> = {
   openSidebar({ commit }) {
     commit(types.SWITCH_OPEN, true)
-    document.getElementById('mySidenav')!.style.width = '300px'
-    document.body.style.backgroundColor = 'rgba(196,196,196,0.5)'
+    const mySidenav = document.getElementById('mySidenav')!
+    mySidenav.style.width = '100vw'
+    mySidenav.style.height = 'calc(100vh - 76px)'
+    mySidenav.style.backgroundColor = 'rgba(196,196,196,0.7)'
+    document.getElementById('sidenavContent')!.style.width = '300px'
+    document.body.style.overflow = 'hidden'
   },
   closeSidebar({ commit }) {
     commit(types.SWITCH_OPEN, false)
-    document.getElementById('mySidenav')!.style.width = '0'
-    document.body.style.backgroundColor = 'white'
+    const mySidenav = document.getElementById('mySidenav')!
+    mySidenav.style.width = '0'
+    mySidenav.style.backgroundColor = 'white'
+    document.getElementById('sidenavContent')!.style.width = '0'
+    document.body.style.overflow = 'auto'
   },
 }
 

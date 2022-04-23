@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainHeader />
+    <Header />
     <div
       class="login-layout d-flex align-items-center justify-content-center pages-content"
     >
@@ -16,13 +16,13 @@
 import Vue from 'vue'
 import Loading from '~/components/ux/loading/Loading.vue'
 import Toast from '@/components/ux/toast/Toast.vue'
-import MainHeader from '~/components/header/MainHeader.vue'
+import Header from '~/components/header/Header.vue'
 
 export default Vue.extend({
   components: {
     Loading,
     Toast,
-    MainHeader,
+    Header,
   },
 })
 </script>

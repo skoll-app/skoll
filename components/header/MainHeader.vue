@@ -7,9 +7,18 @@
         </div>
 
         <div class="collapse navbar-collapse">
-          <NuxtLink to="/" class="navbar-brand">Skoll</NuxtLink>
+          <div class="d-flex align-items-center me-auto">
+            <NuxtLink to="/" class="navbar-brand mx-2">Skoll</NuxtLink>
+            <div
+              role="button"
+              class="text-white d-flex border-start border-1 ms-2 ps-2 py-1"
+            >
+              <PinIcon />
+              <p class="m-0 ms-1 align-self-center text-capitalize"><small>Ubicación</small></p>
+            </div>
+          </div>
 
-          <form class="d-flex mx-auto">
+          <form class="d-flex">
             <div class="form-group search">
               <div class="input-group input-group-sm">
                 <input
@@ -30,10 +39,10 @@
             </div>
           </form>
           <ul class="navbar-nav">
-            <li class="nav-item d-flex">
+            <li class="mx-3 d-flex">
               <CartIcon role="button" class="align-self-center" />
             </li>
-            <li class="nav-item me-0">
+            <li>
               <NuxtLink
                 type="button"
                 class="btn btn-outline-warning btn-sm"
@@ -56,6 +65,7 @@ import { mapActions } from 'vuex'
 import CartIcon from '~/static/assets/icons/cart.svg'
 import MenuIcon from '~/static/assets/icons/menu.svg'
 import SearchIcon from '~/static/assets/icons/search.svg'
+import PinIcon from '~/static/assets/icons/pin.svg'
 // Components
 import Sidebar from '../ux/sidebar/Sidebar.vue'
 
@@ -64,6 +74,7 @@ export default Vue.extend({
     CartIcon,
     MenuIcon,
     SearchIcon,
+    PinIcon,
     Sidebar,
   },
   methods: {
@@ -84,6 +95,10 @@ export default Vue.extend({
 nav {
   min-height: 76px;
 
+  .search {
+    width: 300px;
+  }
+
   .rotate-left {
     transition: 0.3s;
     transform: rotate(-180deg);
@@ -93,9 +108,9 @@ nav {
     transform: rotate(0deg);
   }
 }
-@media (min-width: 768px) {
-  .search {
-    min-width: 500px;
-  }
-}
+// @media (min-width: 768px) {
+//   .search {
+//     min-width: 500px;
+//   }
+// }
 </style>

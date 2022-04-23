@@ -93,6 +93,11 @@ const esp = {
       }
     },
   },
+  header: {
+    location: 'ubicación',
+    search: 'buscar',
+    login: 'ingreso'
+  }
 }
 
 export default esp

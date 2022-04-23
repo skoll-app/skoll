@@ -31,7 +31,7 @@
             >
               <PinIcon />
               <p class="m-0 ms-1 align-self-center text-capitalize">
-                <small>Ubicación</small>
+                <small>{{ $t('header.location') }}</small>
               </p>
             </div>
           </div>
@@ -41,15 +41,15 @@
               <div class="input-group input-group-sm">
                 <input
                   type="text"
-                  class="form-control"
-                  placeholder="Buscar..."
-                  aria-label="Buscar..."
-                  aria-describedby="button-addon2"
+                  class="form-control text-capitalize"
+                  :placeholder="`${$t('header.search')}...`"
+                  :aria-label="`${$t('header.search')}...`"
+                  aria-describedby="btn-search-header"
                 />
                 <button
                   class="btn btn-secondary bg-white"
                   type="button"
-                  id="button-addon2"
+                  id="btn-search-header"
                 >
                   <SearchIcon />
                 </button>
@@ -65,7 +65,7 @@
                 type="button"
                 class="btn btn-outline-warning btn-sm"
                 to="/auth"
-                >Ingresar</NuxtLink
+                >{{ $t('header.login') }}</NuxtLink
               >
             </li>
           </ul>
@@ -133,7 +133,8 @@ nav {
     transform: rotate(0deg);
   }
 
-  svg, .btn-location {
+  svg,
+  .btn-location {
     transition: 0.3s;
     &:hover {
       color: var(--bs-warning) !important;

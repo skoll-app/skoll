@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
       <div class="container-fluid px-4">
         <div :class="{ 'rotate-left': open, 'rotate-right': !open }">
           <MenuIcon @click="toggleSidebar" class="m-0" role="button" />

@@ -1,9 +1,6 @@
 <?xml version="1.0" ?>
-<svg viewBox="0 0 32 32" width="22" height="22"
+<svg viewBox="0 0 32 32" width="22" height="22" fill="currentColor"
   xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <style>.cls-1{fill:#fff;}</style>
-  </defs>
   <title/>
   <g data-name="Layer 61" id="Layer_61">
     <path class="cls-1" d="M10,20a1,1,0,0,1-1-.8L6.66,7.41A3,3,0,0,0,3.72,5H2A1,1,0,0,1,2,3H3.72a5,5,0,0,1,4.9,4L11,18.8A1,1,0,0,1,10.2,20Z"/>

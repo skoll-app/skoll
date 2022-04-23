@@ -2,19 +2,37 @@
   <div>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
       <div class="container-fluid px-4">
-        <div :class="{ 'rotate-left': open, 'rotate-right': !open }">
-          <MenuIcon @click="toggleSidebar" class="m-0" role="button" />
+        <div class="d-flex">
+          <div
+            class="d-flex"
+            :class="{ 'rotate-left': open, 'rotate-right': !open }"
+          >
+            <MenuIcon
+              @click="toggleSidebar"
+              class="m-0 align-self-center"
+              role="button"
+            />
+          </div>
+          <NuxtLink to="/" class="navbar-brand mx-2">Skoll</NuxtLink>
+        </div>
+        <div class="d-block d-md-none mobile-btns">
+          <SearchIcon />
+          <PinIcon />
+          <CartIcon role="button" class="align-self-center" />
+          <UserIcon v-if="loggedIn" />
+          <LoginIcon v-else />
         </div>
 
         <div class="collapse navbar-collapse">
           <div class="d-flex align-items-center me-auto">
-            <NuxtLink to="/" class="navbar-brand mx-2">Skoll</NuxtLink>
             <div
               role="button"
-              class="text-white d-flex border-start border-1 ms-2 ps-2 py-1"
+              class="text-white d-flex border-start border-1 ms-2 ps-2 py-1 btn-location"
             >
               <PinIcon />
-              <p class="m-0 ms-1 align-self-center text-capitalize"><small>Ubicación</small></p>
+              <p class="m-0 ms-1 align-self-center text-capitalize">
+                <small>Ubicación</small>
+              </p>
             </div>
           </div>
 
@@ -40,7 +58,7 @@
           </form>
           <ul class="navbar-nav">
             <li class="mx-3 d-flex">
-              <CartIcon role="button" class="align-self-center" />
+              <CartIcon role="button" class="align-self-center text-white" />
             </li>
             <li>
               <NuxtLink
@@ -66,6 +84,8 @@ import CartIcon from '~/static/assets/icons/cart.svg'
 import MenuIcon from '~/static/assets/icons/menu.svg'
 import SearchIcon from '~/static/assets/icons/search.svg'
 import PinIcon from '~/static/assets/icons/pin.svg'
+import UserIcon from '~/static/assets/icons/user.svg'
+import LoginIcon from '~/static/assets/icons/login.svg'
 // Components
 import Sidebar from '../ux/sidebar/Sidebar.vue'
 
@@ -75,6 +95,8 @@ export default Vue.extend({
     MenuIcon,
     SearchIcon,
     PinIcon,
+    UserIcon,
+    LoginIcon,
     Sidebar,
   },
   methods: {
@@ -86,6 +108,9 @@ export default Vue.extend({
   computed: {
     open(): Boolean {
       return this.$store.state.sidebar.open
+    },
+    loggedIn() {
+      return false
     },
   },
 })
@@ -107,10 +132,20 @@ nav {
     transition: 0.3s;
     transform: rotate(0deg);
   }
+
+  svg, .btn-location {
+    transition: 0.3s;
+    &:hover {
+      color: var(--bs-warning) !important;
+    }
+  }
+  .mobile-btns {
+    svg {
+      margin-right: 4px;
+      margin-left: 4px;
+      color: var(--bs-white);
+      cursor: pointer;
+    }
+  }
 }
-// @media (min-width: 768px) {
-//   .search {
-//     min-width: 500px;
-//   }
-// }
 </style>

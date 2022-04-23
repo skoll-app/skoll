@@ -1,24 +1,24 @@
 <template>
-  <div id="mySidenav" :style="sidebarStyle">
+  <div id="mySidenav">
     <div id="sidenavContent" class="sidenav">
-      <hr />
       <div class="d-flex justify-content-between align-items-center p-4 py-2">
         <LogoIcon />
         <IOIcon role="button" @click="closeSidebar" />
       </div>
       <hr />
       <div class="d-flex justify-content-between align-items-center p-4 py-3">
-        <NuxtLink to="/auth" class="btn btn-warning text-white"
-          >Ingreso</NuxtLink
-        ><NuxtLink to="/auth/register" class="btn btn-warning text-white"
-          >Registro</NuxtLink
-        >
+        <NuxtLink to="/auth" class="btn btn-warning text-white">{{
+          $t('sidebar.main.login')
+        }}</NuxtLink
+        ><NuxtLink to="/auth/register" class="btn btn-warning text-white">{{
+          $t('sidebar.main.register')
+        }}</NuxtLink>
       </div>
       <hr />
       <template v-for="(menu, k) in menuOptions">
         <div :key="k + '-menu'">
           <div class="py-3">
-            <h5 class="px-3 pb-2">{{ menu.title }}</h5>
+            <h5 class="px-3 pb-2">{{ $t(menu.title) }}</h5>
             <template v-for="(item, i) in menu.options">
               <div
                 :key="k + i + '-anchor'"
@@ -27,10 +27,10 @@
                 <a
                   :id="'anchor-' + k + i"
                   ref="fields"
-                  class="dropdown-btn d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
+                  class="dropdown-btn d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3 text-capitalize"
                   @click="openDropdown"
                 >
-                  {{ item.label }}
+                  {{ $t(item.label) }}
                   <ArrowRightIcon class="arrow" />
                 </a>
                 <div class="dropdown-container d-none">
@@ -51,14 +51,14 @@
                   :id="'anchor-' + i"
                   ref="fields"
                   :key="i + '-anchor'"
-                  class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3"
+                  class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3 text-capitalize"
                   @click="openDropdown"
-                  >{{ item.label }}</a
+                  >{{ $t(item.label) }}</a
                 >
               </div>
             </template>
           </div>
-          <hr />
+          <hr v-if="k !== menuOptions.length - 1" />
         </div>
       </template>
     </div>
@@ -84,84 +84,12 @@ export default Vue.extend({
   props: {
     right: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
-  data: () => ({
-    menuOptions: [
-      {
-        title: 'Categorias',
-        options: [
-          {
-            label: 'Discotecas',
-            to: '',
-            options: [
-              {
-                label: 'Inicio',
-                to: '/',
-              },
-            ],
-          },
-          {
-            label: 'Bares',
-            to: '',
-            options: [
-              {
-                label: 'Inicio',
-                to: '/',
-              },
-            ],
-          },
-          {
-            label: 'Restaurantes',
-            to: '',
-            options: [
-              {
-                label: 'Inicio',
-                to: '/auth/register',
-              },
-            ],
-          },
-          {
-            label: 'Tiendas',
-            to: '/',
-            options: [
-              {
-                label: 'Inicio',
-                to: '/auth/register',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Otros',
-        options: [
-          {
-            label: 'Registrar comercio',
-            to: '/',
-          },
-          {
-            label: 'Preguntas frecuentes',
-            to: '/',
-          },
-          {
-            label: 'Planes',
-            to: '/',
-          },
-        ],
-      },
-    ],
-
-    pos: 0,
-  }),
   computed: {
-    sidebarStyle() {
-      let left = null
-      let right = null
-      if (this.right) right = 0
-      else left = 0
-      return { left: left, right: right }
+    menuOptions() {
+      return this.$store.state.sidebar.mainMenu
     },
   },
   destroyed() {

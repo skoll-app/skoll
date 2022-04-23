@@ -72,7 +72,26 @@ const esp = {
     },
     validateEmail: 'Valida tu correo electrónico',
     lastStep: '¡Estamos a un paso de <br /> terminar! ',
-    changePassword: 'Cambia tu contraseña'
+    changePassword: 'Cambia tu contraseña',
+  },
+  sidebar: {
+    main: {
+      login: 'ingreso',
+      register: 'registro',
+      categories: {
+        title: 'categorías',
+        nightclubs: 'discotecas',
+        bars: 'bares',
+        restaurants: 'restaurantes',
+        stores: 'tiendas'
+      },
+      others: {
+        title: 'otros',
+        registerTrade: 'registrar comercio',
+        faqs: 'preguntas frecuentes',
+        plans: 'planes'
+      }
+    },
   },
 }
 

@@ -43,5 +43,9 @@ hr {
 
 .pages-content {
   padding-top: 76px;
+
+  .vp-page {
+    height: calc(100vh - 76px);
+  }
 }
 

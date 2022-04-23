@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0 vh-100">
+  <div class="row g-0 vp-page">
     <div
       class="position-relative col-12 col-lg-6 h-100 d-flex flex-column justify-content-center"
     >
@@ -32,7 +32,7 @@ export default Vue.extend({
   background-size: cover;
 
   img {
-    max-height: 500px;
+    max-height: 400px;
   }
 }
 </style>

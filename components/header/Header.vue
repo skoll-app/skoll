@@ -20,7 +20,9 @@
           <PinIcon />
           <CartIcon role="button" class="align-self-center" />
           <UserIcon v-if="loggedIn" />
-          <LoginIcon v-else />
+          <NuxtLink to="/auth" v-else>
+            <LoginIcon />
+          </NuxtLink>
         </div>
 
         <div class="collapse navbar-collapse">

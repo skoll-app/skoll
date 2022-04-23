@@ -1,4 +1,4 @@
-import i18n from './static/assets/i18n'
+import i18n from './static/i18n'
 
 const baseHref = '/skoll/'
 const isDevelop = process.env.NODE_ENV === 'development'

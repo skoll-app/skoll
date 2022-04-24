@@ -47,5 +47,9 @@ hr {
   .vp-page {
     height: calc(100vh - 76px);
   }
+
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 }
 

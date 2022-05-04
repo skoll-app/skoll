@@ -1,5 +1,9 @@
-import types from "../store/sidebar/types"
-
-export default function({ store }) {
-  store.commit(`sidebar/${types.SWITCH_OPEN}`, false)
+export default function ({ store }) {
+  if (process.client) {
+    try {
+      store.dispatch(`sidebar/closeSidebar`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }

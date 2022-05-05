@@ -83,21 +83,45 @@ const esp = {
         nightclubs: 'discotecas',
         bars: 'bares',
         restaurants: 'restaurantes',
-        stores: 'tiendas'
+        stores: 'tiendas',
       },
       others: {
         title: 'otros',
         registerTrade: 'registrar comercio',
         faqs: 'preguntas frecuentes',
-        plans: 'planes'
-      }
+        plans: 'planes',
+      },
     },
   },
   header: {
     location: 'ubicación',
     search: 'buscar',
-    login: 'ingreso'
-  }
+    login: 'ingreso',
+  },
+  home: {
+    sections: {
+      timeline: {
+        title: 'Reserva en todo lugar',
+        subtitle:
+          '¿Que planes tienes para esta noche?, Reserva ya mismo con Skoll',
+        first: {
+          title: '¡Reserva, ordena y disfruta!',
+          description:
+            'Despreocupate hoy reservando en tu bar o resturante favorito y disfruta de tu reserva',
+        },
+        second: {
+          title: 'Conoce personas',
+          description:
+            'Has hoy mismo match invitando a nuevas personas a una cerveza, con Skoll  chatea y reserva un encuentro real.',
+        },
+        third: {
+          title: 'Trabajamos las 24 horas',
+          description:
+            'Soporte 24/7 y una gran oferta de restaurantes y aliados con servicio las 24 horas.',
+        },
+      },
+    },
+  },
 }
 
 export default esp

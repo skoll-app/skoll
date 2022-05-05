@@ -93,6 +93,32 @@ const eng = {
       },
     },
   },
+  header: {
+    location: 'location',
+    search: 'search',
+    login: 'login',
+  },
+  home: {
+    sections: {
+      timeline: {
+        first: {
+          title: 'Book, order and <br />enjoy!',
+          description:
+            'Don\'t worry today by making a reservation at your favorite bar or restaurant and enjoy your reservation.',
+        },
+        second: {
+          title: 'Meet people',
+          description:
+            'Make a match today by inviting new people for a beer, with Skoll chat and book a real meeting.',
+        },
+        third: {
+          title: 'We work 24 hours a day',
+          description:
+            '24/7 support and a wide range of restaurants and partners with 24-hour service.',
+        },
+      },
+    },
+  },
 }
 
 export default eng

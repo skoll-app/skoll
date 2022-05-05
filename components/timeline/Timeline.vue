@@ -1,5 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container text-center py-4">
+    <h2>{{ $t('home.sections.timeline.title') }}</h2>
+    <p class="lead mb-5">
+      {{ $t('home.sections.timeline.subtitle') }}
+    </p>
     <div class="w-100 d-flex position-relative timeline-container">
       <template v-for="(item, i) in timelineItems">
         <Item
@@ -18,9 +22,11 @@ import Vue from 'vue'
 import Item from './Item.vue'
 
 import SearchIcon from '~/static/assets/icons/search.svg'
+import PeopleIcon from '~/static/assets/icons/people.svg'
+import ClockIcon from '~/static/assets/icons/clock.svg'
 
 export default Vue.extend({
-  components: { Item, SearchIcon },
+  components: { Item, SearchIcon, PeopleIcon, ClockIcon },
   data: () => ({
     timelineItems: [
       {
@@ -29,12 +35,12 @@ export default Vue.extend({
         description: 'home.sections.timeline.first.description',
       },
       {
-        icon: SearchIcon,
+        icon: PeopleIcon,
         title: 'home.sections.timeline.second.title',
         description: 'home.sections.timeline.second.description',
       },
       {
-        icon: SearchIcon,
+        icon: ClockIcon,
         title: 'home.sections.timeline.third.title',
         description: 'home.sections.timeline.third.description',
       },
@@ -63,6 +69,11 @@ export default Vue.extend({
   .timeline-icon {
     height: 90px;
     width: 90px;
+
+    &:hover {
+      background-color: var(--bs-warning) !important;
+      color: var(--bs-white);
+    }
   }
 }
 </style>

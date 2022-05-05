@@ -101,6 +101,9 @@ const esp = {
   home: {
     sections: {
       timeline: {
+        title: 'Reserva en todo lugar',
+        subtitle:
+          '¿Que planes tienes para esta noche?, Reserva ya mismo con Skoll',
         first: {
           title: '¡Reserva, ordena y <br /> disfruta!',
           description:

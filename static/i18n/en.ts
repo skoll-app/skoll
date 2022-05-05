@@ -101,10 +101,12 @@ const eng = {
   home: {
     sections: {
       timeline: {
+        title: 'Reservation everywhere',
+        subtitle: 'What are your plans for tonight, book with Skoll right now?',
         first: {
           title: 'Book, order and <br />enjoy!',
           description:
-            'Don\'t worry today by making a reservation at your favorite bar or restaurant and enjoy your reservation.',
+            "Don't worry today by making a reservation at your favorite bar or restaurant and enjoy your reservation.",
         },
         second: {
           title: 'Meet people',

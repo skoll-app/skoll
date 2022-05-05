@@ -1,6 +1,7 @@
 <template>
   <div>
     <Timeline />
+    <hr>
   </div>
 </template>
 

@@ -4,7 +4,9 @@
     <p class="lead mb-5">
       {{ $t('home.sections.timeline.subtitle') }}
     </p>
-    <div class="w-100 d-flex position-relative timeline-container">
+    <div
+      class="w-100 d-flex flex-md-row flex-column position-relative timeline-container"
+    >
       <template v-for="(item, i) in timelineItems">
         <Item
           :key="i"
@@ -60,6 +62,10 @@ export default Vue.extend({
     z-index: -1;
     top: 45px;
     left: 15%;
+
+    @media (max-width: 767px) {
+      content: none;
+    }
   }
 
   .timeline-item {

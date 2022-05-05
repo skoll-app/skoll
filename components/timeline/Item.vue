@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center timeline-item d-flex flex-column px-5">
+  <div class="text-center timeline-item d-flex flex-column px-1 px-md-2 px-lg-4 mb-4 mb-md-0">
     <div
       class="border border-1 border-warning rounded-circle timeline-icon d-flex justify-content-center align-items-center align-self-center bg-white"
     >

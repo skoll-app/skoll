@@ -105,7 +105,7 @@ const esp = {
         subtitle:
           '¿Que planes tienes para esta noche?, Reserva ya mismo con Skoll',
         first: {
-          title: '¡Reserva, ordena y <br /> disfruta!',
+          title: '¡Reserva, ordena y disfruta!',
           description:
             'Despreocupate hoy reservando en tu bar o resturante favorito y disfruta de tu reserva',
         },

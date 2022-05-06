@@ -126,6 +126,10 @@ const esp = {
           'Descubre los beneficios que tienen los +50.000 aliados en 9 países que ya trabajan con Skoll.',
         button: 'registrarme',
       },
+      share: {
+        title: 'Con skoll puedes compartir con tus amigos, arma y planifica tu rumba hoy mismo.',
+        match: 'Haz match hoy mismo con Skoll <br /> sin restricciones ni anuncios.'
+      }
     },
   },
 }

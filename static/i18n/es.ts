@@ -120,6 +120,12 @@ const esp = {
             'Soporte 24/7 y una gran oferta de restaurantes y aliados con servicio las 24 horas.',
         },
       },
+      register: {
+        title: '<p class="text-muted mb-2">¡Registra tu</p> Restaurante o Bar!',
+        description:
+          'Descubre los beneficios que tienen los +50.000 aliados en 9 países que ya trabajan con Skoll.',
+        button: 'registrarme',
+      },
     },
   },
 }

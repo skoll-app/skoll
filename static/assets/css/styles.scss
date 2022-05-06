@@ -44,6 +44,16 @@ hr {
 .pages-content {
   padding-top: 76px;
 
+  &__section,
+  &__section_gray {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  &__section_gray {
+    background-color: #f7f8f9;
+  }
+
   .vp-page {
     height: calc(100vh - 76px);
   }
@@ -54,6 +64,12 @@ hr {
 
   @media (max-width: 768px) {
     padding-top: 0;
+
+    &__section,
+    &__section_gray {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
 
     .no-centered {
       padding-top: 76px;

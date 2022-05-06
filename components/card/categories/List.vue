@@ -1,11 +1,11 @@
 <template>
-  <div style="background-color: #f7f8f9">
-    <div class="container py-5">
+  <section class="pages-content__section_gray">
+    <div class="container">
       <div class="row">
         <div
           v-for="(card, i) in cardsOptions"
           :key="i"
-          class="col-12 col-sm-6 col-lg-3 mb-4 mb"
+          class="col-12 col-sm-6 col-lg-3 mb-4 mb-lg-0"
         >
           <CardCategory
             :backgroundColor="card.color"
@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

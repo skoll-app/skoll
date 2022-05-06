@@ -126,6 +126,10 @@ const eng = {
           'Discover the benefits of the +50,000 partners in 9 countries already working with Skoll.',
         button: 'sign up',
       },
+      share: {
+        title: 'With skoll you can share with your friends, set up and plan your rumba today.',
+        match: 'Match today with Skoll <br />without restrictions or ads.'
+      }
     },
   },
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container text-center py-4">
+  <section class="container pages-content__section text-center">
     <h2>{{ $t('home.sections.timeline.title') }}</h2>
     <p class="lead mb-5">
       {{ $t('home.sections.timeline.subtitle') }}
@@ -16,7 +16,7 @@
         />
       </template>
     </div>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">

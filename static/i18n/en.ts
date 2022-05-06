@@ -119,6 +119,13 @@ const eng = {
             '24/7 support and a wide range of restaurants and partners with 24-hour service.',
         },
       },
+      register: {
+        title:
+          '<p class="text-muted mb-2">Register your</p> Restaurant or Bar!',
+        description:
+          'Discover the benefits of the +50,000 partners in 9 countries already working with Skoll.',
+        button: 'sign up',
+      },
     },
   },
 }

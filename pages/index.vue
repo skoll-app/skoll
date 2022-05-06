@@ -1,8 +1,9 @@
 <template>
   <div class="no-centered">
     <Timeline />
-    <hr />
     <List />
+    <ShareSection />
+    <RegisterSection />
   </div>
 </template>
 
@@ -11,7 +12,10 @@ import Vue from 'vue'
 import List from '~/components/card/categories/List.vue'
 import Timeline from '~/components/timeline/Timeline.vue'
 
+import RegisterSection from '~/components/sections/register/Register.vue'
+import ShareSection from '~/components/sections/share/Share.vue'
+
 export default Vue.extend({
-  components: { Timeline, List },
+  components: { Timeline, List, RegisterSection, ShareSection },
 })
 </script>

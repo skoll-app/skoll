@@ -127,9 +127,15 @@ const esp = {
         button: 'registrarme',
       },
       share: {
-        title: 'Con skoll puedes compartir con tus amigos, arma y planifica tu rumba hoy mismo.',
-        match: 'Haz match hoy mismo con Skoll <br /> sin restricciones ni anuncios.'
-      }
+        title:
+          'Con skoll puedes compartir con tus amigos, arma y planifica tu rumba hoy mismo.',
+        match:
+          'Haz match hoy mismo con Skoll <br /> sin restricciones ni anuncios.',
+      },
+      restaurants: {
+        title:
+          '<small class="text-muted">Top de restaurantes en</small> Colombia',
+      },
     },
   },
 }

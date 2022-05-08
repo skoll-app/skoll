@@ -127,9 +127,13 @@ const eng = {
         button: 'sign up',
       },
       share: {
-        title: 'With skoll you can share with your friends, set up and plan your rumba today.',
-        match: 'Match today with Skoll <br />without restrictions or ads.'
-      }
+        title:
+          'With skoll you can share with your friends, set up and plan your rumba today.',
+        match: 'Match today with Skoll <br />without restrictions or ads.',
+      },
+      restaurants: {
+        title: '<small class="text-muted">Top restaurants in</small> Colombia',
+      },
     },
   },
 }

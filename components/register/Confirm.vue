@@ -184,7 +184,7 @@ export default Vue.extend({
     async preRegister() {
       try {
         this.showLoading()
-        const res = await this.$axios.post('/client/hello', {
+        const res = await this.$api.post('/client/hello', {
           cellPhone: this.register.phone,
           cellPhonePrefix: '57',
           city: this.register.city.value,

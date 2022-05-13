@@ -38,6 +38,7 @@
     "dist"
   ],
   "files": [
-    "types/svg.d.ts"
+    "types/svg.d.ts",
+    "types/axios.d.ts"
   ],
 }

@@ -138,7 +138,7 @@ export default Vue.extend({
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        const res = await this.$axios.post('/security/exist/user', {
+        const res = await this.$api.post('/security/exist/user', {
           username: this.phone,
         })
         const userExists = res.data.data.info.exists
@@ -151,7 +151,7 @@ export default Vue.extend({
           }
           this.showToastWithProps(toast)
         } else {
-          await this.$axios.post('/oauth/login', {
+          await this.$api.post('/oauth/login', {
             username: this.phone,
             password: this.password,
           })

@@ -54,7 +54,7 @@ export default Vue.extend({
     async validateOtp(otp: string) {
       try {
         this.showLoading()
-        await this.$axios.post('/security/validate/otp', {
+        await this.$api.post('/security/validate/otp', {
           sessionId: this.user.sessionId,
           otp,
         })
@@ -74,7 +74,7 @@ export default Vue.extend({
     async generateOTP() {
       try {
         this.showLoading()
-        await this.$axios.post('/security/generate/otp', {
+        await this.$api.post('/security/generate/otp', {
           sessionId: this.user.sessionId,
           check: 'verifyUser',
         })
@@ -94,7 +94,7 @@ export default Vue.extend({
     async registerUser() {
       try {
         this.showLoading()
-        await this.$axios.post('/client/register', {
+        await this.$api.post('/client/register', {
           age: this.user.age,
           gender: this.user.gender.value,
           interestGender: this.user.interest.value,

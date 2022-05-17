@@ -5,6 +5,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
           <ListStoryCard />
+          <ThinkingCard class="mt-3" />
         </div>
         <div class="col-md-3"></div>
       </div>
@@ -15,10 +16,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import ListStoryCard from '~/components/card/story/List.vue'
+import ThinkingCard from '~/components/card/thinking/ThinkingCard.vue'
 
 export default Vue.extend({
   layout: 'blue',
-  components: { ListStoryCard },
+  middleware: ['auth'],
+  components: { ListStoryCard, ThinkingCard },
 })
 </script>
 

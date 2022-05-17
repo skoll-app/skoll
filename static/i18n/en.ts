@@ -136,6 +136,11 @@ const eng = {
       },
     },
   },
+  feed: {
+    makePlan: 'Make a plan',
+    photoVideo: 'Photo / video',
+    whatsToday: 'Where is it for today?',
+  },
 }
 
 export default eng

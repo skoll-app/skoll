@@ -138,6 +138,11 @@ const esp = {
       },
     },
   },
+  feed: {
+    makePlan: 'Armar parche',
+    photoVideo: 'Foto / video',
+    whatsToday: '¿Para donde es hoy?',
+  },
 }
 
 export default esp

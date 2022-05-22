@@ -38,7 +38,14 @@
       >
     </div>
     <hr />
-    <TextInput :placeholder="`${$t('feed.posts.addComment')}...`" size="sm" />
+    <TextInput
+      class="mb-2"
+      :placeholder="`${$t('feed.posts.addComment')}...`"
+      size="sm"
+      inputGroup
+      :icon="icon"
+      v-model="comment"
+    />
     <modal :name="`card-${post.id}`" :width="'80%'" :height="'90%'">
       <div class="container ps-0 h-100">
         <div class="row h-100">
@@ -94,6 +101,7 @@ import Vue, { PropType } from 'vue'
 import HearthIcon from '~/static/assets/icons/hearth.svg'
 import HearthFullIcon from '~/static/assets/icons/hearth-full.svg'
 import ChatIcon from '~/static/assets/icons/chat.svg'
+import SendIcon from '~/static/assets/icons/send.svg'
 // Components
 import TextInput from '~/components/ux/input/TextInput.vue'
 import Comment from '~/components/comment/Comment.vue'
@@ -106,6 +114,7 @@ export default Vue.extend({
     HearthIcon,
     ChatIcon,
     HearthFullIcon,
+    SendIcon,
     TextInput,
     Comment,
     ListComments,
@@ -116,6 +125,10 @@ export default Vue.extend({
       required: true,
     },
   },
+  data: () => ({
+    icon: SendIcon,
+    comment: ''
+  }),
   methods: {
     update(type: string) {
       this.$emit('updateLikes', { type, id: this.post.id })

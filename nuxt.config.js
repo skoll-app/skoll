@@ -42,7 +42,8 @@ export default {
     '~/plugins/vee-validate.js',
     '~/plugins/vue-slick-carousel.js',
     { src: '~/plugins/bootstrap.bundle.min', mode: 'client' },
-    '~/plugins/api.js'
+    '~/plugins/api.js',
+    '~/plugins/filters.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -159,7 +159,6 @@ export default Vue.extend({
         this.showToastWithProps(toast)
         this.$router.push('/auth')
       } catch (error: any) {
-        console.log(error.response)
         this.hideLoading()
         const toast: Toast = {
           title: 'Error',

@@ -16,10 +16,6 @@
       <hr class="my-2" />
       <div>
         <div class="thinking-btn">
-          <BeerIcon class="me-2" />
-          <p class="text-primary m-0">{{ $t('feed.makePlan') }}</p>
-        </div>
-        <div class="thinking-btn">
           <PicIcon class="me-2" />
           <p class="text-primary m-0">{{ $t('feed.photoVideo') }}</p>
         </div>

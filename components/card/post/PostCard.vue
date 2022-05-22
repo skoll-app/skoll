@@ -30,7 +30,10 @@
       <p class="text-muted mb-1">
         <small>{{ post.text }}</small>
       </p>
-      <u class="cursor-pointer" v-if="post.comments && post.comments.length"
+      <u
+        class="cursor-pointer"
+        v-if="post.comments && post.comments.length"
+        @click="$modal.show(`card-${post.id}`)"
         ><small>{{ $t('feed.posts.seeComments') }}</small></u
       >
     </div>

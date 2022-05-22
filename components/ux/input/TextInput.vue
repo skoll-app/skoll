@@ -84,7 +84,7 @@ export default Vue.extend({
       type: String,
       default: '',
     },
-    icon: { type: Object, default: '' },
+    icon: { type: Object, default: () => {} },
   },
   data: () => ({
     currentValue: '',

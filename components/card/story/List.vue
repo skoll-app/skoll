@@ -16,7 +16,7 @@ export default Vue.extend({
   data: () => ({
     slickOptions: {
       slidesToShow: 1,
-      infinite: false,
+      infinite: true,
       slidesToScroll: 1,
       initialSlide: 0,
       variableWidth: true,
@@ -92,9 +92,25 @@ export default Vue.extend({
   margin-top: 12px;
   margin-bottom: 12px;
 
+  .slick-prev,
+  .slick-next {
+    z-index: 50;
+    height: 19px;
+  }
+
+  .slick-prev {
+    left: 6px;
+  }
+
+  .slick-next {
+    right: 6px;
+  }
+
   .slick-prev::before,
   .slick-next::before {
-    color: black;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    opacity: 1;
   }
 }
 </style>

@@ -8,5 +8,6 @@ export default interface Post {
   imageUrl: string
   text: string
   likes: number
-  comments?: Comments[]
+  comments?: Comments[],
+  liked: boolean
 }

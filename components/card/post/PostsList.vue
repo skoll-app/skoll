@@ -1,6 +1,11 @@
 <template>
   <div class="my-3">
-    <PostCard :key="i" v-for="(post, i) in posts" :post="post" />
+    <PostCard
+      :key="i"
+      v-for="(post, i) in posts"
+      :post="post"
+      @updateLikes="updateLikes"
+    />
   </div>
 </template>
 
@@ -27,10 +32,36 @@ export default Vue.extend({
         },
         likes: 9,
         text: 'Este es el texto',
-        comments: []
+        comments: [],
+        liked: true,
+      },
+      {
+        id: '2',
+        location: 'Villavo',
+        imageUrl: 'assets/img/mock/6.jpg',
+        user: {
+          username: 'Sebastion cachon',
+          profileImg: '',
+        },
+        likes: 3,
+        text: 'Este es el texto',
+        comments: [],
+        liked: false,
       },
     ] as Post[],
   }),
+  methods: {
+    updateLikes(e: any) {
+      let post = this.posts.find((post) => post.id === e.id)
+      if (e.type === 'add') {
+        post!.liked = true
+        post!.likes += 1
+      } else {
+        post!.liked = false
+        post!.likes -= 1
+      }
+    },
+  },
 })
 </script>
 

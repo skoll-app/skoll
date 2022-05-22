@@ -42,6 +42,9 @@ export default {
     '~/plugins/vee-validate.js',
     '~/plugins/vue-slick-carousel.js',
     { src: '~/plugins/bootstrap.bundle.min', mode: 'client' },
+    '~/plugins/api.js',
+    '~/plugins/filters.js',
+    '~plugins/vue-js-modal.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -63,12 +66,6 @@ export default {
     '@nuxtjs/dotenv',
   ],
   i18n: i18n,
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseUrl: process.env.BASE_URL,
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

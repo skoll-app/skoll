@@ -1,0 +1,11 @@
+.icon {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  color: var(--bs-primary);
+  transition: 0.3s;
+
+  &:hover:not(.icon-no-hover) {
+    color: var(--bs-warning) !important;
+  }
+}

@@ -23,7 +23,8 @@
       type="button"
       @click="$emit('btnClick')"
     >
-      {{ btnText }}
+      <span v-if="btnText">{{ btnText }}</span>
+      <component class="icon text-white" v-if="icon" :is="icon" />
     </button>
     <div v-if="errors && errors[0]" class="invalid-feedback">
       {{ errors[0] }}
@@ -83,6 +84,7 @@ export default Vue.extend({
       type: String,
       default: '',
     },
+    icon: { type: Object, default: () => {} },
   },
   data: () => ({
     currentValue: '',

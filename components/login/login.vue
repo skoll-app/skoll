@@ -138,7 +138,7 @@ export default Vue.extend({
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        const res = await this.$axios.post('/security/exist/user', {
+        const res = await this.$api.post('/security/exist/user', {
           username: this.phone,
         })
         const userExists = res.data.data.info.exists
@@ -151,15 +151,12 @@ export default Vue.extend({
           }
           this.showToastWithProps(toast)
         } else {
-          await this.$axios.post('/oauth/login', {
+          const { data } = await this.$api.post('/oauth/login', {
             username: this.phone,
             password: this.password,
           })
-          this.showToastWithProps({
-            title: 'Exito',
-            message: 'Serás redirigido al home',
-            type: 'success',
-          })
+          this.$cookies.set('token', data.token)
+          this.$router.push('/feed')
         }
         this.hideLoading()
       } catch (error: any) {

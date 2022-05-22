@@ -1,6 +1,7 @@
 @import "./variables";
 @import "~bootstrap/scss/bootstrap";
 @import "./bootswatch";
+@import "./icons";
 
 .btn-facebook {
   color: #fff;
@@ -75,4 +76,18 @@ hr {
       padding-top: 76px;
     }
   }
+}
+
+.profile-img {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.vm--container {
+  z-index: 9999 !important;
 }

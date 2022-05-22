@@ -53,7 +53,7 @@ export default Vue.extend({
       this.phone = event
       try {
         this.showLoading()
-        const res = await this.$axios.post('/security/generate/otp', {
+        const res = await this.$api.post('/security/generate/otp', {
           check: event,
         })
         this.sessionId = res.data.data
@@ -73,7 +73,7 @@ export default Vue.extend({
     async validateOTP(otp: any) {
       try {
         this.showLoading()
-        await this.$axios.post('/security/validate/otp', {
+        await this.$api.post('/security/validate/otp', {
           sessionId: this.sessionId,
           otp,
         })
@@ -94,7 +94,7 @@ export default Vue.extend({
     async userExist() {
       try {
         this.showLoading()
-        const res = await this.$axios.post('/security/exist/user', {
+        const res = await this.$api.post('/security/exist/user', {
           username: this.phone,
         })
         this.encodedEmail = res.data.data.info.email
@@ -121,7 +121,7 @@ export default Vue.extend({
     async validateEmail() {
       try {
         this.showLoading()
-        await this.$axios.post('/security/validate/email', {
+        await this.$api.post('/security/validate/email', {
           email: this.email,
           sessionId: this.sessionId,
         })
@@ -145,7 +145,7 @@ export default Vue.extend({
     async recoverPassword() {
       try {
         this.showLoading()
-        await this.$axios.put('/security/recovery/password', {
+        await this.$api.put('/security/recovery/password', {
           password: this.password,
           sessionId: this.sessionId,
         })
@@ -159,7 +159,6 @@ export default Vue.extend({
         this.showToastWithProps(toast)
         this.$router.push('/auth')
       } catch (error: any) {
-        console.log(error.response)
         this.hideLoading()
         const toast: Toast = {
           title: 'Error',

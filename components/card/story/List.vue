@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Card from '~/components/card/story/Card.vue'
+import Card from '~/components/card/story/StoryCard.vue'
 import CardStory from '~/interfaces/card-story'
 
 export default Vue.extend({

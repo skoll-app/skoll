@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CardCategory from './Card.vue'
+import CardCategory from './CategoryCard.vue'
 import DiscountsIcon from '~/static/assets/icons/discounts.svg'
 import BottleIcon from '~/static/assets/icons/bottle.svg'
 import MedalIcon from '~/static/assets/icons/medal.svg'

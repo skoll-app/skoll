@@ -43,7 +43,8 @@ export default {
     '~/plugins/vue-slick-carousel.js',
     { src: '~/plugins/bootstrap.bundle.min', mode: 'client' },
     '~/plugins/api.js',
-    '~/plugins/filters.js'
+    '~/plugins/filters.js',
+    '~plugins/vue-js-modal.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -65,7 +66,6 @@ export default {
     '@nuxtjs/dotenv',
   ],
   i18n: i18n,
-
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

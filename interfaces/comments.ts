@@ -2,7 +2,7 @@ import User from "./user"
 
 export default interface Comments {
   id: string
-  user: User
+  user?: User
   text: string
-  likes: number
+  likes?: number
 }

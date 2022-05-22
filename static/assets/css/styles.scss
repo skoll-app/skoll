@@ -87,3 +87,7 @@ hr {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.vm--container {
+  z-index: 9999 !important;
+}

@@ -23,11 +23,7 @@
             class="icon text-danger icon-no-hover"
             @click="update('remove')"
           />
-          <ChatIcon
-            class="icon"
-            data-bs-toggle="modal"
-            :data-bs-target="`#card-${post.id}`"
-          />
+          <ChatIcon class="icon" @click="$modal.show(`card-${post.id}`)" />
         </div>
         <div class="likes">{{ post.likes }} likes</div>
       </div>
@@ -40,63 +36,52 @@
     </div>
     <hr />
     <TextInput :placeholder="`${$t('feed.posts.addComment')}...`" size="sm" />
-    <div
-      class="modal fade"
-      :id="`card-${post.id}`"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="container-fluid p-0 h-100">
-              <div class="row h-100">
-                <div class="col-md-8 h-100">
-                  <div
-                    class="bg-primary h-100 d-flex justify-content-center align-items-center"
-                  >
-                    <img
-                      class="post-img post-img-modal"
-                      :src="post.imageUrl"
-                      :alt="post.id"
+    <modal :name="`card-${post.id}`" :width="'80%'" :height="'90%'">
+      <div class="container ps-0 h-100">
+        <div class="row h-100">
+          <div class="col-md-8 h-100">
+            <div
+              class="bg-primary h-100 d-flex justify-content-center align-items-center"
+            >
+              <img
+                class="post-img post-img-modal"
+                :src="post.imageUrl"
+                :alt="post.id"
+              />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h6 class="mt-3 mb-1">{{ post.user.username }}</h6>
+            <div class="py-2 h-75">
+              <ListComments :comments="post.comments" />
+            </div>
+            <div class="py-2 h-25 d-flex w-100">
+              <div class="w-100">
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="icons-actions">
+                    <HearthIcon
+                      v-if="!post.liked"
+                      class="icon"
+                      @click="update('add')"
+                    />
+                    <HearthFullIcon
+                      v-else
+                      class="icon text-danger icon-no-hover"
+                      @click="update('remove')"
                     />
                   </div>
+                  <div class="likes">{{ post.likes }} likes</div>
                 </div>
-                <div class="col-md-4 ps-0">
-                  <div class="py-2 h-75">
-                    <ListComments :comments="post.comments" />
-                  </div>
-                  <div class="py-2 h-25 d-flex w-100">
-                    <div class="w-100">
-                      <div class="d-flex justify-content-between mb-2">
-                        <div class="icons-actions">
-                          <HearthIcon
-                            v-if="!post.liked"
-                            class="icon"
-                            @click="update('add')"
-                          />
-                          <HearthFullIcon
-                            v-else
-                            class="icon text-danger icon-no-hover"
-                            @click="update('remove')"
-                          />
-                        </div>
-                        <div class="likes">{{ post.likes }} likes</div>
-                      </div>
-                      <TextInput
-                        :placeholder="`${$t('feed.posts.addComment')}...`"
-                        size="sm"
-                      />
-                    </div>
-                  </div>
-                </div>
+                <TextInput
+                  :placeholder="`${$t('feed.posts.addComment')}...`"
+                  size="sm"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </modal>
   </div>
 </template>
 
@@ -153,16 +138,5 @@ export default Vue.extend({
 }
 .icons-actions svg {
   margin-right: 8px;
-}
-
-.modal-dialog {
-  height: 90%;
-}
-.modal-content {
-  height: 100%;
-}
-.modal-body {
-  height: 100%;
-  // overflow-y: none;
 }
 </style>

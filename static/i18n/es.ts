@@ -142,6 +142,10 @@ const esp = {
     makePlan: 'Armar parche',
     photoVideo: 'Foto / video',
     whatsToday: '¿Para donde es hoy?',
+    posts: {
+      seeComments: 'Ver comentarios',
+      addComment: 'Agregar comentario'
+    }
   },
 }
 

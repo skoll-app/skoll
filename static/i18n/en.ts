@@ -140,6 +140,10 @@ const eng = {
     makePlan: 'Make a plan',
     photoVideo: 'Photo / video',
     whatsToday: 'Where is it for today?',
+    posts: {
+      seeComments: 'Ver comentarios',
+      addComment: 'Agregar comentario'
+    }
   },
 }
 

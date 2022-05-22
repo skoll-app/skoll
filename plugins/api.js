@@ -1,13 +1,11 @@
 export default function ({ $axios, app }, inject) {
-
-  console.log('url', process.env.BASE_URL);
   // Open API
   const api = $axios.create()
-  api.setBaseURL(process.env.BASE_URL || 'https://e1b5-191-107-184-84.ngrok.io')
+  api.setBaseURL(process.env.baseUrl)
 
   // API AUTH
   const apiAuth = $axios.create()
-  apiAuth.setBaseURL(process.env.BASE_URL || 'https://e1b5-191-107-184-84.ngrok.io')
+  apiAuth.setBaseURL(process.env.baseUrl)
 
   // Interceptor
   apiAuth.interceptors.request.use(function (config) {

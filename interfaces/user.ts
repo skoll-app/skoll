@@ -14,7 +14,7 @@ export default interface User {
   interesGender: string
   isVerify?: true
   lastName: string
-  logo?: string
+  logo?: string;
   totalArchievements?: number
   totalSusbscriberMerchant?: number
   totalpublications?: number;

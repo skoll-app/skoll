@@ -1,5 +1,5 @@
 <template>
-  <div class="card border-0 card-thinking">
+  <div class="card card-thinking">
     <div class="card-body">
       <div class="d-flex align-items-center">
         <img
@@ -41,10 +41,6 @@ export default Vue.extend({
 </script>
 
 <style scoped lang="scss">
-.card-thinking {
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
-}
-
 .thinking-btn {
   display: inline-flex;
   align-items: center;

@@ -6,7 +6,16 @@ export default function ({ $axios, app }, inject) {
   // API AUTH
   const apiAuth = $axios.create()
   apiAuth.setBaseURL(process.env.BASE_URL)
-  apiAuth.setToken(app.$cookies.get('token'), 'Bearer')
+
+  // Interceptor
+  apiAuth.interceptors.request.use(function (config) {
+    apiAuth.setToken(app.$cookies.get('token'))
+    // Do something before request is sent
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
 
   // Inject to context as $api & $apiAuth
   inject('api', api)

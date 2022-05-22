@@ -10,7 +10,7 @@ export default interface User {
   email: string
   firstName: string
   gender: string
-  identification: Identification
+  identification?: Identification
   interesGender: string
   isVerify?: true
   lastName: string

@@ -48,6 +48,76 @@ export default Vue.extend({
         comments: [],
         liked: false,
       },
+      {
+        id: '3',
+        location: 'Villavo',
+        imageUrl: 'assets/img/mock/3.jpg',
+        user: {
+          username: 'El otro cachon',
+          profileImg: '',
+        },
+        likes: 3,
+        text: 'Este es el texto',
+        comments: [
+          {
+            id: '31',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'primero',
+            },
+          },
+          {
+            id: '32',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'segundo',
+            },
+          },
+          {
+            id: '33',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'tercero',
+            },
+          },
+          {
+            id: '34',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'cuarto',
+            },
+          },
+          {
+            id: '35',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'quinto',
+            },
+          },
+          {
+            id: '36',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'sexto',
+            },
+          },
+          {
+            id: '37',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'septimo',
+            },
+          },
+          {
+            id: '38',
+            text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
+            user: {
+              username: 'octavo',
+            },
+          },
+        ],
+        liked: true,
+      },
     ] as Post[],
   }),
   methods: {

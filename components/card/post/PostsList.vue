@@ -27,8 +27,8 @@ export default Vue.extend({
         location: 'Barranquilla',
         imageUrl: 'assets/img/mock/1.jpg',
         user: {
-          username: 'Adan F',
-          profileImg: '',
+          firstName: 'Adan F',
+          logo: '',
         },
         likes: 9,
         text: 'Este es el texto',
@@ -40,8 +40,8 @@ export default Vue.extend({
         location: 'Villavo',
         imageUrl: 'assets/img/mock/6.jpg',
         user: {
-          username: 'Sebastion cachon',
-          profileImg: '',
+          firstName: 'Sebastion cachon',
+          logo: '',
         },
         likes: 3,
         text: 'Este es el texto',
@@ -53,8 +53,8 @@ export default Vue.extend({
         location: 'Villavo',
         imageUrl: 'assets/img/mock/3.jpg',
         user: {
-          username: 'El otro cachon',
-          profileImg: '',
+          firstName: 'El otro cachon',
+          logo: '',
         },
         likes: 3,
         text: 'Este es el texto',
@@ -63,56 +63,56 @@ export default Vue.extend({
             id: '31',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'primero',
+              firstName: 'primero',
             },
           },
           {
             id: '32',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'segundo',
+              firstName: 'segundo',
             },
           },
           {
             id: '33',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'tercero',
+              firstName: 'tercero',
             },
           },
           {
             id: '34',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'cuarto',
+              firstName: 'cuarto',
             },
           },
           {
             id: '35',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'quinto',
+              firstName: 'quinto',
             },
           },
           {
             id: '36',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'sexto',
+              firstName: 'sexto',
             },
           },
           {
             id: '37',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'septimo',
+              firstName: 'septimo',
             },
           },
           {
             id: '38',
             text: 'Este es un comentario mas o menos largo para ver que pasa si quiero truncar el testo a los ochenta caracteres',
             user: {
-              username: 'octavo',
+              firstName: 'octavo',
             },
           },
         ],

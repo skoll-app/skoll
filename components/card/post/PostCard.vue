@@ -8,7 +8,7 @@
           alt="profile"
         />
         <div class="d-flex flex-column user-data">
-          <p class="name">{{ post.user.username }}</p>
+          <p class="name">{{ post.user.firstName }}</p>
           <small class="text-muted">{{ post.location }}</small>
         </div>
       </div>
@@ -61,7 +61,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <h6 class="mt-3 mb-1">{{ post.user.username }}</h6>
+            <h6 class="mt-3 mb-1">{{ post.user.firstName }}</h6>
             <div class="py-2 h-75">
               <ListComments :comments="post.comments" />
             </div>

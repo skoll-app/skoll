@@ -3,7 +3,7 @@
     <img class="profile-img me-2" :src="'assets/img/user.png'" alt="profile" />
     <div class="comment">
       <p class="text-muted m-0 lh-1">
-        <span class="text-primary">@{{ comment.user.username }}</span>
+        <span class="text-primary">@{{ comment.user.firstName }}</span>
         {{ comment.text | truncate }}
       </p>
     </div>

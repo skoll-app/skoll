@@ -63,7 +63,7 @@
               <CartIcon role="button" class="align-self-center text-white" />
             </li>
             <li>
-              <div class="btn-group" v-if="user.firstName">
+              <div class="btn-group" v-if="loggedIn">
                 <button
                   type="button"
                   class="btn btn-secondary btn-sm dropdown-toggle"
@@ -129,7 +129,7 @@ export default Vue.extend({
       return this.$store.state.sidebar.open
     },
     loggedIn(): boolean {
-      return false
+      return this.user.firstName !== null && this.$cookies.get('token')
     },
     user(): User {
       return this.$store.state.user

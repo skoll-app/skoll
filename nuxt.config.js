@@ -64,6 +64,12 @@ export default {
     '@nuxtjs/i18n',
     'cookie-universal-nuxt',
     '@nuxtjs/dotenv',
+    [
+      'nuxt-vuex-localstorage',
+      {
+        localStorage: ['user'],
+      },
+    ],
   ],
   i18n: i18n,
 

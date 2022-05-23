@@ -63,7 +63,24 @@
               <CartIcon role="button" class="align-self-center text-white" />
             </li>
             <li>
+              <div class="btn-group" v-if="loggedIn">
+                <button
+                  type="button"
+                  class="btn btn-secondary btn-sm dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  data-bs-display="static"
+                  aria-expanded="false"
+                >
+                  {{ user.firstName | initials }}{{ user.lastName | initials }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-lg-end">
+                  <li>
+                    <a class="dropdown-item" @click="logout">Cerrar sesión</a>
+                  </li>
+                </ul>
+              </div>
               <NuxtLink
+                v-else
                 type="button"
                 class="btn btn-outline-warning btn-sm"
                 to="/auth"
@@ -90,6 +107,8 @@ import UserIcon from '~/static/assets/icons/user.svg'
 import LoginIcon from '~/static/assets/icons/login.svg'
 // Components
 import Sidebar from '../ux/sidebar/Sidebar.vue'
+// Interfaces
+import User from '~/interfaces/user'
 
 export default Vue.extend({
   components: {
@@ -105,14 +124,23 @@ export default Vue.extend({
     toggleSidebar() {
       this.open ? this.closeSidebar() : this.openSidebar()
     },
+    logout() {
+      this.setUser(null)
+      this.$cookies.remove('token')
+      window.location.href = '/'
+    },
     ...mapActions('sidebar', ['openSidebar', 'closeSidebar']),
+    ...mapActions('user', ['setUser']),
   },
   computed: {
-    open(): Boolean {
+    open(): boolean {
       return this.$store.state.sidebar.open
     },
-    loggedIn() {
-      return false
+    loggedIn(): boolean {
+      return this.user.firstName !== null && this.$cookies.get('token')
+    },
+    user(): User {
+      return this.$store.state.user
     },
   },
 })

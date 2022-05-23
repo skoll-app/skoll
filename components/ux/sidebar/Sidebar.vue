@@ -6,15 +6,17 @@
         <IOIcon role="button" @click="closeSidebar" />
       </div>
       <hr />
-      <div class="d-flex justify-content-between align-items-center p-4 py-3">
-        <NuxtLink to="/auth" class="btn btn-warning text-white">{{
-          $t('sidebar.main.login')
-        }}</NuxtLink
-        ><NuxtLink to="/auth/register" class="btn btn-warning text-white">{{
-          $t('sidebar.main.register')
-        }}</NuxtLink>
-      </div>
-      <hr />
+      <template v-if="!user">
+        <div class="d-flex justify-content-between align-items-center p-4 py-3">
+          <NuxtLink to="/auth" class="btn btn-warning text-white">{{
+            $t('sidebar.main.login')
+          }}</NuxtLink
+          ><NuxtLink to="/auth/register" class="btn btn-warning text-white">{{
+            $t('sidebar.main.register')
+          }}</NuxtLink>
+        </div>
+        <hr />
+      </template>
       <template v-for="(menu, k) in menuOptions">
         <div :key="k + '-menu'">
           <div class="py-3">
@@ -68,6 +70,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapActions } from 'vuex'
+// Interfaces
+import User from '~/interfaces/user'
 // Icons
 import ArrowRightIcon from '~/static/assets/icons/arrow-right-short.svg'
 import DotIcon from '~/static/assets/icons/dot.svg'
@@ -90,6 +94,9 @@ export default Vue.extend({
   computed: {
     menuOptions() {
       return this.$store.state.sidebar.mainMenu
+    },
+    user(): User {
+      return this.$store.state.user
     },
   },
   destroyed() {

@@ -6,4 +6,8 @@ export default () => {
     const reqdString = data.split('').slice(0, num).join('')
     return `${reqdString}...`
   })
+
+  Vue.filter('initials', function (value) {
+    return value.charAt(0);
+  })
 }

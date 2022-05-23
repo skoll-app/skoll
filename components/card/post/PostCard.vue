@@ -39,7 +39,6 @@
     </div>
     <hr />
     <TextInput
-      class="mb-2"
       :placeholder="`${$t('feed.posts.addComment')}...`"
       size="sm"
       inputGroup
@@ -47,7 +46,7 @@
       v-model="comment"
     />
     <modal :name="`card-${post.id}`" :width="'80%'" :height="'90%'">
-      <div class="container ps-0 h-100">
+      <div class="container-fluid ps-0 h-100">
         <div class="row h-100">
           <div class="col-md-8 h-100">
             <div

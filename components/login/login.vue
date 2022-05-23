@@ -156,6 +156,8 @@ export default Vue.extend({
             password: this.password,
           })
           this.$cookies.set('token', data.token)
+          const userData = await this.$apiAuth.get('/client/')
+          this.setUser(userData.data.data)
           this.$router.push('/feed')
         }
         this.hideLoading()
@@ -173,6 +175,7 @@ export default Vue.extend({
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),
     ...mapActions('toast', ['showToast', 'hideToast', 'showToastWithProps']),
+    ...mapActions('user', ['setUser']),
   },
 })
 </script>

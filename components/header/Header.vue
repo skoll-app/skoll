@@ -74,7 +74,9 @@
                   {{ user.firstName | initials }}{{ user.lastName | initials }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                  <li>
+                    <a class="dropdown-item" @click="logout">Cerrar sesión</a>
+                  </li>
                 </ul>
               </div>
               <NuxtLink
@@ -122,7 +124,13 @@ export default Vue.extend({
     toggleSidebar() {
       this.open ? this.closeSidebar() : this.openSidebar()
     },
+    logout() {
+      this.setUser(null)
+      this.$cookies.remove('token')
+      window.location.href = '/'
+    },
     ...mapActions('sidebar', ['openSidebar', 'closeSidebar']),
+    ...mapActions('user', ['setUser']),
   },
   computed: {
     open(): boolean {

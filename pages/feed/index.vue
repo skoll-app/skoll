@@ -8,7 +8,23 @@
           <ThinkingCard />
           <PostsList />
         </div>
-        <div class="col-lg-3">Publicidad</div>
+        <div class="col-lg-3">
+          <div class="sticky-top">
+            <div class="card mt-3">
+              <img
+                src="assets/img/mock/ad.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Poker</h5>
+                <p class="card-text">
+                  <small>Compra hoy y disfruta con tus amigos!</small>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="col-lg-2"></div>
       </div>
     </div>
@@ -28,4 +44,8 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.sticky-top {
+  top: 92px !important;
+}
+</style>

@@ -97,6 +97,11 @@ const esp = {
     location: 'ubicación',
     search: 'buscar',
     login: 'ingreso',
+    userMenu: {
+      profile: 'Perfíl',
+      config: 'Configuración',
+      logout: 'Cerrar sesión'
+    }
   },
   home: {
     sections: {
@@ -144,8 +149,14 @@ const esp = {
     whatsToday: '¿Para donde es hoy?',
     posts: {
       seeComments: 'Ver comentarios',
-      addComment: 'Agregar comentario'
-    }
+      addComment: 'Agregar comentario',
+    },
+  },
+  configview: {
+    editProfile: 'Editar perfíl',
+    changePassword: 'Cambiar contraseña',
+    networkLinking: 'Vincular redes',
+    help: 'Ayuda',
   },
 }
 

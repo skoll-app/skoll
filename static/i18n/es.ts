@@ -45,6 +45,15 @@ const esp = {
         women: 'Mujeres',
         both: 'Ambos',
       },
+      document: 'Número de documento',
+      documentType: 'Tipo de documento',
+      documentTypeList: {
+        CC: 'Cédula de ciudadanía',
+        CE: 'Cédula de extranjería',
+        NIP: 'Número de identificación personal',
+        PAP: 'Pasaporte',
+        NIT: 'Número de identificación personal',
+      },
     },
     hasAccount: '¿Tienes una cuenta?',
     loginHere: 'Ingresa aquí',
@@ -100,8 +109,8 @@ const esp = {
     userMenu: {
       profile: 'Perfíl',
       config: 'Configuración',
-      logout: 'Cerrar sesión'
-    }
+      logout: 'Cerrar sesión',
+    },
   },
   home: {
     sections: {

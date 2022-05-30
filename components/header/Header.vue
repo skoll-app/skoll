@@ -137,7 +137,7 @@ export default Vue.extend({
       this.open ? this.closeSidebar() : this.openSidebar()
     },
     logout() {
-      this.setUser(null)
+      this.setUser({})
       this.$cookies.remove('token')
       window.location.href = '/'
     },

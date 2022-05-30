@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 center-hv d-none d-md-flex">
-          <img src="assets/img/dance.png" height="400" alt="dance" />
+          <img src="~/static/assets/img/dance.png" height="400" alt="dance" />
         </div>
         <div class="col-md-6 center-hv">
           <div class="d-flex flex-column w-75 px-0 px-md-2">

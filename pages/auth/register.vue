@@ -17,7 +17,7 @@
       <div class="d-flex flex-column justify-content-center h-100">
         <div class="mx-auto">
           <h4 class="text-end pb-4" v-html="$t('registerview.share')"></h4>
-          <img class="img-fluid" src="/assets/img/cook.png" alt="cooking" />
+          <img class="img-fluid" src="~/static/assets/img/cook.png" alt="cooking" />
         </div>
       </div>
     </div>

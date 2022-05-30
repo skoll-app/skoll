@@ -11,7 +11,7 @@
       :class="inputClasses(classes)"
       :disabled="disabled"
       @change="change"
-      v-model="select"
+      :value="value.value"
     >
       <option value="">
         {{ name }}
@@ -41,6 +41,10 @@ import SelectOption from '~/interfaces/select-option'
 
 export default Vue.extend({
   props: {
+    value: {
+      type: Object as PropType<SelectOption>,
+      default: () => {},
+    },
     rules: {
       type: [String, Object],
       default: '',

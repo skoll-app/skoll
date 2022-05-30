@@ -166,6 +166,7 @@ const esp = {
     changePassword: 'Cambiar contraseña',
     networkLinking: 'Vincular redes',
     help: 'Ayuda',
+    changeProfileImg: 'Cambiar imagen',
   },
 }
 

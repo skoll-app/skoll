@@ -2,6 +2,23 @@
   <div class="card">
     <div class="card-body">
       <h4 class="mb-3" v-html="$t('configview.editProfile')"></h4>
+      <div class="d-flex align-items-center flex-column mb-3">
+        <img
+          height="150"
+          width="150"
+          :src="user.logo"
+          :alt="user.logo"
+          class="mb-2"
+        />
+        <div class="d-flex">
+          <button type="button" class="btn btn-outline-secondary me-2">
+            {{ $t('configview.changeProfileImg') }}
+          </button>
+          <button type="button" class="btn btn-danger">
+            <TrashIcon class="icon text-white" />
+          </button>
+        </div>
+      </div>
       <ValidationObserver v-slot="{}">
         <div class="row">
           <div class="col-12 col-md-6">
@@ -11,7 +28,7 @@
               :placeholder="$t('registerview.form.name')"
               rules="required|alpha_spaces"
               addVeeClasses
-              v-model="register.name"
+              v-model="user.firstName"
             />
           </div>
           <div class="col-12 col-md-6">
@@ -21,7 +38,7 @@
               :placeholder="$t('registerview.form.lastname')"
               rules="required|alpha_spaces"
               addVeeClasses
-              v-model="register.lastname"
+              v-model="user.lastName"
             />
           </div>
         </div>
@@ -33,7 +50,7 @@
               :placeholder="$t('registerview.form.email')"
               rules="required|email"
               addVeeClasses
-              v-model="register.email"
+              v-model="user.email"
             />
           </div>
           <div class="col-lg-6">
@@ -43,22 +60,7 @@
               :placeholder="$t('registerview.form.phone')"
               rules="required|digits:10"
               addVeeClasses
-              v-model="register.phone"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.password')"
-              :placeholder="$t('registerview.form.password')"
-              type="password"
-              rules="required|password"
-              addVeeClasses
-              inputGroup
-              isPasswordType
-              v-model="register.password"
+              v-model="user.cellPhone"
             />
           </div>
         </div>
@@ -70,7 +72,8 @@
               :placeholder="$t('registerview.form.country')"
               rules="required"
               addVeeClasses
-              v-model="register.country"
+              disabled
+              v-model="country"
             />
           </div>
           <div class="col-lg-6">
@@ -80,7 +83,8 @@
               rules="required"
               class="mb-2"
               addVeeClasses
-              v-model="register.city"
+              v-model="user.cityName"
+              :withI18n="false"
             />
           </div>
         </div>
@@ -92,7 +96,7 @@
               :placeholder="$t('registerview.form.age')"
               rules="required|max:2|numeric"
               addVeeClasses
-              v-model="register.age"
+              v-model="user.age"
             />
           </div>
           <div class="col-md-4">
@@ -101,7 +105,7 @@
               :options="genderOptions"
               rules="required"
               class="mb-2"
-              v-model="register.gender"
+              v-model="user.gender"
               addVeeClasses
             />
           </div>
@@ -111,7 +115,7 @@
               :options="interestOptions"
               rules="required"
               class="mb-2"
-              v-model="register.interest"
+              v-model="user.interesGender"
               addVeeClasses
             />
           </div>
@@ -124,7 +128,7 @@
               rules="required"
               class="mb-2"
               addVeeClasses
-              v-model="register.documentType"
+              v-model="user.identification.type"
             />
           </div>
           <div class="col-lg-6">
@@ -134,7 +138,7 @@
               :placeholder="$t('registerview.form.document')"
               rules="required|numeric"
               addVeeClasses
-              v-model="register.document"
+              v-model="user.identification.number"
             />
           </div>
         </div>
@@ -145,30 +149,20 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 // Components
 import TextInput from '~/components/ux/input/TextInput.vue'
 import Select from '~/components/ux/select/Select.vue'
 // Interfaces
 import SelectOption from '~/interfaces/select-option'
+// Icons
+import TrashIcon from '~/static/assets/icons/trash.svg'
 
 export default Vue.extend({
-  components: { TextInput, Select },
+  components: { TextInput, Select, TrashIcon },
   layout: 'config',
   data: () => ({
-    register: {
-      name: '',
-      lastname: '',
-      email: '',
-      phone: '',
-      password: '',
-      country: 'Colombia',
-      city: {} as SelectOption,
-      age: null,
-      gender: {} as SelectOption,
-      interest: {} as SelectOption,
-      documentType: {} as SelectOption,
-      document: ''
-    },
+    country: 'Colombia',
     selectOptions: [
       { label: 'Arauca', value: 'Arauca' },
       { label: 'Armenia', value: 'Armenia' },
@@ -235,7 +229,23 @@ export default Vue.extend({
         value: 'NIP',
       },
     ] as SelectOption[],
+    user: {},
   }),
+  async asyncData(context) {
+    let userData = null
+    try {
+      userData = await context.$apiAuth.get('/client/')
+      return { user: userData.data.data }
+    } catch (error) {
+      return {}
+    }
+  },
+  beforeMount() {
+    this.setUser(this.user)
+  },
+  methods: {
+    ...mapActions('user', ['setUser']),
+  },
 })
 </script>
 

@@ -155,6 +155,7 @@ const eng = {
     changePassword: 'Change password',
     networkLinking: 'Network linking',
     help: 'Help',
+    changeProfileImg: 'Change picture',
   },
 }
 

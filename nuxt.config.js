@@ -85,5 +85,10 @@ export default {
 
   router: {
     linkActiveClass: 'active'
+  },
+
+  loading: {
+    color: 'white',
+    height: '3px'
   }
 }

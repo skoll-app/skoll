@@ -241,7 +241,25 @@ export default Vue.extend({
   async asyncData(context) {
     try {
       const userData = await context.$apiAuth.get('/client/')
-      return { user: userData.data.data }
+      const userAux = userData.data.data
+      return {
+        user: {
+          ...userAux,
+          gender: { label: userAux.gender, value: userAux.gender },
+          cityName: { label: userAux.cityName, value: userAux.cityName },
+          interesGender: {
+            label: userAux.interesGender,
+            value: userAux.interesGender,
+          },
+          identification: {
+            type: {
+              label: userAux.identification.type,
+              value: userAux.identification.type,
+            },
+            number: userAux.identification.number
+          },
+        },
+      }
     } catch (error) {
       return {}
     }
@@ -253,7 +271,12 @@ export default Vue.extend({
     async saveUserData() {
       let formattedUser: User = {
         ...this.user,
-        address: {},
+        address: {
+          zip_code: 'zip_code',
+          id: 'id',
+          street_name: 'str',
+          street_number: 'str_n',
+        },
         gender: this.user.gender.value,
         identification: {
           type: this.user.identification.type.value,
@@ -261,13 +284,12 @@ export default Vue.extend({
         },
         interesGender: this.user.interesGender.value,
         cityName: this.user.cityName.value,
-        about: 'about',
-        lat: 'lat',
-        lon: 'lon',
+        lat: 0,
+        lon: 0,
       }
       try {
         this.showLoading()
-        await this.$apiAuth.put('/client/update', formattedUser)
+        await this.$apiAuth.post('/client/update', formattedUser)
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

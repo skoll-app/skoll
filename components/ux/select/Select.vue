@@ -43,7 +43,7 @@ export default Vue.extend({
   props: {
     value: {
       type: Object as PropType<SelectOption>,
-      default: () => {},
+      default: () => ({ label: '', value: '' }),
     },
     rules: {
       type: [String, Object],

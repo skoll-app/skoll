@@ -18,7 +18,7 @@
               >
                 <div class="input-group has-validation mb-3">
                   <span class="input-group-text">
-                    <UserIcon />
+                    <UserIcon class="icon icon-no-hover" />
                   </span>
                   <input
                     type="text"
@@ -41,7 +41,7 @@
               >
                 <div class="input-group has-validation mb-3">
                   <span class="input-group-text">
-                    <LockIcon />
+                    <LockIcon class="icon icon-no-hover" />
                   </span>
                   <input
                     type="password"

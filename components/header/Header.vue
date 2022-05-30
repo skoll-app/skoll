@@ -75,7 +75,19 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                   <li>
-                    <a class="dropdown-item" @click="logout">Cerrar sesión</a>
+                    <NuxtLink class="dropdown-item" to="/">{{
+                      $t('header.userMenu.profile')
+                    }}</NuxtLink>
+                  </li>
+                  <li>
+                    <NuxtLink class="dropdown-item" to="/account/edit">{{
+                      $t('header.userMenu.config')
+                    }}</NuxtLink>
+                  </li>
+                  <li>
+                    <a class="dropdown-item cursor-pointer" @click="logout">{{
+                      $t('header.userMenu.logout')
+                    }}</a>
                   </li>
                 </ul>
               </div>

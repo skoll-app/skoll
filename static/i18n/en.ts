@@ -97,6 +97,11 @@ const eng = {
     location: 'location',
     search: 'search',
     login: 'login',
+    userMenu: {
+      profile: 'Profile',
+      config: 'Settings',
+      logout: 'Log out',
+    },
   },
   home: {
     sections: {
@@ -142,9 +147,19 @@ const eng = {
     whatsToday: 'Where is it for today?',
     posts: {
       seeComments: 'Ver comentarios',
-      addComment: 'Agregar comentario'
-    }
+      addComment: 'Agregar comentario',
+    },
   },
+  configview: {
+    editProfile: 'Edit profile',
+    changePassword: 'Change password',
+    networkLinking: 'Network linking',
+    help: 'Help',
+    changeProfileImg: 'Change picture',
+    save: 'save',
+    profileUpdated: 'Your profile has been updated',
+  },
+  success: 'Success',
 }
 
 export default eng

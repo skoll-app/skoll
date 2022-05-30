@@ -45,6 +45,7 @@ export default {
     '~/plugins/api.js',
     '~/plugins/filters.js',
     '~plugins/vue-js-modal.js',
+    { src: '~/plugins/vue-cropper', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -80,5 +81,14 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+  },
+
+  router: {
+    linkActiveClass: 'active'
+  },
+
+  loading: {
+    color: 'white',
+    height: '3px'
   }
 }

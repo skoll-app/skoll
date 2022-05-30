@@ -1,23 +1,25 @@
 export default interface User {
+  about?: string
   address?: Address
   amountAvailable?: number
   archivementsAvailable?: Array<any>
   cards?: Array<any>
   cellPhone?: string
   cityName?: string
-  decription?: string
   defaultCard?: null
   email: string
   firstName: string
   gender: string
   identification?: Identification
   interesGender: string
-  isVerify?: true
+  isVerify?: boolean
   lastName: string
   logo?: string;
   totalArchievements?: number
   totalSusbscriberMerchant?: number
   totalpublications?: number;
+  description?: string
+  age?: number
 }
 
 export interface Identification {
@@ -26,8 +28,8 @@ export interface Identification {
 }
 
 export interface Address {
-  id: null
-  zip_code: null
-  street_name: null
-  street_number: null
+  id?: string
+  zip_code?: string
+  street_name?: string
+  street_number?: string
 }

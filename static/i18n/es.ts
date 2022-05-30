@@ -45,6 +45,15 @@ const esp = {
         women: 'Mujeres',
         both: 'Ambos',
       },
+      document: 'Número de documento',
+      documentType: 'Tipo de documento',
+      documentTypeList: {
+        CC: 'Cédula de ciudadanía',
+        CE: 'Cédula de extranjería',
+        NIP: 'Número de identificación personal',
+        PAP: 'Pasaporte',
+        NIT: 'Número de identificación personal',
+      },
     },
     hasAccount: '¿Tienes una cuenta?',
     loginHere: 'Ingresa aquí',
@@ -97,6 +106,11 @@ const esp = {
     location: 'ubicación',
     search: 'buscar',
     login: 'ingreso',
+    userMenu: {
+      profile: 'Perfíl',
+      config: 'Configuración',
+      logout: 'Cerrar sesión',
+    },
   },
   home: {
     sections: {
@@ -144,9 +158,19 @@ const esp = {
     whatsToday: '¿Para donde es hoy?',
     posts: {
       seeComments: 'Ver comentarios',
-      addComment: 'Agregar comentario'
-    }
+      addComment: 'Agregar comentario',
+    },
   },
+  configview: {
+    editProfile: 'Editar perfíl',
+    changePassword: 'Cambiar contraseña',
+    networkLinking: 'Vincular redes',
+    help: 'Ayuda',
+    changeProfileImg: 'Cambiar imagen',
+    save: 'guardar',
+    profileUpdated: 'Su perfíl fue actualizado'
+  },
+  success: 'Exito'
 }
 
 export default esp

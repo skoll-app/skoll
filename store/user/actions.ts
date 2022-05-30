@@ -6,10 +6,7 @@ import UserTypes from './types'
 
 const actions: ActionTree<UserState, RootState> = {
   setUser({ commit }, user: User) {
-    commit(UserTypes.SET_NAME, user?.firstName)
-    commit(UserTypes.SET_LASTNAME, user?.lastName)
-    commit(UserTypes.SET_LOGO, user?.logo)
-    commit(UserTypes.SET_EMAIL, user?.email)
+    commit(UserTypes.SET_USER, user)
   },
 }
 

@@ -9,7 +9,7 @@
     :class="{ 'input-group': inputGroup, [inputGroupSize]: true }"
   >
     <input
-      :type="type"
+      :type="actualType"
       class="form-control"
       :class="inputClasses(classes)"
       :placeholder="placeholder"
@@ -21,10 +21,17 @@
       v-if="inputGroup"
       class="btn btn-primary"
       type="button"
-      @click="$emit('btnClick')"
+      @click="isPasswordType ? showPassword() : $emit('btnClick')"
     >
       <span v-if="btnText">{{ btnText }}</span>
-      <component class="icon text-white" v-if="icon" :is="icon" />
+      <component
+        class="icon text-white"
+        v-if="icon && !isPasswordType"
+        :is="icon"
+      />
+      <template v-if="isPasswordType">
+        <component class="icon text-white" :is="iconLock" />
+      </template>
     </button>
     <div v-if="errors && errors[0]" class="invalid-feedback">
       {{ errors[0] }}
@@ -36,6 +43,9 @@
 import Vue from 'vue'
 // enums
 import Size from '@/enum/size'
+// Icons
+import LockIcon from '@/static/assets/icons/lock.svg'
+import UnlockIcon from '@/static/assets/icons/unlock.svg'
 
 export default Vue.extend({
   name: 'TextInput',
@@ -85,9 +95,18 @@ export default Vue.extend({
       default: '',
     },
     icon: { type: Object, default: () => {} },
+    isPasswordType: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  components: {
+    LockIcon,
+    UnlockIcon,
   },
   data: () => ({
     currentValue: '',
+    showPasswordFlag: false,
   }),
   computed: {
     sizeClass(): string {
@@ -108,6 +127,19 @@ export default Vue.extend({
       }
       return sizeClass
     },
+    passwordInputType(): string {
+      return this.showPasswordFlag ? 'text' : 'password'
+    },
+    iconLock(): any {
+      return this.showPasswordFlag ? UnlockIcon : LockIcon
+    },
+    actualType(): string {
+      return this.isPasswordType
+        ? this.showPasswordFlag
+          ? 'text'
+          : 'password'
+        : this.type
+    },
   },
   methods: {
     onInput(event: any) {
@@ -116,6 +148,9 @@ export default Vue.extend({
     inputClasses(veeClasses: Object): string | Object {
       if (this.addVeeClasses) return { ...veeClasses, [this.sizeClass]: true }
       return { [this.sizeClass]: true }
+    },
+    showPassword() {
+      this.showPasswordFlag = !this.showPasswordFlag
     },
   },
 })

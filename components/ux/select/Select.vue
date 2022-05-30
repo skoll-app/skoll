@@ -11,7 +11,7 @@
       :class="inputClasses(classes)"
       :disabled="disabled"
       @change="change"
-      v-model="select"
+      :value="value.value"
     >
       <option value="">
         {{ name }}
@@ -22,7 +22,8 @@
         :value="option.value"
         :selected="option.selected"
       >
-        {{ $t(option.label) }}
+        <template v-if="withI18n">{{ $t(option.label) }}</template>
+        <template v-else>{{ option.label }}</template>
       </option>
     </select>
     <div v-if="errors && errors[0]" class="invalid-feedback">
@@ -40,6 +41,10 @@ import SelectOption from '~/interfaces/select-option'
 
 export default Vue.extend({
   props: {
+    value: {
+      type: Object as PropType<SelectOption>,
+      default: () => {},
+    },
     rules: {
       type: [String, Object],
       default: '',
@@ -64,9 +69,13 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    withI18n: {
+      type: Boolean,
+      default: true,
+    },
   },
   data: () => ({
-    select: ''
+    select: '',
   }),
   computed: {
     sizeClass(): string {

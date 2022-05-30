@@ -39,7 +39,7 @@ import ThinkingCard from '~/components/card/thinking/ThinkingCard.vue'
 
 export default Vue.extend({
   layout: 'blue',
-  middleware: ['auth'],
+  // middleware: ['auth'],
   components: { ListStoryCard, ThinkingCard, PostsList },
 })
 </script>

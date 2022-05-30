@@ -80,6 +80,7 @@
               size="sm"
               v-model="register.city"
               addVeeClasses
+              :withI18n="false"
             />
           </div>
         </div>

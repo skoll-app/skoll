@@ -18,7 +18,6 @@ export default interface User {
   totalArchievements?: number
   totalSusbscriberMerchant?: number
   totalpublications?: number;
-  description?: string
   age?: number
 }
 

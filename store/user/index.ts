@@ -6,7 +6,6 @@ export const state = (): User => ({
   cards: [],
   cellPhone: '',
   cityName: '',
-  decription: '',
   defaultCard: null,
   email: '',
   firstName: '',
@@ -22,7 +21,6 @@ export const state = (): User => ({
   totalArchievements: 0,
   totalSusbscriberMerchant: 0,
   totalpublications: 0,
-  description: '',
   age: null
 })
 

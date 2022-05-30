@@ -34,6 +34,7 @@
         </div>
       </div>
       <Loading />
+      <Toast />
     </div>
   </div>
 </template>
@@ -42,11 +43,11 @@
 import Vue from 'vue'
 import Header from '~/components/header/Header.vue'
 import Loading from '~/components/ux/loading/Loading.vue'
+import Toast from '~/components/ux/toast/Toast.vue'
 
 export default Vue.extend({
-  components: { Loading, Header },
+  components: { Loading, Header, Toast },
 })
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

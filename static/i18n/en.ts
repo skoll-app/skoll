@@ -156,7 +156,10 @@ const eng = {
     networkLinking: 'Network linking',
     help: 'Help',
     changeProfileImg: 'Change picture',
+    save: 'save',
+    profileUpdated: 'Your profile has been updated',
   },
+  success: 'Success',
 }
 
 export default eng

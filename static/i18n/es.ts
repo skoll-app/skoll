@@ -167,7 +167,10 @@ const esp = {
     networkLinking: 'Vincular redes',
     help: 'Ayuda',
     changeProfileImg: 'Cambiar imagen',
+    save: 'guardar',
+    profileUpdated: 'Su perfíl fue actualizado'
   },
+  success: 'Exito'
 }
 
 export default esp

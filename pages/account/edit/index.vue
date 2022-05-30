@@ -142,6 +142,11 @@
             />
           </div>
         </div>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-success" @click="saveUserData">
+            {{ $t('configview.save') }}
+          </button>
+        </div>
       </ValidationObserver>
     </div>
   </div>
@@ -155,6 +160,8 @@ import TextInput from '~/components/ux/input/TextInput.vue'
 import Select from '~/components/ux/select/Select.vue'
 // Interfaces
 import SelectOption from '~/interfaces/select-option'
+import Toast from '~/interfaces/toast'
+import User from '~/interfaces/user'
 // Icons
 import TrashIcon from '~/static/assets/icons/trash.svg'
 
@@ -229,12 +236,11 @@ export default Vue.extend({
         value: 'NIP',
       },
     ] as SelectOption[],
-    user: {},
+    user: {} as any,
   }),
   async asyncData(context) {
-    let userData = null
     try {
-      userData = await context.$apiAuth.get('/client/')
+      const userData = await context.$apiAuth.get('/client/')
       return { user: userData.data.data }
     } catch (error) {
       return {}
@@ -244,7 +250,46 @@ export default Vue.extend({
     this.setUser(this.user)
   },
   methods: {
+    async saveUserData() {
+      let formattedUser: User = {
+        ...this.user,
+        address: {},
+        gender: this.user.gender.value,
+        identification: {
+          type: this.user.identification.type.value,
+          number: this.user.identification.number,
+        },
+        interesGender: this.user.interesGender.value,
+        cityName: this.user.cityName.value,
+        about: 'about',
+        lat: 'lat',
+        lon: 'lon',
+      }
+      try {
+        this.showLoading()
+        await this.$apiAuth.put('/client/update', formattedUser)
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'success',
+          message: 'configview.profileUpdated',
+          type: 'success',
+          timer: 3000,
+        }
+        this.showToastWithProps(toast)
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.message,
+          type: 'danger',
+          timer: 3000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
     ...mapActions('user', ['setUser']),
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToastWithProps']),
   },
 })
 </script>

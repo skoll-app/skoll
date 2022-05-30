@@ -18,6 +18,8 @@ export default interface User {
   totalArchievements?: number
   totalSusbscriberMerchant?: number
   totalpublications?: number;
+  description?: string
+  age?: number
 }
 
 export interface Identification {
@@ -26,8 +28,8 @@ export interface Identification {
 }
 
 export interface Address {
-  id: null
-  zip_code: null
-  street_name: null
-  street_number: null
+  id?: string
+  zip_code?: string
+  street_name?: string
+  street_number?: string
 }

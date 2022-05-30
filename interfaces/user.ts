@@ -1,18 +1,18 @@
 export default interface User {
+  about?: string
   address?: Address
   amountAvailable?: number
   archivementsAvailable?: Array<any>
   cards?: Array<any>
   cellPhone?: string
   cityName?: string
-  decription?: string
   defaultCard?: null
   email: string
   firstName: string
   gender: string
   identification?: Identification
   interesGender: string
-  isVerify?: true
+  isVerify?: boolean
   lastName: string
   logo?: string;
   totalArchievements?: number

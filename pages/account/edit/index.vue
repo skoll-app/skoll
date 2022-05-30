@@ -19,7 +19,7 @@
           </button>
         </div>
       </div>
-      <ValidationObserver v-slot="{}">
+      <ValidationObserver v-slot="{ invalid }">
         <div class="row">
           <div class="col-12 col-md-6">
             <TextInput
@@ -83,7 +83,7 @@
               rules="required"
               class="mb-2"
               addVeeClasses
-              v-model="user.cityName"
+              v-model="city"
               :withI18n="false"
             />
           </div>
@@ -105,7 +105,7 @@
               :options="genderOptions"
               rules="required"
               class="mb-2"
-              v-model="user.gender"
+              v-model="gender"
               addVeeClasses
             />
           </div>
@@ -115,7 +115,7 @@
               :options="interestOptions"
               rules="required"
               class="mb-2"
-              v-model="user.interesGender"
+              v-model="interesGender"
               addVeeClasses
             />
           </div>
@@ -128,7 +128,7 @@
               rules="required"
               class="mb-2"
               addVeeClasses
-              v-model="user.identification.type"
+              v-model="identification.type"
             />
           </div>
           <div class="col-lg-6">
@@ -138,12 +138,17 @@
               :placeholder="$t('registerview.form.document')"
               rules="required|numeric"
               addVeeClasses
-              v-model="user.identification.number"
+              v-model="identification.number"
             />
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-success" @click="saveUserData">
+          <button
+            type="button"
+            class="btn btn-success"
+            :disabled="invalid"
+            @click="saveUserData"
+          >
             {{ $t('configview.save') }}
           </button>
         </div>
@@ -237,34 +242,23 @@ export default Vue.extend({
       },
     ] as SelectOption[],
     user: {} as any,
+    city: {} as SelectOption,
+    gender: {} as SelectOption,
+    interesGender: {} as SelectOption,
+    identification: {} as any,
   }),
   async asyncData(context) {
     try {
       const userData = await context.$apiAuth.get('/client/')
-      const userAux = userData.data.data
       return {
-        user: {
-          ...userAux,
-          gender: { label: userAux.gender, value: userAux.gender },
-          cityName: { label: userAux.cityName, value: userAux.cityName },
-          interesGender: {
-            label: userAux.interesGender,
-            value: userAux.interesGender,
-          },
-          identification: {
-            type: {
-              label: userAux.identification.type,
-              value: userAux.identification.type,
-            },
-            number: userAux.identification.number
-          },
-        },
+        user: userData.data.data,
       }
     } catch (error) {
       return {}
     }
   },
   beforeMount() {
+    this.formatFields()
     this.setUser(this.user)
   },
   methods: {
@@ -277,13 +271,13 @@ export default Vue.extend({
           street_name: 'str',
           street_number: 'str_n',
         },
-        gender: this.user.gender.value,
+        gender: this.gender.value,
         identification: {
-          type: this.user.identification.type.value,
-          number: this.user.identification.number,
+          type: this.identification.type.value,
+          number: this.identification.number,
         },
-        interesGender: this.user.interesGender.value,
-        cityName: this.user.cityName.value,
+        interesGender: this.interesGender.value,
+        cityName: this.city.value,
         lat: 0,
         lon: 0,
       }
@@ -307,6 +301,23 @@ export default Vue.extend({
           timer: 3000,
         }
         this.showToastWithProps(toast)
+      }
+    },
+    formatFields() {
+      const user = { ...this.user }
+      const { cityName, gender, interesGender, identification } = user
+      this.city = { label: cityName, value: cityName }
+      this.gender = { label: gender, value: gender }
+      this.interesGender = {
+        label: interesGender,
+        value: interesGender,
+      }
+      this.identification = {
+        type: {
+          label: identification.type,
+          value: identification.type,
+        },
+        number: identification.number,
       }
     },
     ...mapActions('user', ['setUser']),

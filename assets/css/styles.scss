@@ -1,0 +1,93 @@
+@import "./variables";
+@import "~bootstrap/scss/bootstrap";
+@import "./bootswatch";
+@import "./icons";
+
+.btn-facebook {
+  color: #fff;
+  background-color: #4267b2;
+  border-color: #4267b2;
+}
+
+.btn-facebook:hover {
+  color: #fff;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  width: 2.8125rem;
+  height: 2.8125rem;
+}
+
+.center-hv {
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.divider::after,
+.divider::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #000;
+}
+
+hr {
+  margin: 0;
+}
+
+.pages-content {
+  padding-top: 76px;
+
+  &__section,
+  &__section_gray {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  &__section_gray {
+    background-color: #f7f8f9;
+  }
+
+  .vp-page {
+    height: calc(100vh - 76px);
+  }
+
+  .no-centered {
+    padding-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 0;
+
+    &__section,
+    &__section_gray {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .no-centered {
+      padding-top: 76px;
+    }
+  }
+}
+
+.profile-img {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.vm--container {
+  z-index: 9999 !important;
+}

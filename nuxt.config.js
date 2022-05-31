@@ -1,7 +1,7 @@
 import i18n from './static/i18n'
 
 const baseHref = '/skoll/'
-const isDevelop = process.env.NODE_ENV === 'development'
+const isDevelop = false
 
 export default {
   target: 'static',

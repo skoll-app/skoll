@@ -8,6 +8,7 @@ export default {
   router: {
     base: baseHref,
     middleware: ['stats'],
+    linkActiveClass: 'active',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -81,10 +82,6 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
-  },
-
-  router: {
-    linkActiveClass: 'active',
   },
 
   loading: {

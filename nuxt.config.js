@@ -6,7 +6,7 @@ const isDevelop = false
 export default {
   target: 'static',
   router: {
-    base: isDevelop ? '' : baseHref,
+    base: baseHref,
     middleware: ['stats'],
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -25,7 +25,7 @@ export default {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: (isDevelop ? '/' : baseHref) + 'favicon.ico',
+        href: baseHref + 'favicon.ico',
       },
     ],
   },
@@ -80,15 +80,15 @@ export default {
   },
 
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000'
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   },
 
   router: {
-    linkActiveClass: 'active'
+    linkActiveClass: 'active',
   },
 
   loading: {
     color: 'white',
-    height: '3px'
-  }
+    height: '3px',
+  },
 }

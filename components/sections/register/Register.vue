@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="col-md-6 d-flex justify-content-center d-none d-md-flex">
-          <img class="img-fluid" src="~/static/assets/img/datafono.png" alt="datafono" />
+          <img class="img-fluid" src="~/assets/img/datafono.png" alt="datafono" />
         </div>
       </div>
     </div>

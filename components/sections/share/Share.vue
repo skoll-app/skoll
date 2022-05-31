@@ -6,7 +6,7 @@
           <img
             class="d-none d-lg-block"
             height="470"
-            src="~/static/assets/img/music.png"
+            src="~/assets/img/music.png"
             alt="music"
           />
         </div>
@@ -15,7 +15,7 @@
             {{ $t('home.sections.share.title') }}
           </h4>
           <div class="align-self-center align-self-lg-end">
-            <img class="img-fluid" src="~/static/assets/img/chat.png" alt="" />
+            <img class="img-fluid" src="~/assets/img/chat.png" alt="" />
             <div class="text-center">
               <p v-html="$t('home.sections.share.match')"></p>
             </div>

@@ -12,7 +12,7 @@
           <div class="sticky-top">
             <div class="card mt-3">
               <img
-                src="~/static/assets/img/mock/ad.png"
+                src="~/assets/img/mock/ad.png"
                 class="card-img-top"
                 alt="..."
               />

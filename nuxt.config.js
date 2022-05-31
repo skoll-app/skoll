@@ -1,12 +1,12 @@
 import i18n from './static/i18n'
 
 const baseHref = '/skoll/'
-const isDevelop = false
+const isDevelop = process.env.NODE_ENV === 'development'
 
 export default {
   target: 'static',
   router: {
-    base: baseHref,
+    base: isDevelop ? '' : baseHref,
     middleware: ['stats'],
     linkActiveClass: 'active',
   },
@@ -26,7 +26,7 @@ export default {
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: baseHref + 'favicon.ico',
+        href: (isDevelop ? '/' : baseHref) + 'favicon.ico',
       },
     ],
   },

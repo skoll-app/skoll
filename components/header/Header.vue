@@ -75,7 +75,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                   <li>
-                    <NuxtLink class="dropdown-item" to="/">{{
+                    <NuxtLink class="dropdown-item" to="/profile">{{
                       $t('header.userMenu.profile')
                     }}</NuxtLink>
                   </li>
@@ -149,7 +149,7 @@ export default Vue.extend({
       return this.$store.state.sidebar.open
     },
     loggedIn(): boolean {
-      return this.user.firstName !== null && this.$cookies.get('token')
+      return true// this.user.firstName !== null && this.$cookies.get('token')
     },
     user(): User {
       return this.$store.state.user

@@ -17,8 +17,9 @@ export default interface User {
   logo?: string;
   totalArchievements?: number
   totalSusbscriberMerchant?: number
-  totalpublications?: number;
+  totalpublications?: number
   age?: number
+  userName?: string
 }
 
 export interface Identification {

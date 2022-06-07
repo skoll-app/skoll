@@ -49,6 +49,11 @@ hr {
   &__section_gray {
     padding-top: 80px;
     padding-bottom: 80px;
+
+    &-secondary {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
   }
 
   &__section_gray {
@@ -70,6 +75,11 @@ hr {
     &__section_gray {
       padding-top: 40px;
       padding-bottom: 40px;
+
+      &-secondary {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
     }
 
     .no-centered {

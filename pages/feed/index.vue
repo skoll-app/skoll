@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-5">
-          <ListStoryCard />
+          <!-- <ListStoryCard /> -->
           <ThinkingCard />
           <PostsList />
         </div>

@@ -70,6 +70,7 @@ export default {
       'nuxt-vuex-localstorage',
       {
         localStorage: ['user'],
+        mode: 'debug',
       },
     ],
     // [

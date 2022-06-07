@@ -22,7 +22,64 @@
             </div>
           </div>
           <hr class="mt-5 mb-3" />
-
+          <div class="row posts-images">
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/1.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/2.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/3.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/4.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/5.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/6.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+            <div class="col-4">
+              <img
+                class="img-fluid"
+                src="assets/img/mock/7.jpg"
+                alt=""
+                v-lazy-load
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -31,8 +88,29 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import User from '~/interfaces/user'
 
-export default Vue.extend({})
+export default Vue.extend({
+  head(): any {
+    return {
+      title: this.user.firstName || 'nada',
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: this.user.userName || 'username',
+          name: `${this.user.firstName} ${this.user.lastName}` || 'name-xx',
+          content: this.user.about || 'about-xx',
+          ogImage: this.user.logo || 'logo-xx',
+        },
+      ],
+    }
+  },
+  computed: {
+    user(): User {
+      return this.$store.state.user
+    },
+  },
+})
 </script>
 
 <style scoped lang="scss">

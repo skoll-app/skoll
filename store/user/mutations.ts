@@ -24,6 +24,7 @@ const mutations: MutationTree<UserState> = {
     state.identification = user.identification
     state.address = user.address
     state.cards = user.cards
+    state.userName = user.userName
   },
 }
 

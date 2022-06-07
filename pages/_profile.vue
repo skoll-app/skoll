@@ -6,16 +6,18 @@
           <div class="d-flex justify-content-center">
             <div class="main-profile-img-container">
               <img
-                src="assets/img/user-3x.png"
+                src="/assets/img/user-3x.png"
                 alt=""
                 class="main-profile-img"
               />
             </div>
             <div class="user-info">
-              <h3>Adan florez bermudez</h3>
-              <p>adanfz</p>
-              <p>88 <span class="text-muted">publicaciones</span></p>
-              <p>Psicologa Cosmica - Plant Based🍁</p>
+              <h3 class="uppercase">
+                {{ user.firstName }} {{ user.lastName }}
+              </h3>
+              <p>{{ user.userName }}</p>
+              <p>{{ user.totalpublications }} <span class="text-muted">publicaciones</span></p>
+              <p>{{ user.about }}</p>
               <NuxtLink class="btn btn-warning btn-sm" to="/account/edit"
                 >Editar perfil</NuxtLink
               >
@@ -26,7 +28,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/1.jpg"
+                src="/assets/img/mock/1.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -34,7 +36,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/2.jpg"
+                src="/assets/img/mock/2.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -42,7 +44,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/3.jpg"
+                src="/assets/img/mock/3.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -50,7 +52,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/4.jpg"
+                src="/assets/img/mock/4.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -58,7 +60,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/5.jpg"
+                src="/assets/img/mock/5.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -66,7 +68,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/6.jpg"
+                src="/assets/img/mock/6.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -74,7 +76,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/7.jpg"
+                src="/assets/img/mock/7.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -91,7 +93,13 @@ import Vue from 'vue'
 import User from '~/interfaces/user'
 
 export default Vue.extend({
-  head(): any {
+  async asyncData({ $apiAuth }) {
+    const userData = await $apiAuth.get('/client/')
+    return {
+      user: userData.data.data,
+    }
+  },
+  head() {
     return {
       title: this.user.firstName || 'nada',
       meta: [
@@ -105,11 +113,9 @@ export default Vue.extend({
       ],
     }
   },
-  computed: {
-    user(): User {
-      return this.$store.state.user
-    },
-  },
+  data: () => ({
+    user: {} as User,
+  }),
 })
 </script>
 

@@ -72,9 +72,13 @@ export default {
         localStorage: ['user'],
       },
     ],
-    ['nuxt-lazy-load', {
-      defaultImage: '/assets/img/placeholder.jpg',
-    }]
+    [
+      'nuxt-lazy-load',
+      {
+        defaultImage:
+          (isDevelop ? '' : baseHref) + '/assets/img/placeholder.jpg',
+      },
+    ],
   ],
   i18n: i18n,
 

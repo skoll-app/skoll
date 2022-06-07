@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[31],{759:function(e,n,t){"use strict";t.r(n);var c=t(0).a.extend({layout:"config"}),o=t(7),component=Object(o.a)(c,(function(){var e=this,n=e.$createElement;return(e._self._c||n)("div",[e._v("Cambiar contraseña")])}),[],!1,null,"468b197b",null);n.default=component.exports}}]);

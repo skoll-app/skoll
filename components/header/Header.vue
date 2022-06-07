@@ -13,7 +13,11 @@
               role="button"
             />
           </div>
-          <NuxtLink to="/" class="navbar-brand mx-2">Skoll</NuxtLink>
+          <NuxtLink
+            :to="loggedIn ? '/feed' : '/'"
+            class="navbar-brand mx-2"
+            >Skoll</NuxtLink
+          >
         </div>
         <div class="d-block d-md-none mobile-btns">
           <SearchIcon />
@@ -75,7 +79,7 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                   <li>
-                    <NuxtLink class="dropdown-item" to="/profile">{{
+                    <NuxtLink class="dropdown-item" :to="`/${user.userName}`">{{
                       $t('header.userMenu.profile')
                     }}</NuxtLink>
                   </li>
@@ -149,7 +153,7 @@ export default Vue.extend({
       return this.$store.state.sidebar.open
     },
     loggedIn(): boolean {
-      return true// this.user.firstName !== null && this.$cookies.get('token')
+      return this.user.firstName !== null && this.$cookies.get('token')
     },
     user(): User {
       return this.$store.state.user

@@ -73,13 +73,13 @@ export default {
         mode: 'debug',
       },
     ],
-    // [
-    //   'nuxt-lazy-load',
-    //   {
-    //     defaultImage:
-    //       (isDevelop ? '' : baseHref) + '/assets/img/placeholder.jpg',
-    //   },
-    // ],
+    [
+      'nuxt-lazy-load',
+      {
+        defaultImage:
+          (isDevelop ? '' : baseHref) + '/assets/img/placeholder.jpg',
+      },
+    ],
   ],
   i18n: i18n,
 

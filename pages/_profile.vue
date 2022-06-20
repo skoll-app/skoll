@@ -6,9 +6,10 @@
           <div class="d-flex justify-content-center">
             <div class="main-profile-img-container">
               <img
-                src="assets/img/user-3x.png"
+                data-src="assets/img/user-3x.png"
                 alt=""
                 class="main-profile-img"
+                v-lazy-load
               />
             </div>
             <div class="user-info">
@@ -28,7 +29,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/1.jpg"
+                data-src="assets/img/mock/1.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -36,7 +37,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/2.jpg"
+                data-src="assets/img/mock/2.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -44,7 +45,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/3.jpg"
+                data-src="assets/img/mock/3.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -52,7 +53,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/4.jpg"
+                data-src="assets/img/mock/4.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -60,7 +61,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/5.jpg"
+                data-src="assets/img/mock/5.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -68,7 +69,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/6.jpg"
+                data-src="assets/img/mock/6.jpg"
                 alt=""
                 v-lazy-load
               />
@@ -76,7 +77,7 @@
             <div class="col-4">
               <img
                 class="img-fluid"
-                src="assets/img/mock/7.jpg"
+                data-src="assets/img/mock/7.jpg"
                 alt=""
                 v-lazy-load
               />

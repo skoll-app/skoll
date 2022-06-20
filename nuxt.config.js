@@ -77,7 +77,8 @@ export default {
       'nuxt-lazy-load',
       {
         defaultImage:
-          (isDevelop ? '' : baseHref) + '/assets/img/placeholder.jpg',
+          (isDevelop ? '' : baseHref) + '/assets/img/loading.gif',
+        directiveOnly: true,
       },
     ],
   ],

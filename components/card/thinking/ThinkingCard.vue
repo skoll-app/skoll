@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-thinking">
+  <div class="card card-thinking my-3">
     <div class="card-body">
       <div class="d-flex align-items-center">
         <img

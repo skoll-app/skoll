@@ -1,5 +1,5 @@
 <template>
-  <div class="my-3">
+  <div class="mb-3">
     <PostCard
       :key="i"
       v-for="(post, i) in posts"

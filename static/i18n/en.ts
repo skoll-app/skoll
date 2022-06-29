@@ -162,7 +162,9 @@ const eng = {
     changePassword: {
       title: 'Change password',
     },
-    networkLinking: 'Network linking',
+    networkLinking: {
+      title: 'Network linking'
+    },
     help: 'Help',
     save: 'save',
     profileUpdated: 'Your profile has been updated',

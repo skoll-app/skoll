@@ -19,7 +19,7 @@
               <NuxtLink
                 to="/account/network-linking"
                 class="list-group-item list-group-item-action"
-                >{{ $t('configview.networkLinking') }}</NuxtLink
+                >{{ $t('configview.networkLinking.title') }}</NuxtLink
               >
               <NuxtLink
                 to="/account/help"

@@ -173,7 +173,9 @@ const esp = {
     changePassword: {
       title: 'Cambiar contraseña',
     },
-    networkLinking: 'Vincular redes',
+    networkLinking: {
+      title: 'Vincular redes'
+    },
     help: 'Ayuda',
     save: 'guardar',
     profileUpdated: 'Su perfíl fue actualizado'

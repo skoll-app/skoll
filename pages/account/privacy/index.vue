@@ -3,42 +3,24 @@
     <div class="card-body">
       <h4 class="mb-3" v-html="$t('configview.privacy.title')"></h4>
       <p class="text-muted">{{ $t('configview.privacy.subtitle') }}</p>
-      <div class="form-check form-switch">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="profile"
-          v-model="checkedOpt"
-          :checked="profileChecked"
-        />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
-          >{{$t('configview.privacy.profile')}}</label
-        >
-      </div>
-      <div class="form-check form-switch">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="notifications"
-          v-model="checkedOpt"
-          :checked="notificationsChecked"
-        />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
-          >{{ $t('configview.privacy.notifications') }}</label
-        >
-      </div>
-      <div class="form-check form-switch">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value="invitations"
-          v-model="checkedOpt"
-          :checked="invitationsChecked"
-        />
-        <label class="form-check-label" for="flexSwitchCheckDefault"
-          >{{ $t('configview.privacy.invitations') }}</label
-        >
-      </div>
+      <CheckboxInput
+        inputValue="profile"
+        v-model="checkedOpt"
+        :checked="profileChecked"
+        label="configview.privacy.profile"
+      />
+      <CheckboxInput
+        inputValue="notifications"
+        v-model="checkedOpt"
+        :checked="notificationsChecked"
+        label="configview.privacy.notifications"
+      />
+      <CheckboxInput
+        inputValue="invitations"
+        v-model="checkedOpt"
+        :checked="invitationsChecked"
+        label="configview.privacy.invitations"
+      />
       <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-success">
           {{ $t('configview.save') }}
@@ -50,8 +32,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import CheckboxInput from '~/components/ux/checkbox/CheckboxInput.vue'
 
 export default Vue.extend({
+  components: { CheckboxInput },
   layout: 'config',
   data: () => ({
     checkedOpt: ['profile', 'notifications', 'invitations'] as string[],

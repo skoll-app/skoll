@@ -13,7 +13,8 @@ import {
   digits,
   alpha_spaces,
   max,
-  numeric
+  numeric,
+  confirmed
 } from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
 import es from 'vee-validate/dist/locale/es.json'
@@ -27,6 +28,7 @@ extend('digits', digits)
 extend('alpha_spaces', alpha_spaces)
 extend('max', max)
 extend('numeric', numeric)
+extend('confirmed', confirmed)
 
 configure({
   classes: {

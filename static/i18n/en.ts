@@ -163,7 +163,11 @@ const eng = {
       title: 'Change password',
     },
     networkLinking: {
-      title: 'Network linking'
+      title: 'Network linking',
+      facebook: 'Facebook',
+      instagram: 'Instagram',
+      tiktok: 'Tiktok',
+      onlyfans: 'OnlyFans',
     },
     help: 'Help',
     save: 'save',
@@ -176,6 +180,9 @@ const eng = {
     newPassword: 'New password',
     confirmPassword: 'Confirm password',
     save: 'save',
+    validations: {
+      url: 'It must be a valid url: https://....',
+    },
   },
 }
 

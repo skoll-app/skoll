@@ -168,17 +168,21 @@ const esp = {
       maxSize: 'Tamaño maximo 2 mb.',
       extensions: 'Imagenes con extensiones .png, .jpeg o .jpg',
       invalidExt: 'Archivo con extensión invalida',
-      passwordUpdated: 'Contraseña actualizada'
+      passwordUpdated: 'Contraseña actualizada',
     },
     changePassword: {
       title: 'Cambiar contraseña',
     },
     networkLinking: {
-      title: 'Vincular redes'
+      title: 'Vincular redes',
+      facebook: 'Facebook',
+      instagram: 'Instagram',
+      tiktok: 'Tiktok',
+      onlyfans: 'OnlyFans',
     },
     help: 'Ayuda',
     save: 'guardar',
-    profileUpdated: 'Su perfíl fue actualizado'
+    profileUpdated: 'Su perfíl fue actualizado',
   },
   success: 'Exito',
   error: 'Error',
@@ -187,7 +191,10 @@ const esp = {
     newPassword: 'Nueva contraseña',
     confirmPassword: 'Confirmar contraseña',
     save: 'guardar',
-  }
+    validations: {
+      url: 'Debe ser una url válida: https://....',
+    },
+  },
 }
 
 export default esp

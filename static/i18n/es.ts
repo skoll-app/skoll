@@ -162,15 +162,21 @@ const esp = {
     },
   },
   configview: {
-    editProfile: 'Editar perfíl',
+    editProfile: {
+      title: 'Editar perfíl',
+      changeProfileImg: 'Cambiar imagen',
+      maxSize: 'Tamaño maximo 2 mb.',
+      extensions: 'Imagenes con extensiones .png, .jpeg o .jpg',
+      invalidExt: 'Archivo con extensión invalida'
+    },
     changePassword: 'Cambiar contraseña',
     networkLinking: 'Vincular redes',
     help: 'Ayuda',
-    changeProfileImg: 'Cambiar imagen',
     save: 'guardar',
     profileUpdated: 'Su perfíl fue actualizado'
   },
-  success: 'Exito'
+  success: 'Exito',
+  error: 'Error'
 }
 
 export default esp

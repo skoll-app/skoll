@@ -170,6 +170,13 @@ const eng = {
       onlyfans: 'OnlyFans',
     },
     help: 'Help',
+    privacy: {
+      title: 'Privacy and security',
+      subtitle: 'Configure all your privacy settings on the platform as you wish.',
+      profile: 'Visible profile',
+      notifications: 'Notifications',
+      invitations: 'Allow invitations'
+    },
     save: 'save',
     profileUpdated: 'Your profile has been updated',
   },

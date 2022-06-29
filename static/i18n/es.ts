@@ -181,6 +181,13 @@ const esp = {
       onlyfans: 'OnlyFans',
     },
     help: 'Ayuda',
+    privacy: {
+      title: 'Privacidad y seguridad',
+      subtitle: 'Configura a tu gusto toda tu privacidad en la plataforma.',
+      profile: 'Perfíl visible',
+      notifications: 'Notificaciones',
+      invitations: 'Recibir invitaciones'
+    },
     save: 'guardar',
     profileUpdated: 'Su perfíl fue actualizado',
   },

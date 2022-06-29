@@ -53,7 +53,7 @@ export default ({ app }) => {
   })
   extend('password', (value) => {
     let pattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?./¿])[A-Za-z\d#$@!%&*?./¿]{8,30}$/
     if (pattern.test(value)) {
       return true
     }

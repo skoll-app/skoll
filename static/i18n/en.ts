@@ -158,14 +158,22 @@ const eng = {
       extensions: 'Images with extensions .png, .jpeg or .jpg',
       invalidExt: 'File with invalid extension'
     },
-    changePassword: 'Change password',
+    changePassword: {
+      title: 'Change password'
+    },
     networkLinking: 'Network linking',
     help: 'Help',
     save: 'save',
     profileUpdated: 'Your profile has been updated',
   },
   success: 'Success',
-  error: 'Error'
+  error: 'Error',
+  form: {
+    currentPassword: 'Current password',
+    newPassword: 'New password',
+    confirmPassword: 'Confirm password',
+    save: 'save',
+  }
 }
 
 export default eng

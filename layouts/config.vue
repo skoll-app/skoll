@@ -14,7 +14,7 @@
               <NuxtLink
                 to="/account/change-password"
                 class="list-group-item list-group-item-action"
-                >{{ $t('configview.changePassword') }}</NuxtLink
+                >{{ $t('configview.changePassword.title') }}</NuxtLink
               >
               <NuxtLink
                 to="/account/network-linking"

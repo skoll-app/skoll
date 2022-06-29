@@ -167,16 +167,25 @@ const esp = {
       changeProfileImg: 'Cambiar imagen',
       maxSize: 'Tamaño maximo 2 mb.',
       extensions: 'Imagenes con extensiones .png, .jpeg o .jpg',
-      invalidExt: 'Archivo con extensión invalida'
+      invalidExt: 'Archivo con extensión invalida',
+      passwordUpdated: 'Contraseña actualizada'
     },
-    changePassword: 'Cambiar contraseña',
+    changePassword: {
+      title: 'Cambiar contraseña',
+    },
     networkLinking: 'Vincular redes',
     help: 'Ayuda',
     save: 'guardar',
     profileUpdated: 'Su perfíl fue actualizado'
   },
   success: 'Exito',
-  error: 'Error'
+  error: 'Error',
+  form: {
+    currentPassword: 'Contraseña actual',
+    newPassword: 'Nueva contraseña',
+    confirmPassword: 'Confirmar contraseña',
+    save: 'guardar',
+  }
 }
 
 export default esp

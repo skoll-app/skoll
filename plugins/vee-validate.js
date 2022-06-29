@@ -13,7 +13,8 @@ import {
   digits,
   alpha_spaces,
   max,
-  numeric
+  numeric,
+  confirmed
 } from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
 import es from 'vee-validate/dist/locale/es.json'
@@ -27,6 +28,7 @@ extend('digits', digits)
 extend('alpha_spaces', alpha_spaces)
 extend('max', max)
 extend('numeric', numeric)
+extend('confirmed', confirmed)
 
 configure({
   classes: {
@@ -51,7 +53,7 @@ export default ({ app }) => {
   })
   extend('password', (value) => {
     let pattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?./¿])[A-Za-z\d#$@!%&*?./¿]{8,30}$/
     if (pattern.test(value)) {
       return true
     }

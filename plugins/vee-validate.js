@@ -14,7 +14,7 @@ import {
   alpha_spaces,
   max,
   numeric,
-  confirmed
+  confirmed,
 } from 'vee-validate/dist/rules'
 import en from 'vee-validate/dist/locale/en.json'
 import es from 'vee-validate/dist/locale/es.json'
@@ -58,5 +58,14 @@ export default ({ app }) => {
       return true
     }
     return app.i18n.t('passwordValidation')
+  })
+
+  extend('url', (value) => {
+    const pattern =
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+    if (pattern.test(value)) {
+      return true
+    }
+    return app.i18n.t('form.validations.url')
   })
 }

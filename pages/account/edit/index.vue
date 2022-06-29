@@ -1,159 +1,202 @@
 <template>
-  <div class="card">
-    <div class="card-body">
-      <h4 class="mb-3" v-html="$t('configview.editProfile')"></h4>
-      <div class="d-flex align-items-center flex-column mb-3">
-        <img
-          height="150"
-          width="150"
-          :src="user.logo"
-          :alt="user.logo"
-          class="mb-2"
-        />
-        <div class="d-flex">
-          <button type="button" class="btn btn-outline-secondary me-2">
-            {{ $t('configview.changeProfileImg') }}
-          </button>
-          <button type="button" class="btn btn-danger">
-            <TrashIcon class="icon text-white" />
-          </button>
+  <div>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="mb-3" v-html="$t('configview.editProfile.title')"></h4>
+        <div class="d-flex align-items-center flex-column mb-3">
+          <div class="d-flex flex-column align-items-center">
+            <img
+              height="150"
+              width="150"
+              :src="user.logo"
+              :alt="user.logo"
+              class="mb-2 img-profile"
+            />
+            <p class="mb-0 text-danger"><small>{{ $t('configview.editProfile.maxSize') }}</small></p>
+            <p><small>{{ $t('configview.editProfile.extensions') }}</small></p>
+          </div>
+          <div class="d-flex">
+            <input
+              type="file"
+              name=""
+              id="input_file"
+              accept="image/*"
+              ref="file"
+              @change="changeFile"
+              hidden
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary me-2"
+              @click="openFile"
+            >
+              {{ $t('configview.editProfile.changeProfileImg') }}
+            </button>
+            <button type="button" class="btn btn-danger">
+              <TrashIcon class="icon text-white" />
+            </button>
+          </div>
         </div>
+        <ValidationObserver v-slot="{ invalid }">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.name')"
+                :placeholder="$t('registerview.form.name')"
+                rules="required|alpha_spaces"
+                addVeeClasses
+                v-model="user.firstName"
+              />
+            </div>
+            <div class="col-12 col-md-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.lastname')"
+                :placeholder="$t('registerview.form.lastname')"
+                rules="required|alpha_spaces"
+                addVeeClasses
+                v-model="user.lastName"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.email')"
+                :placeholder="$t('registerview.form.email')"
+                rules="required|email"
+                addVeeClasses
+                v-model="user.email"
+              />
+            </div>
+            <div class="col-lg-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.phone')"
+                :placeholder="$t('registerview.form.phone')"
+                rules="required|digits:10"
+                addVeeClasses
+                v-model="user.cellPhone"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.country')"
+                :placeholder="$t('registerview.form.country')"
+                rules="required"
+                addVeeClasses
+                disabled
+                v-model="country"
+              />
+            </div>
+            <div class="col-lg-6">
+              <Select
+                :name="$t('registerview.form.city')"
+                :options="selectOptions"
+                rules="required"
+                class="mb-2"
+                addVeeClasses
+                v-model="city"
+                :withI18n="false"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.age')"
+                :placeholder="$t('registerview.form.age')"
+                rules="required|max:2|numeric"
+                addVeeClasses
+                v-model="user.age"
+              />
+            </div>
+            <div class="col-md-4">
+              <Select
+                :name="$t('registerview.form.gender')"
+                :options="genderOptions"
+                rules="required"
+                class="mb-2"
+                v-model="gender"
+                addVeeClasses
+              />
+            </div>
+            <div class="col-md-4">
+              <Select
+                :name="$t('registerview.form.interest')"
+                :options="interestOptions"
+                rules="required"
+                class="mb-2"
+                v-model="interesGender"
+                addVeeClasses
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <Select
+                :name="$t('registerview.form.documentType')"
+                :options="documentTypeOptions"
+                rules="required"
+                class="mb-2"
+                addVeeClasses
+                v-model="identification.type"
+              />
+            </div>
+            <div class="col-lg-6">
+              <TextInput
+                class="mb-2"
+                :name="$t('registerview.form.document')"
+                :placeholder="$t('registerview.form.document')"
+                rules="required|numeric"
+                addVeeClasses
+                v-model="identification.number"
+              />
+            </div>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn btn-success"
+              :disabled="invalid"
+              @click="saveUserData"
+            >
+              {{ $t('configview.save') }}
+            </button>
+          </div>
+        </ValidationObserver>
       </div>
-      <ValidationObserver v-slot="{ invalid }">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.name')"
-              :placeholder="$t('registerview.form.name')"
-              rules="required|alpha_spaces"
-              addVeeClasses
-              v-model="user.firstName"
-            />
-          </div>
-          <div class="col-12 col-md-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.lastname')"
-              :placeholder="$t('registerview.form.lastname')"
-              rules="required|alpha_spaces"
-              addVeeClasses
-              v-model="user.lastName"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.email')"
-              :placeholder="$t('registerview.form.email')"
-              rules="required|email"
-              addVeeClasses
-              v-model="user.email"
-            />
-          </div>
-          <div class="col-lg-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.phone')"
-              :placeholder="$t('registerview.form.phone')"
-              rules="required|digits:10"
-              addVeeClasses
-              v-model="user.cellPhone"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.country')"
-              :placeholder="$t('registerview.form.country')"
-              rules="required"
-              addVeeClasses
-              disabled
-              v-model="country"
-            />
-          </div>
-          <div class="col-lg-6">
-            <Select
-              :name="$t('registerview.form.city')"
-              :options="selectOptions"
-              rules="required"
-              class="mb-2"
-              addVeeClasses
-              v-model="city"
-              :withI18n="false"
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.age')"
-              :placeholder="$t('registerview.form.age')"
-              rules="required|max:2|numeric"
-              addVeeClasses
-              v-model="user.age"
-            />
-          </div>
-          <div class="col-md-4">
-            <Select
-              :name="$t('registerview.form.gender')"
-              :options="genderOptions"
-              rules="required"
-              class="mb-2"
-              v-model="gender"
-              addVeeClasses
-            />
-          </div>
-          <div class="col-md-4">
-            <Select
-              :name="$t('registerview.form.interest')"
-              :options="interestOptions"
-              rules="required"
-              class="mb-2"
-              v-model="interesGender"
-              addVeeClasses
-            />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6">
-            <Select
-              :name="$t('registerview.form.documentType')"
-              :options="documentTypeOptions"
-              rules="required"
-              class="mb-2"
-              addVeeClasses
-              v-model="identification.type"
-            />
-          </div>
-          <div class="col-lg-6">
-            <TextInput
-              class="mb-2"
-              :name="$t('registerview.form.document')"
-              :placeholder="$t('registerview.form.document')"
-              rules="required|numeric"
-              addVeeClasses
-              v-model="identification.number"
-            />
-          </div>
-        </div>
-        <div class="d-flex justify-content-end">
-          <button
-            type="button"
-            class="btn btn-success"
-            :disabled="invalid"
-            @click="saveUserData"
-          >
-            {{ $t('configview.save') }}
-          </button>
-        </div>
-      </ValidationObserver>
     </div>
+    <modal name="crop-profile-img" :width="'40%'" :height="'80%'">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center p-4"
+      >
+        <vue-cropper
+          class="vue-cropper"
+          ref="cropper"
+          :src="imgSrc"
+          :aspect-ratio="1"
+          preview=".preview"
+          drag-mode="crop"
+          :min-crop-box-width="100"
+          :min-crop-box-height="100"
+          :crop-box-resizable="false"
+          :view-mode="3"
+          :background="false"
+        >
+        </vue-cropper>
+
+        <button type="button" class="btn btn-primary mt-2" @click="crop">
+          Recortar foto
+        </button>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -246,6 +289,8 @@ export default Vue.extend({
     gender: {} as SelectOption,
     interesGender: {} as SelectOption,
     identification: {} as any,
+    profileImg: '',
+    imgSrc: '',
   }),
   async asyncData(context) {
     try {
@@ -320,6 +365,93 @@ export default Vue.extend({
         number: identification.number,
       }
     },
+    openFile() {
+      document.getElementById('input_file')!.click()
+    },
+    changeFile() {
+      // @ts-ignore
+      this.profileImg = this.$refs.file.files[0]
+      // @ts-ignore
+      const imgValue = this.$refs.file.value
+      var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i
+      if (!allowedExtensions.exec(imgValue)) {
+        const toast: Toast = {
+          title: 'error',
+          message: 'configview.editProfile.invalidExt',
+          type: 'danger',
+          timer: 6000,
+        }
+        this.showToastWithProps(toast)
+        this.profileImg = ''
+        return false
+      } else {
+        this.submitFileToCut()
+      }
+    },
+    crop() {
+      // @ts-ignore
+      this.$refs.cropper
+        // @ts-ignore
+        .getCroppedCanvas({
+          width: 200,
+          height: 200,
+        })
+        .toBlob((blob: any) => {
+          const formData = new FormData()
+          formData.append('file', blob)
+          formData.append('description', '')
+          this.submitProfilePic(formData)
+        })
+    },
+    async submitProfilePic(formData: any) {
+      try {
+        // @ts-ignore
+        this.$modal.hide('crop-profile-img')
+        this.showLoading()
+        const headers = { 'Content-Type': 'multipart/form-data' }
+        await this.$apiAuth.post('/client/update/logo', formData, {
+          headers,
+        })
+        this.hideLoading()
+        location.reload()
+      } catch (error: any) {
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    async submitFileToCut() {
+      try {
+        this.showLoading()
+        const formData = new FormData()
+        formData.append('file', this.profileImg)
+        const headers = { 'Content-Type': 'multipart/form-data' }
+        const res = await this.$apiAuth.post(
+          '/client/create/multimedia/cut',
+          formData,
+          {
+            headers,
+          }
+        )
+        this.imgSrc = res.data.data
+        // @ts-ignore
+        this.$modal.show('crop-profile-img')
+        this.hideLoading()
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'Error',
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
     ...mapActions('user', ['setUser']),
     ...mapActions('loading', ['showLoading', 'hideLoading']),
     ...mapActions('toast', ['showToastWithProps']),
@@ -327,4 +459,14 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.vue-cropper {
+  max-height: 80%;
+  max-width: 100%;
+  width: 300px;
+}
+
+.img-profile {
+  border-radius: 50%;
+}
+</style>

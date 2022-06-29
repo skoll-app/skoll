@@ -17,12 +17,11 @@
                 <TextInput
                   :name="$t('form.currentPassword')"
                   v-model="currentPassword"
-                  :type="passwordInputType"
+                  type="password"
                   addVeeClasses
                   rules="required"
                   inputGroup
                   isPasswordType
-                  @btnClick="btnAction"
                 />
               </div>
             </div>
@@ -89,13 +88,7 @@ export default Vue.extend({
     currentPassword: '',
     newPassword: '',
     confirmPassword: '',
-    showPassword: false,
   }),
-  computed: {
-    passwordInputType(): string {
-      return this.showPassword ? 'text' : 'password'
-    },
-  },
   methods: {
     async updatePassword() {
       try {
@@ -130,9 +123,6 @@ export default Vue.extend({
       this.confirmPassword = ''
       // @ts-ignore
       this.$refs.updatePasswordForm.reset()
-    },
-    btnAction() {
-      this.showPassword = !this.showPassword
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),
     ...mapActions('toast', ['showToast', 'hideToast', 'showToastWithProps']),

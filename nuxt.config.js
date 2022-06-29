@@ -46,7 +46,7 @@ export default {
     '~/plugins/api.js',
     '~/plugins/filters.js',
     '~plugins/vue-js-modal.js',
-    // { src: '~/plugins/vue-cropper', ssr: false }
+    '~/plugins/vue-cropper',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -76,8 +76,7 @@ export default {
     [
       'nuxt-lazy-load',
       {
-        defaultImage:
-          (isDevelop ? '' : baseHref) + '/assets/img/loading.gif',
+        defaultImage: (isDevelop ? '' : baseHref) + '/assets/img/loading.gif',
         directiveOnly: true,
       },
     ],

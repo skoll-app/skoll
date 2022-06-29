@@ -47,6 +47,7 @@ import Toast from '~/components/ux/toast/Toast.vue'
 
 export default Vue.extend({
   components: { Loading, Header, Toast },
+  middleware: ['auth'],
 })
 </script>
 

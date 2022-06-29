@@ -1,4 +1,4 @@
-export default function ({ redirect, app, store }) {
+export default function ({ redirect, app }) {
   if (!app.$cookies.get('token')) {
     redirect('/')
   }

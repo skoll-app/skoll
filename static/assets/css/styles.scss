@@ -101,3 +101,8 @@ hr {
 .vm--container {
   z-index: 9999 !important;
 }
+
+.cropper-view-box,
+.cropper-face {
+  border-radius: 50% !important;
+}

@@ -9,7 +9,7 @@
               <NuxtLink
                 to="/account/edit"
                 class="list-group-item list-group-item-action"
-                >{{ $t('configview.editProfile') }}
+                >{{ $t('configview.editProfile.title') }}
               </NuxtLink>
               <NuxtLink
                 to="/account/change-password"

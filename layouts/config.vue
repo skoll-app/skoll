@@ -26,6 +26,11 @@
                 class="list-group-item list-group-item-action"
                 >{{ $t('configview.help') }}</NuxtLink
               >
+              <NuxtLink
+                to="/account/privacy"
+                class="list-group-item list-group-item-action"
+                >{{ $t('configview.privacy.title') }}</NuxtLink
+              >
             </div>
           </div>
           <div class="col-md-9">

@@ -167,7 +167,8 @@ const esp = {
       changeProfileImg: 'Cambiar imagen',
       maxSize: 'Tamaño maximo 2 mb.',
       extensions: 'Imagenes con extensiones .png, .jpeg o .jpg',
-      invalidExt: 'Archivo con extensión invalida'
+      invalidExt: 'Archivo con extensión invalida',
+      passwordUpdated: 'Contraseña actualizada'
     },
     changePassword: {
       title: 'Cambiar contraseña',

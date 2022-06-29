@@ -156,10 +156,11 @@ const eng = {
       changeProfileImg: 'Change picture',
       maxSize: 'Maximum size 2 mb.',
       extensions: 'Images with extensions .png, .jpeg or .jpg',
-      invalidExt: 'File with invalid extension'
+      invalidExt: 'File with invalid extension',
+      passwordUpdated: 'Password updated',
     },
     changePassword: {
-      title: 'Change password'
+      title: 'Change password',
     },
     networkLinking: 'Network linking',
     help: 'Help',
@@ -173,7 +174,7 @@ const eng = {
     newPassword: 'New password',
     confirmPassword: 'Confirm password',
     save: 'save',
-  }
+  },
 }
 
 export default eng

@@ -151,15 +151,21 @@ const eng = {
     },
   },
   configview: {
-    editProfile: 'Edit profile',
+    editProfile: {
+      title: 'Edit profile',
+      changeProfileImg: 'Change picture',
+      maxSize: 'Maximum size 2 mb.',
+      extensions: 'Images with extensions .png, .jpeg or .jpg',
+      invalidExt: 'File with invalid extension'
+    },
     changePassword: 'Change password',
     networkLinking: 'Network linking',
     help: 'Help',
-    changeProfileImg: 'Change picture',
     save: 'save',
     profileUpdated: 'Your profile has been updated',
   },
   success: 'Success',
+  error: 'Error'
 }
 
 export default eng

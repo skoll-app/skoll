@@ -25,7 +25,23 @@ const mutations: MutationTree<UserState> = {
     state.address = user.address
     state.cards = user.cards
     state.userName = user.userName
+    state.urlFacebook = user.urlFacebook
+    state.urlInstagram = user.urlInstagram
+    state.urlOnlyfans = user.urlOnlyfans
+    state.urlTikTok = user.urlTikTok
   },
+  [UserTypes.SET_FACEBOOK]: (state, facebook: string) => {
+    state.urlFacebook = facebook
+  },
+  [UserTypes.SET_INSTAGRAM]: (state, instagram: string) => {
+    state.urlInstagram = instagram
+  },
+  [UserTypes.SET_ONLYFANS]: (state, onlyfans: string) => {
+    state.urlOnlyfans = onlyfans
+  },
+  [UserTypes.SET_TIKTOK]: (state, tiktok: string) => {
+    state.urlTikTok = tiktok
+  }
 }
 
 export default mutations

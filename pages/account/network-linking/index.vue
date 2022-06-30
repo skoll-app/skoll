@@ -66,7 +66,12 @@
           </div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="button" class="btn btn-success" :disabled="invalid">
+          <button
+            type="button"
+            class="btn btn-success"
+            :disabled="invalid"
+            @click="saveSocialMedia"
+          >
             {{ $t('form.save') }}
           </button>
         </div>
@@ -77,8 +82,11 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 
 import TextInput from '~/components/ux/input/TextInput.vue'
+import Toast from '~/interfaces/toast'
+import User from '~/interfaces/user'
 
 export default Vue.extend({
   layout: 'config',
@@ -87,8 +95,60 @@ export default Vue.extend({
     facebook: '',
     instagram: '',
     tiktok: '',
-    onlyfans: ''
+    onlyfans: '',
   }),
+  computed: {
+    user(): User {
+      return this.$store.state.user
+    },
+  },
+  mounted() {
+    this.initSocialMedia()
+  },
+  methods: {
+    initSocialMedia() {
+      this.facebook = this.user.urlFacebook || ''
+      this.instagram = this.user.urlInstagram || ''
+      this.tiktok = this.user.urlTikTok || ''
+      this.onlyfans = this.user.urlOnlyfans || ''
+    },
+    async saveSocialMedia() {
+      try {
+        this.showLoading()
+        await this.$apiAuth.put('/client/update/social/network', {
+          urlFacebook: this.facebook,
+          urlInstagram: this.instagram,
+          urlOnlyfans: this.onlyfans,
+          urlTikTok: this.tiktok,
+        })
+        this.setSocialMedias({
+          facebook: this.facebook,
+          instagram: this.instagram,
+          tiktok: this.tiktok,
+          onlyfans: this.onlyfans,
+        })
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'success',
+          message: 'configview.networkLinking.updated',
+          type: 'success',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      } catch (error: any) {
+        const toast: Toast = {
+          title: 'error',
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
+    ...mapActions('toast', ['showToastWithProps']),
+    ...mapActions('user', ['setSocialMedias']),
+  },
 })
 </script>
 

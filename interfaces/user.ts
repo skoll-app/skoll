@@ -14,12 +14,16 @@ export default interface User {
   interesGender: string
   isVerify?: boolean
   lastName: string
-  logo?: string;
+  logo?: string
   totalArchievements?: number
   totalSusbscriberMerchant?: number
   totalpublications?: number
   age?: number
   userName?: string
+  urlFacebook?: string
+  urlInstagram?: string
+  urlOnlyfans?: string
+  urlTikTok?: string
 }
 
 export interface Identification {

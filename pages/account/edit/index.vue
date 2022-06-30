@@ -167,7 +167,7 @@
               :disabled="invalid"
               @click="saveUserData"
             >
-              {{ $t('configview.save') }}
+              {{ $t('form.save') }}
             </button>
           </div>
         </ValidationObserver>

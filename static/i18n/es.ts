@@ -179,7 +179,7 @@ const esp = {
       instagram: 'Instagram',
       tiktok: 'Tiktok',
       onlyfans: 'OnlyFans',
-      updated: 'Se actualizaron las redes sociales'
+      updated: 'Se actualizaron las redes sociales',
     },
     help: 'Ayuda',
     privacy: {
@@ -187,9 +187,9 @@ const esp = {
       subtitle: 'Configura a tu gusto toda tu privacidad en la plataforma.',
       profile: 'Perfíl visible',
       notifications: 'Notificaciones',
-      invitations: 'Recibir invitaciones'
+      invitations: 'Recibir invitaciones',
+      updated: 'Se actualizaron los parametros de privacidad',
     },
-    save: 'guardar',
     profileUpdated: 'Su perfíl fue actualizado',
   },
   success: 'Exito',

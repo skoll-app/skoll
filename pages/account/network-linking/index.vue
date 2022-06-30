@@ -136,6 +136,7 @@ export default Vue.extend({
         }
         this.showToastWithProps(toast)
       } catch (error: any) {
+        this.hideLoading()
         const toast: Toast = {
           title: 'error',
           message: error.response.data.message,

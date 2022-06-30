@@ -168,6 +168,7 @@ const eng = {
       instagram: 'Instagram',
       tiktok: 'Tiktok',
       onlyfans: 'OnlyFans',
+      updated: 'Social networks have been updated'
     },
     help: 'Help',
     privacy: {

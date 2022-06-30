@@ -179,6 +179,7 @@ const esp = {
       instagram: 'Instagram',
       tiktok: 'Tiktok',
       onlyfans: 'OnlyFans',
+      updated: 'Se actualizaron las redes sociales'
     },
     help: 'Ayuda',
     privacy: {

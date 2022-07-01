@@ -103,7 +103,9 @@ hr {
   z-index: 9999 !important;
 }
 
-.cropper-view-box,
-.cropper-face {
-  border-radius: 50% !important;
+.rounded-cropper {
+  .cropper-view-box,
+  .cropper-face {
+    border-radius: 50% !important;
+  }
 }

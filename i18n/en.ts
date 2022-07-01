@@ -170,7 +170,12 @@ const eng = {
       onlyfans: 'OnlyFans',
       updated: 'Social networks have been updated',
     },
-    help: 'Help',
+    help: {
+      title: 'Help',
+      successMessage: 'Your message has been sent, we will contact you soon',
+      errorMessage:
+        'We were unable to send your message, please try again later',
+    },
     privacy: {
       title: 'Privacy and security',
       subtitle:
@@ -192,6 +197,8 @@ const eng = {
     validations: {
       url: 'It must be a valid url: https://....',
     },
+    subject: 'Subject',
+    message: 'Message',
   },
 }
 

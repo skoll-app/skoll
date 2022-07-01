@@ -144,7 +144,7 @@ export default Vue.extend({
         const userExists = res.data.data.info.exists
         if (!userExists) {
           const toast: Toast = {
-            title: 'Error',
+            title: 'error',
             message: 'loginview.userNotExist',
             type: 'danger',
             closable: true,

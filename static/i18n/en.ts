@@ -199,6 +199,7 @@ const eng = {
     },
     subject: 'Subject',
     message: 'Message',
+    cancel: 'Cancel',
   },
 }
 

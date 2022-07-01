@@ -63,7 +63,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response?.data?.message || 'Error en el registro',
           type: 'danger',
           timer: 5000,
@@ -83,7 +83,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response?.data?.message || 'Error en el registro',
           type: 'danger',
           timer: 5000,
@@ -105,7 +105,7 @@ export default Vue.extend({
         })
         this.hideLoading()
         const toast: Toast = {
-          title: 'Exito',
+          title: 'success',
           message: 'Registrado',
           type: 'success',
           timer: 5000,
@@ -114,7 +114,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response?.data?.message || 'Error en el registro',
           type: 'danger',
           timer: 5000,

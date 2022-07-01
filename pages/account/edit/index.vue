@@ -340,7 +340,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.message,
           type: 'danger',
           timer: 3000,
@@ -416,7 +416,7 @@ export default Vue.extend({
         location.reload()
       } catch (error: any) {
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,
@@ -444,7 +444,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,

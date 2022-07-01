@@ -62,7 +62,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,
@@ -83,7 +83,7 @@ export default Vue.extend({
         this.error = true
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,
@@ -103,7 +103,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,
@@ -130,7 +130,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,
@@ -151,7 +151,7 @@ export default Vue.extend({
         })
         this.hideLoading()
         const toast: Toast = {
-          title: 'Exito',
+          title: 'success',
           message: 'Contraseña cambiada, por favor inicia sesión',
           type: 'success',
           timer: 10000,
@@ -161,7 +161,7 @@ export default Vue.extend({
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {
-          title: 'Error',
+          title: 'error',
           message: error.response.data.message,
           type: 'danger',
           timer: 5000,

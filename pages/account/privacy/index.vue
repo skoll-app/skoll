@@ -39,8 +39,24 @@ import Toast from '~/interfaces/toast'
 export default Vue.extend({
   components: { CheckboxInput },
   layout: 'config',
+  async asyncData(context) {
+    try {
+      const params = await context.$apiAuth.get(
+        '/skoll-parameter-server-api/support/security/policy/all'
+      )
+      return {
+        params: params.data.data,
+      }
+    } catch (error) {
+      return {}
+    }
+  },
+  beforeMount() {
+    this.initOpts()
+  },
   data: () => ({
-    checkedOpt: ['profile', 'notifications', 'invitations'] as string[],
+    checkedOpt: [] as string[],
+    params: {} as any,
   }),
   computed: {
     profileChecked(): boolean {
@@ -54,6 +70,17 @@ export default Vue.extend({
     },
   },
   methods: {
+    initOpts() {
+      if (this.params.profileViewable) {
+        this.checkedOpt.push('profile')
+      }
+      if (this.params.notifications) {
+        this.checkedOpt.push('notifications')
+      }
+      if (this.params.receiveInvitations) {
+        this.checkedOpt.push('invitations')
+      }
+    },
     async savePrivacy() {
       try {
         this.showLoading()

@@ -24,7 +24,7 @@
               <NuxtLink
                 to="/account/help"
                 class="list-group-item list-group-item-action"
-                >{{ $t('configview.help') }}</NuxtLink
+                >{{ $t('configview.help.title') }}</NuxtLink
               >
               <NuxtLink
                 to="/account/privacy"

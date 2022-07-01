@@ -181,7 +181,9 @@ const esp = {
       onlyfans: 'OnlyFans',
       updated: 'Se actualizaron las redes sociales',
     },
-    help: 'Ayuda',
+    help: {
+      title: 'Ayuda',
+    },
     privacy: {
       title: 'Privacidad y seguridad',
       subtitle: 'Configura a tu gusto toda tu privacidad en la plataforma.',
@@ -202,6 +204,8 @@ const esp = {
     validations: {
       url: 'Debe ser una url válida: https://....',
     },
+    subject: 'Asunto',
+    message: 'Mensaje',
   },
 }
 

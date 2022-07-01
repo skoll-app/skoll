@@ -170,7 +170,9 @@ const eng = {
       onlyfans: 'OnlyFans',
       updated: 'Social networks have been updated',
     },
-    help: 'Help',
+    help: {
+      title: 'Help',
+    },
     privacy: {
       title: 'Privacy and security',
       subtitle:
@@ -192,6 +194,8 @@ const eng = {
     validations: {
       url: 'It must be a valid url: https://....',
     },
+    subject: 'Subject',
+    message: 'Message',
   },
 }
 

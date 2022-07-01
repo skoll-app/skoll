@@ -172,6 +172,9 @@ const eng = {
     },
     help: {
       title: 'Help',
+      successMessage: 'Your message has been sent, we will contact you soon',
+      errorMessage:
+        'We were unable to send your message, please try again later',
     },
     privacy: {
       title: 'Privacy and security',

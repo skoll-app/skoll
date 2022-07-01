@@ -183,6 +183,10 @@ const esp = {
     },
     help: {
       title: 'Ayuda',
+      successMessage:
+        'Tu mensaje fue enviado, pronto nos contactaremos contigo',
+      errorMessage:
+        'No pudimos enviar tu mensaje, por favor intentalo mas tarde',
     },
     privacy: {
       title: 'Privacidad y seguridad',

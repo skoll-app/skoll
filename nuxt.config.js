@@ -47,6 +47,7 @@ export default {
     '~/plugins/filters.js',
     '~plugins/vue-js-modal.js',
     '~/plugins/vue-cropper',
+    '~/plugins/images',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

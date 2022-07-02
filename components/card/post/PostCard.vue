@@ -22,7 +22,7 @@
       :data-src="post.url"
       :alt="post.id"
       @click="clickable ? $modal.show(`card-${post.id}`) : null"
-      @error="addErrorImg"
+      @error="$addErrorImg($event); clickable = false"
       v-lazy-load
     />
     <div class="card-body">
@@ -152,10 +152,6 @@ export default Vue.extend({
   methods: {
     update(type: string) {
       this.$emit('updateLikes', { type, id: this.post.id })
-    },
-    addErrorImg(e: any) {
-      e.target.src = 'assets/img/error-placeholder.png'
-      this.clickable = false
     },
   },
 })

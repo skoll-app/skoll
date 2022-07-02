@@ -18,10 +18,11 @@
     <img
       class="post-img"
       :class="{ 'cursor-pointer': clickable }"
-      :src="post.url"
+      :data-src="post.url"
       :alt="post.id"
       @click="clickable ? $modal.show(`card-${post.id}`) : null"
       @error="addErrorImg"
+      v-lazy-load
     />
     <div class="card-body">
       <div class="d-flex justify-content-between mb-2">

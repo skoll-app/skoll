@@ -12,6 +12,7 @@ export default Vue.extend({
   layout: 'login',
   components: { Login },
   name: 'IndexPage',
+  middleware: ['auth']
 })
 </script>
 

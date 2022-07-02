@@ -210,6 +210,7 @@ const esp = {
     },
     subject: 'Asunto',
     message: 'Mensaje',
+    cancel: 'Cancelar'
   },
 }
 

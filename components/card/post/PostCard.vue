@@ -4,16 +4,27 @@
       <div class="d-flex align-items-center">
         <img
           class="profile-img me-2"
-          :src="post.user.profileImg || 'assets/img/user.png'"
+          :data-src="post.user.logo || 'assets/img/user.png'"
           alt="profile"
+          v-lazy-load
         />
         <div class="d-flex flex-column user-data">
-          <p class="name">{{ post.user.firstName }}</p>
+          <p class="name text-capitalize">
+            {{ post.user.firstName }} {{ post.user.lastName }}
+          </p>
           <small class="text-muted">{{ post.location }}</small>
         </div>
       </div>
     </div>
-    <img class="post-img" :src="post.imageUrl" :alt="post.id" />
+    <img
+      class="post-img"
+      :class="{ 'cursor-pointer': clickable }"
+      :data-src="post.url"
+      :alt="post.id"
+      @click="clickable ? $modal.show(`card-${post.id}`) : null"
+      @error="addErrorImg"
+      v-lazy-load
+    />
     <div class="card-body">
       <div class="d-flex justify-content-between mb-2">
         <div class="icons-actions">
@@ -23,45 +34,52 @@
             class="icon text-danger icon-no-hover"
             @click="update('remove')"
           />
-          <ChatIcon class="icon" @click="$modal.show(`card-${post.id}`)" />
+          <ChatIcon
+            v-if="false"
+            class="icon"
+            @click="$modal.show(`card-${post.id}`)"
+          />
         </div>
-        <div class="likes">{{ post.likes }} likes</div>
+        <div v-if="post.accountLike" class="likes">
+          {{ post.accountLike }} likes
+        </div>
       </div>
       <p class="text-muted mb-1">
-        <small>{{ post.text }}</small>
+        <small>{{ post.description }}</small>
       </p>
       <u
         class="cursor-pointer"
-        v-if="post.comments && post.comments.length"
+        v-if="post.comments && post.comments.length && false"
         @click="$modal.show(`card-${post.id}`)"
         ><small>{{ $t('feed.posts.seeComments') }}</small></u
       >
     </div>
     <hr />
     <TextInput
+      v-if="false"
       :placeholder="`${$t('feed.posts.addComment')}...`"
       size="sm"
       inputGroup
       :icon="icon"
       v-model="comment"
     />
-    <modal :name="`card-${post.id}`" :width="'80%'" :height="'90%'">
-      <div class="container-fluid ps-0 h-100">
+    <modal :name="`card-${post.id}`" height="500px" width="500px">
+      <div class="container-fluid px-0 h-100">
         <div class="row h-100">
-          <div class="col-md-8 h-100">
+          <div class="col-md-12 h-100">
             <div
               class="bg-primary h-100 d-flex justify-content-center align-items-center"
             >
               <img
                 class="post-img post-img-modal"
-                :src="post.imageUrl"
+                :src="post.url"
                 :alt="post.id"
               />
             </div>
           </div>
-          <div class="col-md-4">
+          <div v-if="false" class="col-md-4">
             <h6 class="mt-3 mb-1">{{ post.user.firstName }}</h6>
-            <div class="py-2 h-75">
+            <div class="py-2 h-75" v-if="false">
               <ListComments :comments="post.comments" />
             </div>
             <div class="py-2 h-25 d-flex w-100">
@@ -79,7 +97,9 @@
                       @click="update('remove')"
                     />
                   </div>
-                  <div class="likes">{{ post.likes }} likes</div>
+                  <div v-if="post.accountLike" class="likes">
+                    {{ post.accountLike }} likes
+                  </div>
                 </div>
                 <TextInput
                   :placeholder="`${$t('feed.posts.addComment')}...`"
@@ -126,11 +146,16 @@ export default Vue.extend({
   },
   data: () => ({
     icon: SendIcon,
-    comment: ''
+    comment: '',
+    clickable: true,
   }),
   methods: {
     update(type: string) {
       this.$emit('updateLikes', { type, id: this.post.id })
+    },
+    addErrorImg(e: any) {
+      e.target.src = 'assets/img/error-placeholder.png'
+      this.clickable = false
     },
   },
 })

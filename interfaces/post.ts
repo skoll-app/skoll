@@ -2,12 +2,14 @@ import Comments from './comments'
 import User from './user'
 
 export default interface Post {
-  id: string
-  user: User
-  location: string
-  imageUrl: string
-  text: string
-  likes: number
-  comments?: Comments[],
-  liked: boolean
+  user?: User
+  location?: string
+  accountComment?: number,
+  accountLike?: number,
+  comments: [],
+  createDate?: string,
+  description?: string | null,
+  extension?: string,
+  id?: number,
+  url?: string,
 }

@@ -12,8 +12,12 @@
               :alt="user.logo"
               class="mb-2 img-profile"
             />
-            <p class="mb-0 text-danger"><small>{{ $t('configview.editProfile.maxSize') }}</small></p>
-            <p><small>{{ $t('configview.editProfile.extensions') }}</small></p>
+            <p class="mb-0 text-danger">
+              <small>{{ $t('configview.editProfile.maxSize') }}</small>
+            </p>
+            <p>
+              <small>{{ $t('configview.editProfile.extensions') }}</small>
+            </p>
           </div>
           <div class="d-flex">
             <input
@@ -175,7 +179,7 @@
     </div>
     <modal name="crop-profile-img" :width="'40%'" :height="'80%'">
       <div
-        class="d-flex flex-column justify-content-center align-items-center p-4"
+        class="d-flex flex-column justify-content-center align-items-center p-4 rounded-cropper"
       >
         <vue-cropper
           class="vue-cropper"
@@ -398,10 +402,10 @@ export default Vue.extend({
         })
         .toBlob((blob: any) => {
           const formData = new FormData()
-          formData.append('file', blob)
-          formData.append('description', '')
+          formData.append('file', blob, 'avatar.png')
+          formData.append('description', 'avatar')
           this.submitProfilePic(formData)
-        })
+        }, 'image/png')
     },
     async submitProfilePic(formData: any) {
       try {
@@ -415,6 +419,7 @@ export default Vue.extend({
         this.hideLoading()
         location.reload()
       } catch (error: any) {
+        this.hideLoading()
         const toast: Toast = {
           title: 'error',
           message: error.response.data.message,

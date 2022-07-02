@@ -1,10 +1,9 @@
 <template>
   <div class="no-centered">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-5">
-          <!-- <ListStoryCard /> -->
           <ThinkingCard />
           <PostsList />
         </div>
@@ -34,18 +33,18 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostsList from '~/components/card/post/PostsList.vue'
-import ListStoryCard from '~/components/card/story/List.vue'
 import ThinkingCard from '~/components/card/thinking/ThinkingCard.vue'
 
 export default Vue.extend({
   layout: 'blue',
   middleware: ['auth'],
-  components: { ListStoryCard, ThinkingCard, PostsList },
+  components: { ThinkingCard, PostsList },
 })
 </script>
 
 <style scoped lang="scss">
 .sticky-top {
   top: 92px !important;
+  z-index: 1;
 }
 </style>

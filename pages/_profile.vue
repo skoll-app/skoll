@@ -3,7 +3,9 @@
     <div class="container pages-content__section-secondary">
       <div class="row justify-content-center">
         <div class="col-9">
-          <div class="d-flex justify-content-center">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-center align-items-center text-center text-md-start"
+          >
             <div class="main-profile-img-container">
               <img
                 data-src="assets/img/user-3x.png"
@@ -27,9 +29,13 @@
               >
             </div>
           </div>
-          <hr class="mt-5 mb-3" />
+          <hr class="mt-3 mt-md-5 mb-3" />
           <div class="row posts-images">
-            <div class="col-4" v-for="(post, i) in posts" :key="i">
+            <div
+              class="col-12 col-md-6 col-lg-4 mb-4"
+              v-for="(post, i) in posts"
+              :key="i"
+            >
               <img
                 class="img-fluid post-img"
                 :data-src="post.url"
@@ -55,7 +61,7 @@ export default Vue.extend({
     const posts = await $apiAuth.get('/publication/')
     return {
       user: userData.data.data,
-      posts: posts.data.data.publicationAvailable
+      posts: posts.data.data.publicationAvailable,
     }
   },
   head() {
@@ -74,7 +80,7 @@ export default Vue.extend({
   },
   data: () => ({
     user: {} as User,
-    posts: []
+    posts: [],
   }),
 })
 </script>
@@ -85,6 +91,15 @@ export default Vue.extend({
   .main-profile-img {
     height: 150px;
     width: 150px;
+  }
+
+  @media (max-width: 767px) {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin-right: 40px;
   }
 }
 .user-info {
@@ -97,9 +112,6 @@ export default Vue.extend({
   .post-img {
     width: 100%;
     height: 100%;
-  }
-  .col-4 {
-    margin-bottom: 1rem;
   }
 }
 </style>

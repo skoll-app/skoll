@@ -32,7 +32,7 @@
           <hr class="mt-3 mt-md-5 mb-3" />
           <div class="row posts-images">
             <div
-              class="col-12 col-md-6 col-lg-4 mb-4"
+              class="col-12 col-md-6 col-lg-3 mb-4"
               v-for="(post, i) in posts"
               :key="i"
             >

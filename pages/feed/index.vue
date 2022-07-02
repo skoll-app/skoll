@@ -7,7 +7,7 @@
           <ThinkingCard />
           <PostsList :posts="posts" />
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-3 d-none d-lg-block">
           <div class="sticky-top">
             <div class="card mt-3">
               <img
@@ -32,6 +32,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import PostsList from '~/components/card/post/PostsList.vue'
 import ThinkingCard from '~/components/card/thinking/ThinkingCard.vue'
 import Post from '~/interfaces/post'
@@ -85,18 +86,21 @@ export default Vue.extend({
       try {
         this.page += 1
         this.isLoading = true
+        this.showLoading()
         const res = await this.$apiAuth.post('/publication/all', {
           page: this.page,
           size: this.perPage,
         })
+        this.hideLoading()
         const postsAdd = res.data.data.publication
         this.isLoading = false
-        this.posts = [ ...this.posts, ...postsAdd ]
+        this.posts = [...this.posts, ...postsAdd]
       } catch (error) {
         console.error(error)
         return {}
       }
     },
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
   },
 })
 </script>

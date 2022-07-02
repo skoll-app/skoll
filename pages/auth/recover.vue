@@ -23,7 +23,9 @@ import Vue from 'vue'
 import Form from '~/components/recover/Form.vue'
 
 export default Vue.extend({
-  components: { Form },})
+  components: { Form },
+  middleware: ['auth']
+})
 </script>
 
 <style scoped lang="scss">

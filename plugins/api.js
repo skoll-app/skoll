@@ -1,4 +1,4 @@
-export default function ({ $axios, app }, inject) {
+export default function ({ $axios, app, redirect }, inject) {
   // Open API
   const api = $axios.create()
   api.setBaseURL(process.env.baseUrl)
@@ -28,6 +28,8 @@ export default function ({ $axios, app }, inject) {
       console.log('error', error.response.status)
       if (error.response.status === 401 || error.response.status === 500) {
         app.$cookies.remove('token')
+        localStorage.removeItem('user')
+        redirect("/")
       }
       return Promise.resolve({ error })
     }

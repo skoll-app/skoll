@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <div class="pages-content">
+    <div>
       <Loading />
       <Toast />
       <Nuxt />

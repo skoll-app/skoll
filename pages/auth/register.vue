@@ -30,6 +30,7 @@ import Form from '~/components/register/Form.vue'
 
 export default Vue.extend({
   components: { Form },
+  middleware: ['auth']
 })
 </script>
 

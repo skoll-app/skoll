@@ -1,5 +1,5 @@
 <template>
-  <div class="no-centered">
+  <div class="posts-container" @scroll.passive="scroll">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-2"></div>
@@ -62,24 +62,13 @@ export default Vue.extend({
     page: 0,
     isLoading: false,
   }),
-  mounted() {
-    this.scroll()
-  },
   methods: {
-    scroll() {
-      window.onscroll = () => {
-        let bottomOfWindow =
-          Math.max(
-            window.pageYOffset,
-            document.documentElement.scrollTop,
-            document.body.scrollTop
-          ) +
-            window.innerHeight ===
-          document.documentElement.offsetHeight
-
-        if (bottomOfWindow && !this.isLoading) {
-          this.getPosts()
-        }
+    scroll(e: any) {
+      if (
+        e.target.offsetHeight + e.target.scrollTop >= e.target.scrollHeight &&
+        !this.isLoading
+      ) {
+        this.getPosts()
       }
     },
     async getPosts() {
@@ -107,7 +96,11 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .sticky-top {
-  top: 92px !important;
   z-index: 1;
+}
+.posts-container {
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding-top: 76px;
 }
 </style>

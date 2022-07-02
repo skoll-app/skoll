@@ -12,31 +12,16 @@ import PostCard from './PostCard.vue'
 import Post from '~/interfaces/post'
 
 export default Vue.extend({
+  props: {
+    posts: {
+      type: Array,
+      required: true,
+    },
+  },
   components: {
     PostCard,
   },
-  mounted() {
-    this.getPosts()
-  },
-  data: () => ({
-    posts: [] as Post[],
-  }),
   methods: {
-    async getPosts() {
-      try {
-        const headers = { 'Content-Type': 'application/json' }
-        const res = await this.$apiAuth.post(
-          '/publication/all',
-          {
-            page: 0,
-            size: 50,
-          },
-          { headers }
-        )
-        console.log(res.data.data.publication)
-        this.posts = res.data.data.publication
-      } catch (error) {}
-    },
     // updateLikes(e: any) {
     //   let post = this.posts.find((post) => post.id === e.id)
     //   if (e.type === 'add') {

@@ -5,7 +5,7 @@
         <div class="col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-5">
           <ThinkingCard />
-          <PostsList />
+          <PostsList :posts="posts" />
         </div>
         <div class="col-lg-3">
           <div class="sticky-top">
@@ -34,11 +34,33 @@
 import Vue from 'vue'
 import PostsList from '~/components/card/post/PostsList.vue'
 import ThinkingCard from '~/components/card/thinking/ThinkingCard.vue'
+import Post from '~/interfaces/post'
 
 export default Vue.extend({
   layout: 'blue',
   middleware: ['auth'],
   components: { ThinkingCard, PostsList },
+  async asyncData({ $apiAuth }) {
+    try {
+      const res = await $apiAuth.post(
+        '/publication/all',
+        {
+          page: 0,
+          size: 10,
+        },
+      )
+      const posts = res.data.data.publication
+      return {
+        posts,
+      }
+    } catch (error) {
+      console.error(error)
+      return {}
+    }
+  },
+   data: () => ({
+    posts: [] as Post[],
+  }),
 })
 </script>
 

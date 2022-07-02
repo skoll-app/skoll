@@ -48,7 +48,10 @@
                   <div
                     class="d-flex justify-content-center align-items-center h-100"
                   >
-                    <EyeIcon class="icon text-white me-2" />
+                    <EyeIcon
+                      :id="`overlay-eye-${i}`"
+                      class="icon text-white me-2"
+                    />
                     <TrashIcon class="icon text-white" />
                   </div>
                 </div>
@@ -104,7 +107,8 @@ export default Vue.extend({
       this.$addErrorImg(e)
       const overlayDiv = document.getElementById(`overlay-img-${i}`)
       overlayDiv?.classList.remove('cursor-pointer')
-      overlayDiv?.classList.remove('overlay')
+      const overlayEye = document.getElementById(`overlay-eye-${i}`)
+      overlayEye?.classList.add('d-none')
     },
   },
 })

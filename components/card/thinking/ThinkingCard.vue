@@ -140,8 +140,8 @@ export default Vue.extend({
       this.$refs.cropper
         // @ts-ignore
         .getCroppedCanvas({
-          width: 400,
-          height: 400,
+          width: 500,
+          height: 500,
         })
         .toBlob((blob: any) => {
           const formData = new FormData()

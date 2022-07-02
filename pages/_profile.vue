@@ -17,7 +17,10 @@
                 {{ user.firstName }} {{ user.lastName }}
               </h3>
               <p>{{ user.userName }}</p>
-              <p>{{ user.totalpublications }} <span class="text-muted">publicaciones</span></p>
+              <p>
+                {{ user.totalpublications }}
+                <span class="text-muted">publicaciones</span>
+              </p>
               <p>{{ user.about }}</p>
               <NuxtLink class="btn btn-warning btn-sm" to="/account/edit"
                 >Editar perfil</NuxtLink
@@ -26,60 +29,13 @@
           </div>
           <hr class="mt-5 mb-3" />
           <div class="row posts-images">
-            <div class="col-4">
+            <div class="col-4" v-for="(post, i) in posts" :key="i">
               <img
-                class="img-fluid"
-                data-src="assets/img/mock/1.jpg"
-                alt=""
+                class="img-fluid post-img"
+                :data-src="post.url"
+                alt="post.url"
                 v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/2.jpg"
-                alt=""
-                v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/3.jpg"
-                alt=""
-                v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/4.jpg"
-                alt=""
-                v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/5.jpg"
-                alt=""
-                v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/6.jpg"
-                alt=""
-                v-lazy-load
-              />
-            </div>
-            <div class="col-4">
-              <img
-                class="img-fluid"
-                data-src="assets/img/mock/7.jpg"
-                alt=""
-                v-lazy-load
+                @error="$addErrorImg"
               />
             </div>
           </div>
@@ -96,8 +52,10 @@ import User from '~/interfaces/user'
 export default Vue.extend({
   async asyncData({ $apiAuth }) {
     const userData = await $apiAuth.get('/client/')
+    const posts = await $apiAuth.get('/publication/')
     return {
       user: userData.data.data,
+      posts: posts.data.data.publicationAvailable
     }
   },
   head() {
@@ -116,6 +74,7 @@ export default Vue.extend({
   },
   data: () => ({
     user: {} as User,
+    posts: []
   }),
 })
 </script>
@@ -135,6 +94,10 @@ export default Vue.extend({
 }
 
 .posts-images {
+  .post-img {
+    width: 100%;
+    height: 100%;
+  }
   .col-4 {
     margin-bottom: 1rem;
   }

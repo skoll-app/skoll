@@ -42,13 +42,10 @@ export default Vue.extend({
   components: { ThinkingCard, PostsList },
   async asyncData({ $apiAuth }) {
     try {
-      const res = await $apiAuth.post(
-        '/publication/all',
-        {
-          page: 0,
-          size: 10,
-        },
-      )
+      const res = await $apiAuth.post('/publication/all', {
+        page: 0,
+        size: 10,
+      })
       const posts = res.data.data.publication
       return {
         posts,
@@ -58,9 +55,49 @@ export default Vue.extend({
       return {}
     }
   },
-   data: () => ({
+  data: () => ({
     posts: [] as Post[],
+    perPage: 10,
+    page: 0,
+    isLoading: false,
   }),
+  mounted() {
+    this.scroll()
+  },
+  methods: {
+    scroll() {
+      window.onscroll = () => {
+        let bottomOfWindow =
+          Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+          ) +
+            window.innerHeight ===
+          document.documentElement.offsetHeight
+
+        if (bottomOfWindow && !this.isLoading) {
+          this.getPosts()
+        }
+      }
+    },
+    async getPosts() {
+      try {
+        this.page += 1
+        this.isLoading = true
+        const res = await this.$apiAuth.post('/publication/all', {
+          page: this.page,
+          size: this.perPage,
+        })
+        const postsAdd = res.data.data.publication
+        this.isLoading = false
+        this.posts = [ ...this.posts, ...postsAdd ]
+      } catch (error) {
+        console.error(error)
+        return {}
+      }
+    },
+  },
 })
 </script>
 

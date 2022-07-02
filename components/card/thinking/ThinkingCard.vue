@@ -4,8 +4,9 @@
       <div class="d-flex align-items-center">
         <img
           class="profile-img me-2"
-          :src="user.logo || 'assets/img/user.png'"
+          :data-src="user.logo"
           alt="profile"
+          v-lazy-load
         />
         <TextInput
           size="sm"

@@ -4,8 +4,9 @@
       <div class="d-flex align-items-center">
         <img
           class="profile-img me-2"
-          :src="post.user.logo || 'assets/img/user.png'"
+          :data-src="post.user.logo || 'assets/img/user.png'"
           alt="profile"
+          v-lazy-load
         />
         <div class="d-flex flex-column user-data">
           <p class="name text-capitalize">

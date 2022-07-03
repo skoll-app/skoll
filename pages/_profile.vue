@@ -8,8 +8,8 @@
           >
             <div class="main-profile-img-container">
               <img
-                data-src="assets/img/user-3x.png"
-                alt=""
+                :data-src="user.logo || 'assets/img/user-3x.png'"
+                alt="avatar"
                 class="main-profile-img"
                 v-lazy-load
               />
@@ -32,17 +32,30 @@
           <hr class="mt-3 mt-md-5 mb-3" />
           <div class="row posts-images">
             <div
-              class="col-12 col-md-6 col-lg-3 mb-4"
+              class="col-12 col-md-6 col-lg-3 mb-4 position-relative"
               v-for="(post, i) in posts"
               :key="i"
             >
-              <img
-                class="img-fluid post-img"
-                :data-src="post.url"
-                alt="post.url"
-                v-lazy-load
-                @error="$addErrorImg"
-              />
+              <div class="position-relative xx">
+                <img
+                  class="w-100 h-100"
+                  :data-src="post.url"
+                  alt="post.url"
+                  @error="handleError($event, i)"
+                  v-lazy-load
+                />
+                <div :id="`overlay-img-${i}`" class="overlay cursor-pointer">
+                  <div
+                    class="d-flex justify-content-center align-items-center h-100"
+                  >
+                    <EyeIcon
+                      :id="`overlay-eye-${i}`"
+                      class="icon text-white me-2"
+                    />
+                    <TrashIcon class="icon text-white" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,7 +68,14 @@
 import Vue from 'vue'
 import User from '~/interfaces/user'
 
+import TrashIcon from '~/static/assets/icons/trash.svg'
+import EyeIcon from '~/static/assets/icons/eye.svg'
+
 export default Vue.extend({
+  components: {
+    TrashIcon,
+    EyeIcon,
+  },
   async asyncData({ $apiAuth }) {
     const userData = await $apiAuth.get('/client/')
     const posts = await $apiAuth.get('/publication/')
@@ -82,6 +102,15 @@ export default Vue.extend({
     user: {} as User,
     posts: [],
   }),
+  methods: {
+    handleError(e: any, i: number) {
+      this.$addErrorImg(e)
+      const overlayDiv = document.getElementById(`overlay-img-${i}`)
+      overlayDiv?.classList.remove('cursor-pointer')
+      const overlayEye = document.getElementById(`overlay-eye-${i}`)
+      overlayEye?.classList.add('d-none')
+    },
+  },
 })
 </script>
 
@@ -89,6 +118,7 @@ export default Vue.extend({
 .main-profile-img-container {
   margin-right: 80px;
   .main-profile-img {
+    border-radius: 50%;
     height: 150px;
     width: 150px;
   }
@@ -108,10 +138,21 @@ export default Vue.extend({
   }
 }
 
-.posts-images {
-  .post-img {
-    width: 100%;
-    height: 100%;
+.overlay {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  transition: ease 0.3s;
+}
+
+.xx {
+  &:hover .overlay {
+    background-color: black;
+    opacity: 0.75;
+    // cursor: pointer;
   }
 }
 </style>

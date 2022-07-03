@@ -45,7 +45,7 @@ export default {
     { src: '~/plugins/bootstrap.bundle.min', mode: 'client' },
     '~/plugins/api.js',
     '~/plugins/filters.js',
-    '~plugins/vue-js-modal.js',
+    { src: '~plugins/vue-js-modal.js', mode: 'client' },
     '~/plugins/vue-cropper',
     '~/plugins/images',
   ],

@@ -198,6 +198,13 @@ const esp = {
     },
     profileUpdated: 'Su perfíl fue actualizado',
   },
+  profileview: {
+    deleteModal: {
+      title: 'Eliminar publicación',
+      message: '¿Estas seguro que deseas eliminar esta publicación?'
+    },
+    deletedPost: 'La publicación fue eliminada'
+  },
   success: 'Exito',
   error: 'Error',
   form: {
@@ -210,7 +217,8 @@ const esp = {
     },
     subject: 'Asunto',
     message: 'Mensaje',
-    cancel: 'Cancelar'
+    cancel: 'Cancelar',
+    delete: 'Eliminar'
   },
 }
 

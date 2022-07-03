@@ -52,7 +52,10 @@
                       :id="`overlay-eye-${i}`"
                       class="icon text-white me-2"
                     />
-                    <TrashIcon class="icon text-white" @click="deletePost" />
+                    <TrashIcon
+                      class="icon text-white"
+                      @click="showDeletePostModal(post.id)"
+                    />
                   </div>
                 </div>
               </div>
@@ -67,10 +70,12 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapActions } from 'vuex'
 import User from '~/interfaces/user'
 
 import TrashIcon from '~/static/assets/icons/trash.svg'
 import EyeIcon from '~/static/assets/icons/eye.svg'
+import Toast from '~/interfaces/toast'
 
 export default Vue.extend({
   components: {
@@ -89,7 +94,7 @@ export default Vue.extend({
       return {}
     }
   },
-  head() {
+  head(): any {
     return {
       title: this.user.firstName || 'nada',
       meta: [
@@ -115,28 +120,56 @@ export default Vue.extend({
       const overlayEye = document.getElementById(`overlay-eye-${i}`)
       overlayEye?.classList.add('d-none')
     },
-    deletePost() {
+    showDeletePostModal(id: number) {
       // @ts-ignore
       this.$modal.show('dialog', {
-        title: 'The standard Lorem Ipsum passage',
-        text: 'Lorem ipsum dolor sit amet, ...',
+        title: this.$i18n.t('profileview.deleteModal.title'),
+        text: this.$i18n.t('profileview.deleteModal.message'),
         buttons: [
           {
-            title: 'Cancel',
+            title: this.$i18n.t('form.cancel'),
             handler: () => {
               // @ts-ignore
               this.$modal.hide('dialog')
             },
           },
           {
-            title: 'Eliminar',
+            title: this.$i18n.t('form.delete'),
             handler: () => {
-              alert('Repost action')
+              this.deletePost(id)
             },
           },
         ],
       })
     },
+    async deletePost(id: number) {
+      try {
+        this.showLoading()
+        // @ts-ignore
+        this.$modal.hide('dialog')
+        await this.$apiAuth.delete(`/publication/delete/${id}`)
+        this.hideLoading()
+        await this.$nuxt.refresh()
+        const toast: Toast = {
+          title: 'success',
+          message: 'profileview.deletedPost',
+          type: 'success',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      } catch (error: any) {
+        this.hideLoading()
+        const toast: Toast = {
+          title: 'error',
+          message: error.response.data.message,
+          type: 'danger',
+          timer: 5000,
+        }
+        this.showToastWithProps(toast)
+      }
+    },
+    ...mapActions('toast', ['showToastWithProps']),
+    ...mapActions('loading', ['showLoading', 'hideLoading']),
   },
 })
 </script>
@@ -179,7 +212,13 @@ export default Vue.extend({
   &:hover .overlay {
     background-color: black;
     opacity: 0.75;
-    // cursor: pointer;
+  }
+}
+
+::v-deep .vue-dialog-buttons {
+  button:last-child {
+    background: var(--bs-danger);
+    color: var(--bs-white);
   }
 }
 </style>

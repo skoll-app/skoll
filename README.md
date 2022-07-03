@@ -1,5 +1,5 @@
 # skoll
-ad
+
 ## Build Setup
 
 ```bash

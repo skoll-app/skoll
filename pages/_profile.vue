@@ -52,7 +52,7 @@
                       :id="`overlay-eye-${i}`"
                       class="icon text-white me-2"
                     />
-                    <TrashIcon class="icon text-white" />
+                    <TrashIcon class="icon text-white" @click="deletePost" />
                   </div>
                 </div>
               </div>
@@ -61,6 +61,7 @@
         </div>
       </div>
     </div>
+    <v-dialog />
   </div>
 </template>
 
@@ -77,11 +78,15 @@ export default Vue.extend({
     EyeIcon,
   },
   async asyncData({ $apiAuth }) {
-    const userData = await $apiAuth.get('/client/')
-    const posts = await $apiAuth.get('/publication/')
-    return {
-      user: userData.data.data,
-      posts: posts.data.data.publicationAvailable,
+    try {
+      const userData = await $apiAuth.get('/client/')
+      const posts = await $apiAuth.get('/publication/')
+      return {
+        user: userData.data.data,
+        posts: posts.data.data.publicationAvailable,
+      }
+    } catch (error) {
+      return {}
     }
   },
   head() {
@@ -109,6 +114,28 @@ export default Vue.extend({
       overlayDiv?.classList.remove('cursor-pointer')
       const overlayEye = document.getElementById(`overlay-eye-${i}`)
       overlayEye?.classList.add('d-none')
+    },
+    deletePost() {
+      // @ts-ignore
+      this.$modal.show('dialog', {
+        title: 'The standard Lorem Ipsum passage',
+        text: 'Lorem ipsum dolor sit amet, ...',
+        buttons: [
+          {
+            title: 'Cancel',
+            handler: () => {
+              // @ts-ignore
+              this.$modal.hide('dialog')
+            },
+          },
+          {
+            title: 'Eliminar',
+            handler: () => {
+              alert('Repost action')
+            },
+          },
+        ],
+      })
     },
   },
 })

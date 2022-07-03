@@ -1,1 +1,0 @@
-window.__NUXT__=(function(a){return {staticAssetsBase:"\u002Fskoll\u002F_nuxt\u002Fstatic\u002F1656795808",layout:"blue",error:a,state:a,serverRendered:false,routePath:"\u002Ffeed",config:{_app:{basePath:"\u002Fskoll\u002F",assetsPath:"\u002Fskoll\u002F_nuxt\u002F",cdnURL:a}}}}(null));

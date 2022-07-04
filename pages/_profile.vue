@@ -147,7 +147,7 @@ export default Vue.extend({
         this.showLoading()
         // @ts-ignore
         this.$modal.hide('dialog')
-        await this.$apiAuth.delete(`/publication/delete/${id}`)
+        await this.$apiAuth.delete(`/skoll-register-server-api/publication/delete/${id}`)
         this.hideLoading()
         await this.$nuxt.refresh()
         const toast: Toast = {

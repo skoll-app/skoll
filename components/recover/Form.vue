@@ -100,9 +100,12 @@ export default Vue.extend({
     async userExist() {
       try {
         this.showLoading()
-        const res = await this.$api.post('/security/exist/user', {
-          username: this.phone,
-        })
+        const res = await this.$api.post(
+          '/skoll-security-server-api/security/exist/user',
+          {
+            username: this.phone,
+          }
+        )
         this.encodedEmail = res.data.data.info.email
         this.hideLoading()
         this.next()

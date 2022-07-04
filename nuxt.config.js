@@ -4,7 +4,7 @@ const baseHref = '/skoll/'
 const isDevelop = process.env.NODE_ENV === 'development'
 
 export default {
-  target: 'static',
+  target: 'server',
   router: {
     base: isDevelop ? '' : baseHref,
     middleware: ['stats'],

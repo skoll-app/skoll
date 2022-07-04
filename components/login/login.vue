@@ -138,9 +138,12 @@ export default Vue.extend({
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        const res = await this.$api.post('/security/exist/user', {
-          username: this.phone,
-        })
+        const res = await this.$api.post(
+          '/skoll-security-server-api/security/exist/user',
+          {
+            username: this.phone,
+          }
+        )
         const userExists = res.data.data.info.exists
         if (!userExists) {
           const toast: Toast = {
@@ -151,12 +154,15 @@ export default Vue.extend({
           }
           this.showToastWithProps(toast)
         } else {
-          const { data } = await this.$api.post('/oauth/login', {
-            username: this.phone,
-            password: this.password,
-          })
+          const { data } = await this.$api.post(
+            '/skoll-security-server-api/oauth/login',
+            {
+              username: this.phone,
+              password: this.password,
+            }
+          )
           this.$cookies.set('token', data.token)
-          const userData = await this.$apiAuth.get('/client/')
+          const userData = await this.$apiAuth.get('/skoll-register-server-api/client/')
           this.setUser(userData.data.data)
           this.$router.push('/feed')
         }

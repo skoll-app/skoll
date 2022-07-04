@@ -54,10 +54,13 @@ export default Vue.extend({
     async validateOtp(otp: string) {
       try {
         this.showLoading()
-        await this.$api.post('/security/validate/otp', {
-          sessionId: this.user.sessionId,
-          otp,
-        })
+        await this.$api.post(
+          '/skoll-security-server-api/security/validate/otp',
+          {
+            sessionId: this.user.sessionId,
+            otp,
+          }
+        )
         this.hideLoading()
         this.next()
       } catch (error: any) {
@@ -74,10 +77,13 @@ export default Vue.extend({
     async generateOTP() {
       try {
         this.showLoading()
-        await this.$api.post('/security/generate/otp', {
-          sessionId: this.user.sessionId,
-          check: 'verifyUser',
-        })
+        await this.$api.post(
+          '/skoll-security-server-api/security/generate/otp',
+          {
+            sessionId: this.user.sessionId,
+            check: 'verifyUser',
+          }
+        )
         this.hideLoading()
         this.next()
       } catch (error: any) {
@@ -94,7 +100,7 @@ export default Vue.extend({
     async registerUser() {
       try {
         this.showLoading()
-        await this.$api.post('/client/register', {
+        await this.$api.post('/skoll-register-server-api/register', {
           age: this.user.age,
           gender: this.user.gender.value,
           interestGender: this.user.interest.value,

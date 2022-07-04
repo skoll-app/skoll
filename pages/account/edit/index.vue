@@ -298,7 +298,7 @@ export default Vue.extend({
   }),
   async asyncData(context) {
     try {
-      const userData = await context.$apiAuth.get('/client/')
+      const userData = await context.$apiAuth.get('/skoll-register-server-api/client/')
       return {
         user: userData.data.data,
       }
@@ -332,7 +332,10 @@ export default Vue.extend({
       }
       try {
         this.showLoading()
-        await this.$apiAuth.post('/client/update', formattedUser)
+        await this.$apiAuth.post(
+          '/skoll-register-server-api/client/update',
+          formattedUser
+        )
         this.hideLoading()
         const toast: Toast = {
           title: 'success',
@@ -413,9 +416,13 @@ export default Vue.extend({
         this.$modal.hide('crop-profile-img')
         this.showLoading()
         const headers = { 'Content-Type': 'multipart/form-data' }
-        await this.$apiAuth.post('/client/update/logo', formData, {
-          headers,
-        })
+        await this.$apiAuth.post(
+          '/skoll-register-server-api/client/update/logo',
+          formData,
+          {
+            headers,
+          }
+        )
         this.hideLoading()
         location.reload()
       } catch (error: any) {
@@ -436,7 +443,7 @@ export default Vue.extend({
         formData.append('file', this.profileImg)
         const headers = { 'Content-Type': 'multipart/form-data' }
         const res = await this.$apiAuth.post(
-          '/client/create/multimedia/cut',
+          '/skoll-register-server-api/client/create/multimedia/cut',
           formData,
           {
             headers,

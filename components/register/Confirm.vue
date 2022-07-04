@@ -185,14 +185,17 @@ export default Vue.extend({
     async preRegister() {
       try {
         this.showLoading()
-        const res = await this.$api.post('/client/hello', {
-          cellPhone: this.register.phone,
-          cellPhonePrefix: '57',
-          city: this.register.city.value,
-          email: this.register.email,
-          firstname: this.register.lastname,
-          lastName: this.register.lastname,
-        })
+        const res = await this.$api.post(
+          '/skoll-register-server-api/client/hello',
+          {
+            cellPhone: this.register.phone,
+            cellPhonePrefix: '57',
+            city: this.register.city.value,
+            email: this.register.email,
+            firstname: this.register.lastname,
+            lastName: this.register.lastname,
+          }
+        )
         this.sessionId = res.data.data.sessionId
         this.hideLoading()
         this.emitUserData()

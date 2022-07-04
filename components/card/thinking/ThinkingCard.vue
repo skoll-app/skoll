@@ -116,7 +116,7 @@ export default Vue.extend({
         formData.append('file', this.postImg)
         const headers = { 'Content-Type': 'multipart/form-data' }
         const res = await this.$apiAuth.post(
-          '/client/create/multimedia/cut',
+          '/skoll-register-server-api/client/create/multimedia/cut',
           formData,
           {
             headers,
@@ -158,7 +158,10 @@ export default Vue.extend({
     async savePost(formData: any) {
       try {
         this.showLoading()
-        await this.$apiAuth.post('/client/create/multimedia', formData)
+        await this.$apiAuth.post(
+          '/skoll-register-server-api/client/create/multimedia',
+          formData
+        )
         this.hideLoading()
         this.reset()
         const toast: Toast = {

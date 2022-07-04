@@ -79,8 +79,8 @@ export default Vue.extend({
   },
   async asyncData({ $apiAuth }) {
     try {
-      const userData = await $apiAuth.get('/client/')
-      const posts = await $apiAuth.get('/publication/')
+      const userData = await $apiAuth.get('/skoll-register-server-api/client/')
+      const posts = await $apiAuth.get('/skoll-register-server-api/publication/')
       return {
         user: userData.data.data,
         posts: posts.data.data.publicationAvailable,

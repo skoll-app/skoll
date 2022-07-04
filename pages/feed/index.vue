@@ -43,10 +43,13 @@ export default Vue.extend({
   components: { ThinkingCard, PostsList },
   async asyncData({ $apiAuth }) {
     try {
-      const res = await $apiAuth.post('/publication/all', {
-        page: 0,
-        size: 10,
-      })
+      const res = await $apiAuth.post(
+        '/skoll-register-server-api/publication',
+        {
+          page: 0,
+          size: 10,
+        }
+      )
       const posts = res.data.data.publication
       return {
         posts,
@@ -76,10 +79,13 @@ export default Vue.extend({
         this.page += 1
         this.isLoading = true
         this.showLoading()
-        const res = await this.$apiAuth.post('/publication/all', {
-          page: this.page,
-          size: this.perPage,
-        })
+        const res = await this.$apiAuth.post(
+          '/skoll-register-server-api/publication',
+          {
+            page: this.page,
+            size: this.perPage,
+          }
+        )
         this.hideLoading()
         const postsAdd = res.data.data.publication
         this.isLoading = false

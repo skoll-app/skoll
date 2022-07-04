@@ -42,7 +42,7 @@ export default Vue.extend({
   async asyncData(context) {
     try {
       const params = await context.$apiAuth.get(
-        '/skoll-parameter-server-api/support/security/policy/all'
+        '/skoll-parameter-server-api/support/security/policy'
       )
       return {
         params: params.data.data,

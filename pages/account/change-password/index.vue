@@ -93,7 +93,7 @@ export default Vue.extend({
     async updatePassword() {
       try {
         this.showLoading()
-        await this.$apiAuth.put('/skoll-register-server-api/client/change/password', {
+        await this.$httpService.auth.updatePassword({
           newPassword: this.newPassword,
           password: this.currentPassword,
         })

@@ -20,6 +20,19 @@ export default function ({ app }, inject) {
           }
         })
       },
+      updatePassword({ newPassword, password }) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.put(`${skollRegister}/client/change/password`, {
+              newPassword,
+              password,
+            })
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     posts: {
       getAll({ page, size }) {

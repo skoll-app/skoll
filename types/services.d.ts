@@ -23,6 +23,13 @@ interface HttpService {
 
 interface LoginService {
   login<T = any>(username: string, password: string): Promise<T>
+  updatePassword<T = any>({
+    newPassword,
+    password,
+  }: {
+    newPassword: string
+    password: string
+  }): Promise<T>
 }
 
 interface PostService {

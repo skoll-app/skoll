@@ -154,15 +154,14 @@ export default Vue.extend({
           }
           this.showToastWithProps(toast)
         } else {
-          const { data } = await this.$api.post(
-            '/skoll-security-server-api/oauth/login',
-            {
-              username: this.phone,
-              password: this.password,
-            }
+          const res: any = await this.$httpService.auth.login(
+            this.phone,
+            this.password
           )
-          this.$cookies.set('token', data.token)
-          const userData = await this.$apiAuth.get('/skoll-register-server-api/client/')
+          this.$cookies.set('token', res.data.token)
+          const userData = await this.$apiAuth.get(
+            '/skoll-register-server-api/client/'
+          )
           this.setUser(userData.data.data)
           this.$router.push('/feed')
         }

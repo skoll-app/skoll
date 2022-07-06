@@ -41,5 +41,6 @@
     "types/svg.d.ts",
     "types/axios.d.ts",
     "types/image.d.ts",
+    "types/services.d.ts",
   ],
 }

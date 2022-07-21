@@ -80,6 +80,25 @@ export default function ({ app }, inject) {
         })
       },
     },
+    utils: {
+      uploadImageToCut(formdata) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const headers = { 'Content-Type': 'multipart/form-data' }
+            const response = await app.$apiAuth.post(
+              `${skollRegister}/client/create/multimedia/cut`,
+              formdata,
+              {
+                headers,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+    },
   }
   inject('httpService', services)
 }

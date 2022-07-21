@@ -441,15 +441,8 @@ export default Vue.extend({
         this.showLoading()
         const formData = new FormData()
         formData.append('file', this.profileImg)
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        const res = await this.$apiAuth.post(
-          '/skoll-register-server-api/client/create/multimedia/cut',
-          formData,
-          {
-            headers,
-          }
-        )
-        this.imgSrc = res.data.data
+        const response = await this.$httpService.utils.uploadImageToCut(formData)
+        this.imgSrc = response.data.data
         // @ts-ignore
         this.$modal.show('crop-profile-img')
         this.hideLoading()

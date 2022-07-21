@@ -19,6 +19,7 @@ declare module '@nuxt/types' {
 interface HttpService {
   auth: AuthService
   posts: PostService
+  utils: UtilsService
 }
 
 interface AuthService {
@@ -36,4 +37,8 @@ interface AuthService {
 
 interface PostService {
   getAll<T = any>({ page, size }: { page: number; size: number }): Promise<T>
+}
+
+interface UtilsService {
+  uploadImageToCut<T = any>(formdata: FormData): Promise<T>
 }

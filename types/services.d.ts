@@ -17,12 +17,13 @@ declare module '@nuxt/types' {
 }
 
 interface HttpService {
-  auth: LoginService
+  auth: AuthService
   posts: PostService
 }
 
-interface LoginService {
+interface AuthService {
   login<T = any>(username: string, password: string): Promise<T>
+  userExists<T = any>({ username }: { username: string }): Promise<T>
   updatePassword<T = any>({
     newPassword,
     password,
@@ -30,6 +31,7 @@ interface LoginService {
     newPassword: string
     password: string
   }): Promise<T>
+  userData<T = any>(): Promise<T>
 }
 
 interface PostService {

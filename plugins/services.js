@@ -20,13 +20,41 @@ export default function ({ app }, inject) {
           }
         })
       },
+      userExists({ username }) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.post(
+              `${skollSecurity}/security/exist/user`,
+              {
+                username,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
       updatePassword({ newPassword, password }) {
         return new Promise(async (resolve, reject) => {
           try {
-            const response = await app.$apiAuth.put(`${skollRegister}/client/change/password`, {
-              newPassword,
-              password,
-            })
+            const response = await app.$apiAuth.put(
+              `${skollRegister}/client/change/password`,
+              {
+                newPassword,
+                password,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+      userData() {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.get(`${skollRegister}/client/`)
             resolve(response)
           } catch (error) {
             reject(error)

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import User from '../interfaces/user'
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -20,6 +21,7 @@ interface HttpService {
   auth: AuthService
   posts: PostService
   utils: UtilsService
+  user: UserService
 }
 
 interface AuthService {
@@ -42,4 +44,8 @@ interface PostService {
 
 interface UtilsService {
   uploadImageToCut<T = any>(formdata: FormData): Promise<T>
+}
+
+interface UserService {
+  updateData<T = any>(formattedUser: User): Promise<T>
 }

@@ -1,3 +1,5 @@
+import User from '../interfaces/user'
+
 export default function ({ app }, inject) {
   const skollSecurity = process.env.skollSecurity
   const skollRegister = process.env.skollRegister
@@ -69,7 +71,7 @@ export default function ({ app }, inject) {
       },
     },
     posts: {
-      getAll({ page, size }: { page: number, size: number }) {
+      getAll({ page, size }: { page: number; size: number }) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$apiAuth.post(
@@ -110,6 +112,21 @@ export default function ({ app }, inject) {
               {
                 headers,
               }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+    },
+    user: {
+      updateData(formattedUser: User) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.post(
+              `${skollRegister}/client/update`,
+              formattedUser
             )
             resolve(response)
           } catch (error) {

@@ -333,10 +333,7 @@ export default Vue.extend({
       }
       try {
         this.showLoading()
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/update',
-          formattedUser
-        )
+        await this.$httpService.user.updateData(formattedUser)
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

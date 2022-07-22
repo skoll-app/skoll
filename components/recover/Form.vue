@@ -143,13 +143,10 @@ export default Vue.extend({
     async recoverPassword() {
       try {
         this.showLoading()
-        await this.$api.put(
-          '/skoll-security-server-api/security/recovery/password',
-          {
-            password: this.password,
-            sessionId: this.sessionId,
-          }
-        )
+        await this.$httpService.auth.passwordRecovery({
+          password: this.password,
+          sessionId: this.sessionId,
+        })
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

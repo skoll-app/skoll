@@ -55,6 +55,13 @@ interface AuthService {
     email: string
     sessionId: string
   }): Promise<T>
+  passwordRecovery<T = any>({
+    password,
+    sessionId,
+  }: {
+    password: string
+    sessionId: string
+  }): Promise<T>
 }
 
 interface PostService {

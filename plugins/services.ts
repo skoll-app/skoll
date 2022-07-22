@@ -113,6 +113,28 @@ export default function ({ app }, inject) {
           }
         })
       },
+      passwordRecovery({
+        sessionId,
+        password,
+      }: {
+        sessionId: string
+        password: string
+      }): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.put(
+              `${skollSecurity}/security/recovery/password`,
+              {
+                password,
+                sessionId,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     posts: {
       getAll({ page, size }: { page: number; size: number }) {

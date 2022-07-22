@@ -48,4 +48,5 @@ interface UtilsService {
 
 interface UserService {
   updateData<T = any>(formattedUser: User): Promise<T>
+  updateLogo<T = any>(formdata: FormData): Promise<T>
 }

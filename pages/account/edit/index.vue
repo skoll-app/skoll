@@ -403,7 +403,7 @@ export default Vue.extend({
         })
         .toBlob((blob: any) => {
           const formData = new FormData()
-          formData.append('file', blob, 'avatar.png')
+          formData.append('file', blob, `avatar-${Date.now()}.png`)
           formData.append('description', 'avatar')
           this.submitProfilePic(formData)
         }, 'image/png')
@@ -413,14 +413,7 @@ export default Vue.extend({
         // @ts-ignore
         this.$modal.hide('crop-profile-img')
         this.showLoading()
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/update/logo',
-          formData,
-          {
-            headers,
-          }
-        )
+        await this.$httpService.user.updateLogo(formData)
         this.hideLoading()
         location.reload()
       } catch (error: any) {

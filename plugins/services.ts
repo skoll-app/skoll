@@ -134,6 +134,23 @@ export default function ({ app }, inject) {
           }
         })
       },
+      updateLogo(formdata: FormData) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const headers = { 'Content-Type': 'multipart/form-data' }
+            const response = await app.$apiAuth.post(
+              `${skollRegister}/client/update/logo`,
+              formdata,
+              {
+                headers,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
   }
   inject('httpService', services)

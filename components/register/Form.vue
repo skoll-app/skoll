@@ -18,6 +18,7 @@ import Vue from 'vue'
 import { mapActions } from 'vuex'
 // Interfaces
 import Toast from '~/interfaces/toast'
+import User from '~/interfaces/user'
 // Components
 import Confirm from './Confirm.vue'
 import KnowBetter from './KnowBetter.vue'
@@ -100,15 +101,16 @@ export default Vue.extend({
     async registerUser() {
       try {
         this.showLoading()
-        await this.$api.post('/skoll-register-server-api/register', {
+        const user: Partial<User> = {
           age: this.user.age,
           gender: this.user.gender.value,
-          interestGender: this.user.interest.value,
-          lat: 0,
-          log: 0,
-          password: this.user.password,
-          sessionId: this.user.sessionId,
-        })
+          interesGender: this.user.interest.value,
+        }
+        await this.$httpService.user.signup(
+          user,
+          this.user.password,
+          this.user.sessionId
+        )
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

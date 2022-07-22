@@ -59,9 +59,6 @@ export default function ({ app }, inject) {
           }
         })
       },
-      userData() {
-
-      },
     },
     posts: {
       getAll({ page, size }: { page: number; size: number }) {
@@ -205,7 +202,25 @@ export default function ({ app }, inject) {
             reject(error)
           }
         })
-      }
+      },
+      signup(user: Partial<User>, password: string, sessionId: string) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.post(`${skollRegister}/register`, {
+              age: user.age,
+              gender: user.gender,
+              interestGender: user.interesGender,
+              lat: 0,
+              log: 0,
+              password,
+              sessionId,
+            })
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
   }
   inject('httpService', services)

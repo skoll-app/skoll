@@ -62,4 +62,9 @@ interface UserService {
     urlOnlyfans: string
     urlTikTok: string
   }): Promise<T>
+  signup<T = any>(
+    user: Partial<User>,
+    password: string,
+    sessionId: string
+  ): Promise<T>
 }

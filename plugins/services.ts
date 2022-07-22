@@ -100,6 +100,18 @@ export default function ({ app }, inject) {
           }
         })
       },
+      deleteById(id: string) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.delete(
+              `/skoll-register-server-api/publication/${id}`
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     utils: {
       uploadImageToCut(formdata: FormData) {

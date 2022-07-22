@@ -85,7 +85,9 @@ export default Vue.extend({
   async asyncData({ $apiAuth, $httpService }) {
     try {
       const userData = await $httpService.auth.userData()
-      const posts = await $apiAuth.get('/skoll-register-server-api/publication/')
+      const posts = await $apiAuth.get(
+        '/skoll-register-server-api/publication/'
+      )
       return {
         user: userData.data.data,
         posts: posts.data.data.publicationAvailable,
@@ -147,7 +149,7 @@ export default Vue.extend({
         this.showLoading()
         // @ts-ignore
         this.$modal.hide('dialog')
-        await this.$apiAuth.delete(`/skoll-register-server-api/publication/${id}`)
+        await this.$httpService.posts.deleteById(id.toString())
         this.hideLoading()
         await this.$nuxt.refresh()
         const toast: Toast = {

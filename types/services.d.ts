@@ -40,6 +40,7 @@ interface AuthService {
 interface PostService {
   getAll<T = any>({ page, size }: { page: number; size: number }): Promise<T>
   uploadImage<T = any>(formdata: FormData): Promise<T>
+  deleteById<T = any>(id: string): Promise<T>
 }
 
 interface UtilsService {

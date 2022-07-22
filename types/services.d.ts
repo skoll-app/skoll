@@ -49,4 +49,15 @@ interface UtilsService {
 interface UserService {
   updateData<T = any>(formattedUser: User): Promise<T>
   updateLogo<T = any>(formdata: FormData): Promise<T>
+  updateSocialNetwork<T = any>({
+    urlFacebook,
+    urlInstagram,
+    urlOnlyfans,
+    urlTikTok,
+  }: {
+    urlFacebook: string
+    urlInstagram: string
+    urlOnlyfans: string
+    urlTikTok: string
+  }): Promise<T>
 }

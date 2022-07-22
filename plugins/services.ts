@@ -151,6 +151,34 @@ export default function ({ app }, inject) {
           }
         })
       },
+      updateSocialNetwork({
+        urlFacebook,
+        urlInstagram,
+        urlOnlyfans,
+        urlTikTok,
+      }: {
+        urlFacebook: string
+        urlInstagram: string
+        urlOnlyfans: string
+        urlTikTok: string
+      }) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.post(
+              `${skollRegister}/client/update/social/network`,
+              {
+                urlFacebook,
+                urlInstagram,
+                urlOnlyfans,
+                urlTikTok,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
   }
   inject('httpService', services)

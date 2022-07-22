@@ -296,11 +296,12 @@ export default Vue.extend({
     profileImg: '',
     imgSrc: '',
   }),
-  async asyncData(context) {
+  async asyncData({ $httpService }) {
     try {
-      const userData = await context.$apiAuth.get('/skoll-register-server-api/client/')
+      const userData = await $httpService.auth.userData()
+      const user = userData.data.data
       return {
-        user: userData.data.data,
+        user,
       }
     } catch (error) {
       return {}
@@ -441,7 +442,9 @@ export default Vue.extend({
         this.showLoading()
         const formData = new FormData()
         formData.append('file', this.profileImg)
-        const response = await this.$httpService.utils.uploadImageToCut(formData)
+        const response = await this.$httpService.utils.uploadImageToCut(
+          formData
+        )
         this.imgSrc = response.data.data
         // @ts-ignore
         this.$modal.show('crop-profile-img')

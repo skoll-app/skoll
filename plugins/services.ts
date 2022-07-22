@@ -4,7 +4,7 @@ export default function ({ app }, inject) {
 
   let services = {
     auth: {
-      login(username, password) {
+      login(username: string, password: string) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$api.post(
@@ -20,7 +20,7 @@ export default function ({ app }, inject) {
           }
         })
       },
-      userExists({ username }) {
+      userExists({ username }: { username: string }) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$api.post(
@@ -35,7 +35,13 @@ export default function ({ app }, inject) {
           }
         })
       },
-      updatePassword({ newPassword, password }) {
+      updatePassword({
+        newPassword,
+        password,
+      }: {
+        newPassword: string
+        password: string
+      }) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$apiAuth.put(
@@ -63,7 +69,7 @@ export default function ({ app }, inject) {
       },
     },
     posts: {
-      getAll({ page, size }) {
+      getAll({ page, size }: { page: number, size: number }) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$apiAuth.post(
@@ -79,12 +85,12 @@ export default function ({ app }, inject) {
           }
         })
       },
-      uploadImage(formdata) {
+      uploadImage(formdata: FormData) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$apiAuth.post(
               `${skollRegister}/client/create/multimedia`,
-              formdata,
+              formdata
             )
             resolve(response)
           } catch (error) {
@@ -94,7 +100,7 @@ export default function ({ app }, inject) {
       },
     },
     utils: {
-      uploadImageToCut(formdata) {
+      uploadImageToCut(formdata: FormData) {
         return new Promise(async (resolve, reject) => {
           try {
             const headers = { 'Content-Type': 'multipart/form-data' }

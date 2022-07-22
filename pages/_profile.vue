@@ -82,9 +82,9 @@ export default Vue.extend({
     TrashIcon,
     EyeIcon,
   },
-  async asyncData({ $apiAuth }) {
+  async asyncData({ $apiAuth, $httpService }) {
     try {
-      const userData = await $apiAuth.get('/skoll-register-server-api/client/')
+      const userData = await $httpService.auth.userData()
       const posts = await $apiAuth.get('/skoll-register-server-api/publication/')
       return {
         user: userData.data.data,

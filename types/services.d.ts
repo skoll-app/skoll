@@ -34,6 +34,13 @@ interface AuthService {
     newPassword: string
     password: string
   }): Promise<T>
+  generateOTP<T = any>({
+    check,
+    sessionId,
+  }: {
+    check: string
+    sessionId?: string
+  }): Promise<T>
 }
 
 interface PostService {

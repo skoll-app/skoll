@@ -49,16 +49,11 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.carousel.prev()
     },
-    async generateOTP(event: any) {
+    async generateOTP(event: string) {
       this.phone = event
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-security-server-api/security/generate/otp',
-          {
-            check: event,
-          }
-        )
+        const res = await this.$httpService.auth.generateOTP({ check: event })
         this.sessionId = res.data.data
         this.hideLoading()
         this.next()

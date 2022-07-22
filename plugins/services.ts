@@ -59,6 +59,21 @@ export default function ({ app }, inject) {
           }
         })
       },
+      generateOTP(phone: string) {
+        return new Promise((resolve, reject) => {
+          try {
+            const response = app.$api.post(
+              `${skollSecurity}/security/generate/otp`,
+              {
+                check: phone,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     posts: {
       getAll({ page, size }: { page: number; size: number }) {

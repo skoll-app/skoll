@@ -78,13 +78,10 @@ export default Vue.extend({
     async generateOTP() {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/generate/otp',
-          {
-            sessionId: this.user.sessionId,
-            check: 'verifyUser',
-          }
-        )
+        await this.$httpService.auth.generateOTP({
+          sessionId: this.user.sessionId,
+          check: 'verifyUser',
+        })
         this.hideLoading()
         this.next()
       } catch (error: any) {

@@ -94,6 +94,7 @@ export default {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     skollSecurity: process.env.SKOLL_SECURITY || '/skoll-security-server-api',
     skollRegister: process.env.SKOLL_REGISTER || '/skoll-register-server-api',
+    skollParameter: process.env.SKOLL_PARAMETER || '/skoll-parameter-server-api',
   },
 
   loading: {

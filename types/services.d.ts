@@ -22,6 +22,7 @@ interface HttpService {
   posts: PostService
   utils: UtilsService
   user: UserService
+  policy: PolicyService
 }
 
 interface AuthService {
@@ -96,4 +97,17 @@ interface UserService {
     sessionId: string
   ): Promise<T>
   preSignup<T = any>(user: Partial<User>): Promise<T>
+}
+
+interface PolicyService {
+  get<T = any>(): Promise<T>
+  update<T = any>({
+    notification,
+    profile,
+    invitation,
+  }: {
+    notification: boolean
+    profile: boolean
+    invitation: boolean
+  }): Promise<T>
 }

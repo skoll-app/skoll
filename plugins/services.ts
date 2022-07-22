@@ -3,6 +3,7 @@ import User from '../interfaces/user'
 export default function ({ app }, inject) {
   const skollSecurity = process.env.skollSecurity
   const skollRegister = process.env.skollRegister
+  const skollParameter = process.env.skollParameter
 
   let services = {
     auth: {
@@ -309,6 +310,45 @@ export default function ({ app }, inject) {
                 email: user.email,
                 firstname: user.firstName,
                 lastName: user.lastName,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+    },
+    policy: {
+      get(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.get(
+              `${skollParameter}/support/security/policy`
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+      update({
+        notification,
+        profile,
+        invitation,
+      }: {
+        notification: boolean
+        profile: boolean
+        invitation: boolean
+      }) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.put(
+              `${skollParameter}/support/security/policy`,
+              {
+                notifications: notification,
+                profileViewable: profile,
+                receiveInvitations: invitation,
               }
             )
             resolve(response)

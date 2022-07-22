@@ -53,13 +53,10 @@ export default Vue.extend({
     async saveMessage() {
       try {
         this.showLoading()
-        await this.$apiAuth.post(
-          '/skoll-parameter-server-api/support/client/help',
-          {
-            subject: this.subject,
-            description: this.message,
-          }
-        )
+        await this.$httpService.utils.help({
+          subject: this.subject,
+          description: this.message,
+        })
         this.hideLoading()
         this.resetForm()
         const toast: Toast = {

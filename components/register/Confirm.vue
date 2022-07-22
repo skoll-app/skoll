@@ -108,6 +108,7 @@ import { mapActions } from 'vuex'
 // Interfaces
 import SelectOption from '~/interfaces/select-option'
 import Toast from '~/interfaces/toast'
+import User from '~/interfaces/user'
 // Components
 import TextInput from '../ux/input/TextInput.vue'
 import Select from '../ux/select/Select.vue'
@@ -185,17 +186,14 @@ export default Vue.extend({
     async preRegister() {
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-register-server-api/client/hello',
-          {
-            cellPhone: this.register.phone,
-            cellPhonePrefix: '57',
-            city: this.register.city.value,
-            email: this.register.email,
-            firstname: this.register.lastname,
-            lastName: this.register.lastname,
-          }
-        )
+        const user: Partial<User> = {
+          cellPhone: this.register.phone,
+          cityName: this.register.city.value as string,
+          email: this.register.email,
+          firstName: this.register.lastname,
+          lastName: this.register.lastname,
+        }
+        const res = await this.$httpService.user.preSignup(user)
         this.sessionId = res.data.data.sessionId
         this.hideLoading()
         this.emitUserData()

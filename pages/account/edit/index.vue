@@ -296,11 +296,12 @@ export default Vue.extend({
     profileImg: '',
     imgSrc: '',
   }),
-  async asyncData(context) {
+  async asyncData({ $httpService }) {
     try {
-      const userData = await context.$apiAuth.get('/skoll-register-server-api/client/')
+      const userData = await $httpService.user.getData()
+      const user = userData.data.data
       return {
-        user: userData.data.data,
+        user,
       }
     } catch (error) {
       return {}
@@ -332,10 +333,7 @@ export default Vue.extend({
       }
       try {
         this.showLoading()
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/update',
-          formattedUser
-        )
+        await this.$httpService.user.updateData(formattedUser)
         this.hideLoading()
         const toast: Toast = {
           title: 'success',
@@ -405,7 +403,7 @@ export default Vue.extend({
         })
         .toBlob((blob: any) => {
           const formData = new FormData()
-          formData.append('file', blob, 'avatar.png')
+          formData.append('file', blob, `avatar-${Date.now()}.png`)
           formData.append('description', 'avatar')
           this.submitProfilePic(formData)
         }, 'image/png')
@@ -415,14 +413,7 @@ export default Vue.extend({
         // @ts-ignore
         this.$modal.hide('crop-profile-img')
         this.showLoading()
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/update/logo',
-          formData,
-          {
-            headers,
-          }
-        )
+        await this.$httpService.user.updateLogo(formData)
         this.hideLoading()
         location.reload()
       } catch (error: any) {
@@ -441,15 +432,10 @@ export default Vue.extend({
         this.showLoading()
         const formData = new FormData()
         formData.append('file', this.profileImg)
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        const res = await this.$apiAuth.post(
-          '/skoll-register-server-api/client/create/multimedia/cut',
-          formData,
-          {
-            headers,
-          }
+        const response = await this.$httpService.utils.uploadImageToCut(
+          formData
         )
-        this.imgSrc = res.data.data
+        this.imgSrc = response.data.data
         // @ts-ignore
         this.$modal.show('crop-profile-img')
         this.hideLoading()

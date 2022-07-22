@@ -114,16 +114,8 @@ export default Vue.extend({
         this.showLoading()
         const formData = new FormData()
         formData.append('file', this.postImg)
-        const headers = { 'Content-Type': 'multipart/form-data' }
-        const res = await this.$apiAuth.post(
-          '/skoll-register-server-api/client/create/multimedia/cut',
-          formData,
-          {
-            headers,
-          }
-        )
-        this.imgSrc = res.data.data
-        // @ts-ignore
+        const response = await this.$httpService.utils.uploadImageToCut(formData)
+        this.imgSrc = response.data.data
         this.hideLoading()
       } catch (error: any) {
         this.hideLoading()
@@ -155,22 +147,13 @@ export default Vue.extend({
       this.postImg = ''
       this.imgSrc = ''
     },
-    async savePost(formData: any) {
+    async savePost(formData: FormData) {
       try {
         this.showLoading()
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/create/multimedia',
-          formData
-        )
+        await this.$httpService.posts.uploadImage(formData)
         this.hideLoading()
         this.reset()
-        const toast: Toast = {
-          title: 'success',
-          message: 'publicacion cargada',
-          type: 'success',
-          timer: 5000,
-        }
-        this.showToastWithProps(toast)
+        this.$emit('saved')
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {

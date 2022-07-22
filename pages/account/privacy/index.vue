@@ -39,11 +39,9 @@ import Toast from '~/interfaces/toast'
 export default Vue.extend({
   components: { CheckboxInput },
   layout: 'config',
-  async asyncData(context) {
+  async asyncData({ $httpService }) {
     try {
-      const params = await context.$apiAuth.get(
-        '/skoll-parameter-server-api/support/security/policy'
-      )
+      const params = await $httpService.policy.get()
       return {
         params: params.data.data,
       }
@@ -84,14 +82,11 @@ export default Vue.extend({
     async savePrivacy() {
       try {
         this.showLoading()
-        await this.$apiAuth.put(
-          '/skoll-parameter-server-api/support/security/policy',
-          {
-            notifications: this.notificationsChecked,
-            profileViewable: this.profileChecked,
-            receiveInvitations: this.invitationsChecked,
-          }
-        )
+        await this.$httpService.policy.update({
+          notification: this.notificationsChecked,
+          profile: this.profileChecked,
+          invitation: this.invitationsChecked,
+        })
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

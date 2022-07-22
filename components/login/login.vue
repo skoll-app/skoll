@@ -138,32 +138,25 @@ export default Vue.extend({
     async verifyUser(): Promise<void> {
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-security-server-api/security/exist/user',
-          {
-            username: this.phone,
-          }
-        )
+        const res = await this.$httpService.auth.userExists({
+          username: this.phone,
+        })
         const userExists = res.data.data.info.exists
         if (!userExists) {
           const toast: Toast = {
             title: 'error',
             message: 'loginview.userNotExist',
             type: 'danger',
-            closable: true,
           }
           this.showToastWithProps(toast)
         } else {
-          const { data } = await this.$api.post(
-            '/skoll-security-server-api/oauth/login',
-            {
-              username: this.phone,
-              password: this.password,
-            }
+          const res = await this.$httpService.auth.login(
+            this.phone,
+            this.password
           )
-          this.$cookies.set('token', data.token)
-          const userData = await this.$apiAuth.get('/skoll-register-server-api/client/')
-          this.setUser(userData.data.data)
+          this.$cookies.set('token', res.data.token)
+          const user = await this.$httpService.user.getData()
+          this.setUser(user.data.data)
           this.$router.push('/feed')
         }
         this.hideLoading()
@@ -174,7 +167,6 @@ export default Vue.extend({
             title: 'Error',
             message: 'loginview.wrongPassword',
             type: 'danger',
-            closable: true,
           })
         }
       }

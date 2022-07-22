@@ -49,16 +49,11 @@ export default Vue.extend({
       // @ts-ignore
       this.$refs.carousel.prev()
     },
-    async generateOTP(event: any) {
+    async generateOTP(event: string) {
       this.phone = event
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-security-server-api/security/generate/otp',
-          {
-            check: event,
-          }
-        )
+        const res = await this.$httpService.auth.generateOTP({ check: event })
         this.sessionId = res.data.data
         this.hideLoading()
         this.next()
@@ -76,13 +71,10 @@ export default Vue.extend({
     async validateOTP(otp: any) {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/validate/otp',
-          {
-            sessionId: this.sessionId,
-            otp,
-          }
-        )
+        await this.$httpService.auth.validateOTP({
+          sessionId: this.sessionId,
+          otp,
+        })
         this.hideLoading()
         this.userExist()
       } catch (error: any) {
@@ -100,12 +92,9 @@ export default Vue.extend({
     async userExist() {
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-security-server-api/security/exist/user',
-          {
-            username: this.phone,
-          }
-        )
+        const res = await this.$httpService.auth.userExists({
+          username: this.phone,
+        })
         this.encodedEmail = res.data.data.info.email
         this.hideLoading()
         this.next()
@@ -130,13 +119,10 @@ export default Vue.extend({
     async validateEmail() {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/validate/email',
-          {
-            email: this.email,
-            sessionId: this.sessionId,
-          }
-        )
+        await this.$httpService.auth.validateEmail({
+          email: this.email,
+          sessionId: this.sessionId,
+        })
         this.hideLoading()
         this.next()
       } catch (error: any) {
@@ -157,13 +143,10 @@ export default Vue.extend({
     async recoverPassword() {
       try {
         this.showLoading()
-        await this.$api.put(
-          '/skoll-security-server-api/security/recovery/password',
-          {
-            password: this.password,
-            sessionId: this.sessionId,
-          }
-        )
+        await this.$httpService.auth.passwordRecovery({
+          password: this.password,
+          sessionId: this.sessionId,
+        })
         this.hideLoading()
         const toast: Toast = {
           title: 'success',

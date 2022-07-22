@@ -115,15 +115,12 @@ export default Vue.extend({
     async saveSocialMedia() {
       try {
         this.showLoading()
-        await this.$apiAuth.put(
-          '/skoll-register-server-api/client/update/social/network',
-          {
-            urlFacebook: this.facebook,
-            urlInstagram: this.instagram,
-            urlOnlyfans: this.onlyfans,
-            urlTikTok: this.tiktok,
-          }
-        )
+        await this.$httpService.user.updateSocialNetwork({
+          urlFacebook: this.facebook,
+          urlInstagram: this.instagram,
+          urlOnlyfans: this.onlyfans,
+          urlTikTok: this.tiktok,
+        })
         this.setSocialMedias({
           facebook: this.facebook,
           instagram: this.instagram,

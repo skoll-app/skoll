@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-2"></div>
         <div class="col-12 col-md-10 col-lg-5">
-          <ThinkingCard />
+          <ThinkingCard @saved="$nuxt.refresh()" />
           <PostsList :posts="posts" />
         </div>
         <div class="col-lg-3 d-none d-lg-block">
@@ -41,21 +41,14 @@ export default Vue.extend({
   layout: 'blue',
   middleware: ['auth'],
   components: { ThinkingCard, PostsList },
-  async asyncData({ $apiAuth }) {
+  async asyncData({ $httpService }) {
     try {
-      const res = await $apiAuth.post(
-        '/skoll-register-server-api/publication',
-        {
-          page: 0,
-          size: 10,
-        }
-      )
+      const res = await $httpService.posts.getAll({ page: 0, size: 10 })
       const posts = res.data.data.publication
       return {
         posts,
       }
     } catch (error) {
-      console.error(error)
       return {}
     }
   },
@@ -79,13 +72,7 @@ export default Vue.extend({
         this.page += 1
         this.isLoading = true
         this.showLoading()
-        const res = await this.$apiAuth.post(
-          '/skoll-register-server-api/publication',
-          {
-            page: this.page,
-            size: this.perPage,
-          }
-        )
+        const res = await this.$httpService.posts.getAll({ page: 0, size: 10 })
         this.hideLoading()
         const postsAdd = res.data.data.publication
         this.isLoading = false

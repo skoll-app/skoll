@@ -4,7 +4,7 @@ const baseHref = '/skoll/'
 const isDevelop = process.env.NODE_ENV === 'development'
 
 export default {
-  target: 'static',
+  target: 'server',
   router: {
     base: isDevelop ? '' : baseHref,
     middleware: ['stats'],
@@ -48,6 +48,7 @@ export default {
     { src: '~plugins/vue-js-modal.js', mode: 'client' },
     '~/plugins/vue-cropper',
     '~/plugins/images',
+    '~/plugins/services',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -91,6 +92,9 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    skollSecurity: process.env.SKOLL_SECURITY || '/skoll-security-server-api',
+    skollRegister: process.env.SKOLL_REGISTER || '/skoll-register-server-api',
+    skollParameter: process.env.SKOLL_PARAMETER || '/skoll-parameter-server-api',
   },
 
   loading: {

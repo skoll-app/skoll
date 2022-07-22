@@ -59,13 +59,30 @@ export default function ({ app }, inject) {
           }
         })
       },
-      generateOTP(phone: string) {
-        return new Promise((resolve, reject) => {
+      generateOTP({ check, sessionId }: { check: string; sessionId?: string }) {
+        return new Promise(async (resolve, reject) => {
           try {
-            const response = app.$api.post(
+            const response = await app.$api.post(
               `${skollSecurity}/security/generate/otp`,
               {
-                check: phone,
+                check,
+                sessionId,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+      validateOTP({ sessionId, otp }: { sessionId: string; otp: string }) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.post(
+              `${skollSecurity}/security/validate/otp`,
+              {
+                sessionId,
+                otp,
               }
             )
             resolve(response)

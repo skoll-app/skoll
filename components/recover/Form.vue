@@ -71,13 +71,10 @@ export default Vue.extend({
     async validateOTP(otp: any) {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/validate/otp',
-          {
-            sessionId: this.sessionId,
-            otp,
-          }
-        )
+        await this.$httpService.auth.validateOTP({
+          sessionId: this.sessionId,
+          otp,
+        })
         this.hideLoading()
         this.userExist()
       } catch (error: any) {
@@ -95,12 +92,9 @@ export default Vue.extend({
     async userExist() {
       try {
         this.showLoading()
-        const res = await this.$api.post(
-          '/skoll-security-server-api/security/exist/user',
-          {
-            username: this.phone,
-          }
-        )
+        const res = await this.$httpService.auth.userExists({
+          username: this.phone,
+        })
         this.encodedEmail = res.data.data.info.email
         this.hideLoading()
         this.next()

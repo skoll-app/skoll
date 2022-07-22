@@ -55,13 +55,10 @@ export default Vue.extend({
     async validateOtp(otp: string) {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/validate/otp',
-          {
-            sessionId: this.user.sessionId,
-            otp,
-          }
-        )
+        await this.$httpService.auth.validateOTP({
+          sessionId: this.user.sessionId,
+          otp,
+        })
         this.hideLoading()
         this.next()
       } catch (error: any) {

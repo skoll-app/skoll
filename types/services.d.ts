@@ -41,6 +41,13 @@ interface AuthService {
     check: string
     sessionId?: string
   }): Promise<T>
+  validateOTP<T = any>({
+    otp,
+    sessionId,
+  }: {
+    otp: string
+    sessionId: string
+  }): Promise<T>
 }
 
 interface PostService {

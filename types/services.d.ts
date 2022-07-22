@@ -74,6 +74,13 @@ interface PostService {
 
 interface UtilsService {
   uploadImageToCut<T = any>(formdata: FormData): Promise<T>
+  help<T = any>({
+    subject,
+    description,
+  }: {
+    subject: string
+    description: string
+  }): Promise<T>
 }
 
 interface UserService {

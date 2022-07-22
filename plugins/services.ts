@@ -210,6 +210,28 @@ export default function ({ app }, inject) {
           }
         })
       },
+      help({
+        subject,
+        description,
+      }: {
+        subject: string
+        description: string
+      }): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.post(
+              `${skollParameter}/support/client/help`,
+              {
+                subject,
+                description,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     user: {
       updateData(formattedUser: User) {

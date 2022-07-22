@@ -67,4 +67,5 @@ interface UserService {
     password: string,
     sessionId: string
   ): Promise<T>
+  preSignup<T = any>(user: Partial<User>): Promise<T>
 }

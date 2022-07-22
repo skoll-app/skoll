@@ -221,6 +221,26 @@ export default function ({ app }, inject) {
           }
         })
       },
+      preSignup(user: Partial<User>) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.post(
+              `${skollRegister}/client/hello`,
+              {
+                cellPhone: user.cellPhone,
+                cellPhonePrefix: '57',
+                city: user.cityName,
+                email: user.email,
+                firstname: user.firstName,
+                lastName: user.lastName,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
   }
   inject('httpService', services)

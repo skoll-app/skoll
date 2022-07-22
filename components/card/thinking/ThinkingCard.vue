@@ -147,22 +147,13 @@ export default Vue.extend({
       this.postImg = ''
       this.imgSrc = ''
     },
-    async savePost(formData: any) {
+    async savePost(formData: FormData) {
       try {
         this.showLoading()
-        await this.$apiAuth.post(
-          '/skoll-register-server-api/client/create/multimedia',
-          formData
-        )
+        await this.$httpService.posts.uploadImage(formData)
         this.hideLoading()
         this.reset()
-        const toast: Toast = {
-          title: 'success',
-          message: 'publicacion cargada',
-          type: 'success',
-          timer: 5000,
-        }
-        this.showToastWithProps(toast)
+        this.$emit('saved')
       } catch (error: any) {
         this.hideLoading()
         const toast: Toast = {

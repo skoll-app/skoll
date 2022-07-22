@@ -37,6 +37,7 @@ interface AuthService {
 
 interface PostService {
   getAll<T = any>({ page, size }: { page: number; size: number }): Promise<T>
+  uploadImage<T = any>(formdata: FormData): Promise<T>
 }
 
 interface UtilsService {

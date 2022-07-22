@@ -79,6 +79,19 @@ export default function ({ app }, inject) {
           }
         })
       },
+      uploadImage(formdata) {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.post(
+              `${skollRegister}/client/create/multimedia`,
+              formdata,
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     utils: {
       uploadImageToCut(formdata) {

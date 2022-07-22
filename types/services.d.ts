@@ -34,7 +34,6 @@ interface AuthService {
     newPassword: string
     password: string
   }): Promise<T>
-  userData<T = any>(): Promise<T>
 }
 
 interface PostService {
@@ -49,6 +48,7 @@ interface UtilsService {
 }
 
 interface UserService {
+  getData<T = any>(): Promise<T>
   updateData<T = any>(formattedUser: User): Promise<T>
   updateLogo<T = any>(formdata: FormData): Promise<T>
   updateSocialNetwork<T = any>({

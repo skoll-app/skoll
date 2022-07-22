@@ -155,7 +155,7 @@ export default Vue.extend({
             this.password
           )
           this.$cookies.set('token', res.data.token)
-          const user = await this.$httpService.auth.userData()
+          const user = await this.$httpService.user.getData()
           this.setUser(user.data.data)
           this.$router.push('/feed')
         }

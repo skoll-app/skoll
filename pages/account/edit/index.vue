@@ -298,7 +298,7 @@ export default Vue.extend({
   }),
   async asyncData({ $httpService }) {
     try {
-      const userData = await $httpService.auth.userData()
+      const userData = await $httpService.user.getData()
       const user = userData.data.data
       return {
         user,

@@ -60,14 +60,7 @@ export default function ({ app }, inject) {
         })
       },
       userData() {
-        return new Promise(async (resolve, reject) => {
-          try {
-            const response = await app.$apiAuth.get(`${skollRegister}/client/`)
-            resolve(response)
-          } catch (error) {
-            reject(error)
-          }
-        })
+
       },
     },
     posts: {
@@ -203,6 +196,16 @@ export default function ({ app }, inject) {
           }
         })
       },
+      getData() {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.get(`${skollRegister}/client/`)
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      }
     },
   }
   inject('httpService', services)

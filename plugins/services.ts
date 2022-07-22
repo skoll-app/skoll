@@ -104,7 +104,19 @@ export default function ({ app }, inject) {
         return new Promise(async (resolve, reject) => {
           try {
             const response = await app.$apiAuth.delete(
-              `/skoll-register-server-api/publication/${id}`
+              `${skollRegister}/publication/${id}`
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
+      get() {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$apiAuth.get(
+              `${skollRegister}/publication/`
             )
             resolve(response)
           } catch (error) {

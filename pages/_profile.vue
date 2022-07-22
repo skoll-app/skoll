@@ -85,9 +85,7 @@ export default Vue.extend({
   async asyncData({ $apiAuth, $httpService }) {
     try {
       const userData = await $httpService.auth.userData()
-      const posts = await $apiAuth.get(
-        '/skoll-register-server-api/publication/'
-      )
+      const posts = await $httpService.posts.get()
       return {
         user: userData.data.data,
         posts: posts.data.data.publicationAvailable,

@@ -91,6 +91,28 @@ export default function ({ app }, inject) {
           }
         })
       },
+      validateEmail({
+        sessionId,
+        email,
+      }: {
+        sessionId: string
+        email: string
+      }): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.post(
+              `${skollSecurity}/security/validate/email`,
+              {
+                email,
+                sessionId,
+              }
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     posts: {
       getAll({ page, size }: { page: number; size: number }) {

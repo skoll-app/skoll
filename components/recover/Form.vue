@@ -119,13 +119,10 @@ export default Vue.extend({
     async validateEmail() {
       try {
         this.showLoading()
-        await this.$api.post(
-          '/skoll-security-server-api/security/validate/email',
-          {
-            email: this.email,
-            sessionId: this.sessionId,
-          }
-        )
+        await this.$httpService.auth.validateEmail({
+          email: this.email,
+          sessionId: this.sessionId,
+        })
         this.hideLoading()
         this.next()
       } catch (error: any) {

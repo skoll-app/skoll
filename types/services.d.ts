@@ -48,6 +48,13 @@ interface AuthService {
     otp: string
     sessionId: string
   }): Promise<T>
+  validateEmail<T = any>({
+    email,
+    sessionId,
+  }: {
+    email: string
+    sessionId: string
+  }): Promise<T>
 }
 
 interface PostService {

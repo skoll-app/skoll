@@ -81,6 +81,7 @@ interface UtilsService {
     subject: string
     description: string
   }): Promise<T>
+  departments<T = any>(): Promise<T>
 }
 
 interface UserService {

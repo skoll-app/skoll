@@ -74,7 +74,7 @@
           <div class="col-lg-6">
             <Select
               :name="$t('registerview.form.city')"
-              :options="selectOptions"
+              :options="departments"
               rules="required"
               class="mb-2"
               size="sm"
@@ -125,43 +125,14 @@ export default Vue.extend({
       country: 'Colombia',
       city: {} as SelectOption,
     },
-    selectOptions: [
-      { label: 'Arauca', value: 'Arauca' },
-      { label: 'Armenia', value: 'Armenia' },
-      { label: 'Barranquilla', value: 'Barranquilla' },
-      { label: 'Bogotá', value: 'Bogotá' },
-      { label: 'Bucaramanga', value: 'Bucaramanga' },
-      { label: 'Cali', value: 'Cali' },
-      { label: 'Cartagena', value: 'Cartagena' },
-      { label: 'Cúcuta', value: 'Cúcuta' },
-      { label: 'Florencia', value: 'Florencia' },
-      { label: 'Ibagué', value: 'Ibagué' },
-      { label: 'Leticia', value: 'Leticia' },
-      { label: 'Manizales', value: 'Manizales' },
-      { label: 'Medellín', value: 'Medellín' },
-      { label: 'Mitú', value: 'Mitú' },
-      { label: 'Mocoa', value: 'Mocoa' },
-      { label: 'Montería', value: 'Montería' },
-      { label: 'Neiva', value: 'Neiva' },
-      { label: 'Pasto', value: 'Pasto' },
-      { label: 'Pereira', value: 'Pereira' },
-      { label: 'Popayán', value: 'Popayán' },
-      { label: 'Puerto Carreño', value: 'Puerto Carreño' },
-      { label: 'Puerto Inírida', value: 'Puerto Inírida' },
-      { label: 'Quibdó', value: 'Quibdó' },
-      { label: 'Riohacha', value: 'Riohacha' },
-      { label: 'San Andrés', value: 'San Andrés' },
-      { label: 'San José del Guaviare', value: 'San José del Guaviare' },
-      { label: 'Santa Marta', value: 'Santa Marta' },
-      { label: 'Sincelejo', value: 'Sincelejo' },
-      { label: 'Tunja', value: 'Tunja' },
-      { label: 'Valledupar', value: 'Valledupar' },
-      { label: 'Villavicencio', value: 'Villavicencio' },
-      { label: 'Yopal', value: 'Yopal' },
-    ] as SelectOption[],
     showPassword: false,
     sessionId: '',
+    departments: [] as SelectOption[],
   }),
+
+  beforeMount() {
+    this.parseDepartments()
+  },
 
   computed: {
     passwordInputType(): string {
@@ -208,6 +179,13 @@ export default Vue.extend({
         }
         this.showToastWithProps(toast)
       }
+    },
+    async parseDepartments() {
+      const response = await this.$httpService.utils.departments()
+      const departments = response.data.data.colombia.departments
+      this.departments = departments.map((item: any) => {
+        return { label: item.name, value: item.id }
+      })
     },
     ...mapActions('loading', ['showLoading', 'hideLoading']),
     ...mapActions('toast', ['showToastWithProps']),

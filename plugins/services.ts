@@ -232,6 +232,18 @@ export default function ({ app }, inject) {
           }
         })
       },
+      departments(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const response = await app.$api.get(
+              `${skollParameter}/departments/`
+            )
+            resolve(response)
+          } catch (error) {
+            reject(error)
+          }
+        })
+      },
     },
     user: {
       updateData(formattedUser: User) {

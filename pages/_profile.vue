@@ -82,7 +82,7 @@ export default Vue.extend({
     TrashIcon,
     EyeIcon,
   },
-  async asyncData({ $apiAuth, $httpService }) {
+  async asyncData({ $httpService }) {
     try {
       const userData = await $httpService.user.getData()
       const posts = await $httpService.posts.get()

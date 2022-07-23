@@ -51,15 +51,15 @@ export const state = () => ({
       options: [
         {
           label: 'sidebar.main.others.registerTrade',
-          to: '/',
+          to: '/auth/commerce',
         },
         {
           label: 'sidebar.main.others.faqs',
-          to: '/',
+          to: '/faqs',
         },
         {
           label: 'sidebar.main.others.plans',
-          to: '/',
+          to: '/plans',
         },
       ],
     },

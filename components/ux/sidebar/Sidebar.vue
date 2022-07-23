@@ -24,7 +24,7 @@
             <template v-for="(item, i) in menu.options">
               <div
                 :key="k + i + '-anchor'"
-                v-if="item.options && item.options.length"
+                v-if="item.options && item.options.length > 0"
               >
                 <a
                   :id="'anchor-' + k + i"
@@ -49,13 +49,13 @@
                 </div>
               </div>
               <div v-else :key="i + '-anchor'">
-                <a
+                <NuxtLink
                   :id="'anchor-' + i"
                   ref="fields"
                   :key="i + '-anchor'"
-                  class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3 text-capitalize"
-                  @click="openDropdown"
-                  >{{ $t(item.label) }}</a
+                  class="d-flex align-items-center justify-content-between item p-2 ps-3 py-2 mx-3 text-capitalize nuxt-router"
+                  :to="item.to"
+                  >{{ $t(item.label) }}</NuxtLink
                 >
               </div>
             </template>
@@ -176,7 +176,7 @@ export default Vue.extend({
     .active {
       border-radius: 4px;
       background-color: var(--bs-warning);
-      color: var(--bs-white);
+      color: var(--bs-white) !important;
 
       .arrow {
         transform: rotate(90deg);

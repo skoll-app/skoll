@@ -8,18 +8,21 @@
         v-model="checkedOpt"
         :checked="profileChecked"
         label="configview.privacy.profile"
+        isSwitch
       />
       <CheckboxInput
         inputValue="notifications"
         v-model="checkedOpt"
         :checked="notificationsChecked"
         label="configview.privacy.notifications"
+        isSwitch
       />
       <CheckboxInput
         inputValue="invitations"
         v-model="checkedOpt"
         :checked="invitationsChecked"
         label="configview.privacy.invitations"
+        isSwitch
       />
       <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-success" @click="savePrivacy">

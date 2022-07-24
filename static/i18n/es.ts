@@ -201,13 +201,19 @@ const esp = {
   profileview: {
     deleteModal: {
       title: 'Eliminar publicación',
-      message: '¿Estas seguro que deseas eliminar esta publicación?'
+      message: '¿Estas seguro que deseas eliminar esta publicación?',
     },
-    deletedPost: 'La publicación fue eliminada'
+    deletedPost: 'La publicación fue eliminada',
   },
   success: 'Exito',
   error: 'Error',
   form: {
+    name: 'Nombre',
+    lastname: 'Apellidos',
+    phone: 'Teléfono',
+    email: 'Correo',
+    city: 'Ciudad',
+    password: 'Contraseña',
     currentPassword: 'Contraseña actual',
     newPassword: 'Nueva contraseña',
     confirmPassword: 'Confirmar contraseña',
@@ -218,7 +224,17 @@ const esp = {
     subject: 'Asunto',
     message: 'Mensaje',
     cancel: 'Cancelar',
-    delete: 'Eliminar'
+    delete: 'Eliminar',
+    continue: 'Continuar',
+    back: 'volver',
+  },
+  commerceview: {
+    managerStep: {
+      title: 'Representante legal',
+      description:
+        'Si eres el propietario y/o representante legal del negocio, por favor completa la siguiente información con tus datos',
+      iAm: 'Yo soy el representante legal',
+    },
   },
 }
 

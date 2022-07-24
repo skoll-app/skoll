@@ -68,11 +68,12 @@
             v-model="manager.city"
             addVeeClasses
             :withI18n="false"
+            rules="required"
           />
         </div>
         <div class="col-12 col-md-6">
           <TextInput
-            class="mb-3"
+            class="mb-2"
             :name="$t('form.password')"
             :placeholder="$t('form.password')"
             rules="required|password"
@@ -87,10 +88,13 @@
       <div class="row">
         <div class="col-12">
           <CheckboxInput
-          class="mb-3"
+            :name="$t('commerceview.managerStep.iAm')"
+            class="mb-3"
             inputValue="profile"
-            :checked="manager.iAm"
             label="commerceview.managerStep.iAm"
+            :rules="{ required: { allowFalse: false } }"
+            addVeeClasses
+            v-model="manager.iAm"
           />
         </div>
       </div>
@@ -98,7 +102,12 @@
         <NuxtLink to="/auth" class="btn btn-primary">
           {{ $t('form.back') }}
         </NuxtLink>
-        <button type="button" class="btn btn-primary" :disabled="invalid">
+        <button
+          type="button"
+          class="btn btn-primary"
+          :disabled="invalid"
+          @click="next"
+        >
           {{ $t('form.continue') }}
         </button>
       </div>
@@ -126,9 +135,9 @@ export default Vue.extend({
       phone: '',
       email: '',
       password: '',
-      city: '',
+      city: {} as SelectOption,
       country: 'Colombia',
-      iAm: false
+      iAm: false,
     },
     departments: [] as SelectOption[],
   }),
@@ -137,11 +146,20 @@ export default Vue.extend({
   },
   methods: {
     async parseDepartments() {
-      const response = await this.$httpService.utils.departments()
-      const departments = response.data.data.colombia.departments
-      this.departments = departments.map((item: any) => {
-        return { label: item.name, value: item.id }
-      })
+      try {
+        const response = await this.$httpService.utils.departments()
+        const departments = response.data.data.colombia.departments
+        this.departments = departments.map((item: any) => {
+          return { label: item.name, value: item.id }
+        })
+      } catch (error) {
+        this.departments = [
+          { label: 'Bogotá', value: '10000' }
+        ]
+      }
+    },
+    next() {
+      console.log(this.manager)
     },
   },
 })
